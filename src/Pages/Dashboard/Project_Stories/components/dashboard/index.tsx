@@ -2,6 +2,7 @@ import React, {FC} from 'react';
 import Dropdown from '../../../../../Components/Dropdown';
 import {Loading} from '../../../../../Components/Icons';
 import Input from '../../../../../Components/Input';
+import Debounce from '../../../../../Helper/debounce';
 
 import styles from './dashboard.module.css';
 import StoriesTable from './table';
@@ -9,14 +10,22 @@ import StoriesTable from './table';
 interface Props {
   data?: any;
   load?: boolean;
+  next?: any;
+  total?: any;
+  search?: any;
 }
 
-const StoriesDashboard: FC<Props> = ({data, load}) => {
+const StoriesDashboard: FC<Props> = ({search, data, load, next, total}) => {
+  const handleSearch = Debounce((e: any) => {
+    const {value} = e.target;
+    search(value);
+  }, 300);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.function}>
         <div className={styles.search}>
-          <Input placeholder="Search" search />
+          <Input placeholder="Search" search onChange={handleSearch} />
         </div>
         <div className={styles.typeSort}>
           <Dropdown
@@ -41,7 +50,7 @@ const StoriesDashboard: FC<Props> = ({data, load}) => {
           />
         </div>
       </div>
-      <StoriesTable data={data} />
+      <StoriesTable total={total} next={next} data={data} />
       {load ? (
         <div className={styles.load}>
           <Loading />

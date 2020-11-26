@@ -13,12 +13,18 @@ export const getStoriesList = (
   return async (dispatch: any) => {
     dispatch({type: ActionTypes.REQUEST});
     const payload = await api.get(
-      `${projects}/${projectID}/stories?keyword=${keyword}&status=${status}&type=${type}&page=${page}`,
+      `${projects}/${projectID}/stories?keyword=${keyword}&status=${status}&type=${type}&page=${
+        keyword === '' ? page : 1
+      }`,
     );
     try {
       dispatch({
         type: ActionTypes.GET_STORIES,
-        payload: payload.data,
+        payload: keyword === '' ? payload.data.project_stories : [],
+        filterList: payload.data.project_stories,
+        total: payload.data.total_count,
+        keyword,
+        page,
       });
     } catch (err) {
       return err;

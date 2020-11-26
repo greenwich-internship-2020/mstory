@@ -37,8 +37,28 @@ const Stories: FC<Props> = (props) => {
     (state: RootStateOrAny) => state.storiesReducer.payload,
   );
 
+  const total = useSelector(
+    (state: RootStateOrAny) => state.storiesReducer.total,
+  );
+
+  const filterList = useSelector(
+    (state: RootStateOrAny) => state.storiesReducer.filterList,
+  );
+
   const loading = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.loading,
+  );
+
+  const resetPage = () => dispatch({type: 'RESET_MODULE'});
+
+  const totalPage = Math.round(total / 6);
+
+  useEffect(
+    () => {
+      resetPage();
+    },
+    // eslint-disable-next-line
+    [status, type],
   );
 
   useEffect(() => {
@@ -69,7 +89,16 @@ const Stories: FC<Props> = (props) => {
       head="User stories"
     >
       {show ? renderModal() : null}
-      <StoriesDashboard load={loading} data={stories} />
+      <StoriesDashboard
+        next={() => {
+          // setPage(page + 1);
+          return page <= totalPage ? setPage(page + 1) : null;
+        }}
+        total={total}
+        search={setKeyword}
+        load={loading}
+        data={keyword === '' ? stories : filterList}
+      />
     </DashboardTemplate>
   );
 };

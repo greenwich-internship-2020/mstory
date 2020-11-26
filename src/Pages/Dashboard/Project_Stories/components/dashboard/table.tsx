@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback, useRef} from 'react';
 
 import {Bug, Chore, Edit, Star, Time} from '../../../../../Components/Icons';
 
@@ -12,9 +12,33 @@ import styles from './dashboard.module.css';
 
 interface Props {
   data?: any;
+  next?: any;
+  total: any;
 }
 
-const StoriesTable: FC<Props> = ({data}) => {
+const StoriesTable: FC<Props> = ({data, next, total}) => {
+  const options = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 1.0,
+  };
+
+  const observer: any = useRef();
+
+  const lastStories = useCallback(
+    (node: any) => {
+      if (observer.current) observer.current.disconnect();
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          next();
+        }
+      }, options);
+      if (node) observer.current.observe(node);
+    },
+    // eslint-disable-next-line
+    [observer, data],
+  );
+
   const idenType = (type: any) => {
     switch (type) {
       case 'feature':
@@ -80,7 +104,15 @@ const StoriesTable: FC<Props> = ({data}) => {
     if (data) {
       return data.map((story: any, index: number) => {
         return (
-          <tr key={story.story_id} className={styles.content}>
+          <tr
+            ref={
+              data.length === index + 1 && data.length < total
+                ? lastStories
+                : null
+            }
+            key={story.story_id}
+            className={styles.content}
+          >
             <td className={styles.name}>
               <Title>{story.title}</Title>
               {/* <Caption>{story}</Caption> */}

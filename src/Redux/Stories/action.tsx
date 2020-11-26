@@ -11,23 +11,25 @@ export const getStoriesList = (
   page: number,
 ) => {
   return async (dispatch: any) => {
-    dispatch({type: ActionTypes.REQUEST});
-    const payload = await api.get(
-      `${projects}/${projectID}/stories?keyword=${keyword}&status=${status}&type=${type}&page=${
-        keyword === '' ? page : 1
-      }`,
-    );
+    dispatch({
+      type: ActionTypes.REQUEST,
+    });
     try {
+      const payload = await api.get(
+        `${projects}/${projectID}/stories?keyword=${keyword}&status=${status}&type=${type}&page=${
+          keyword === '' ? page : 1
+        }`,
+      );
       dispatch({
         type: ActionTypes.GET_STORIES,
         payload: keyword === '' ? payload.data.project_stories : [],
         filterList: payload.data.project_stories,
         total: payload.data.total_count,
         keyword,
-        page,
       });
-    } catch (err) {
-      return err;
+      return payload;
+    } catch (error) {
+      return error;
     }
   };
 };

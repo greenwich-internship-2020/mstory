@@ -78,19 +78,23 @@ const UserModal: FC<modalProps> = ({
   }, [fullnameValid, emailValid]);
 
   useEffect(() => {
-    if (user.password === user.confirmPassword && user.password !== '') {
+    if (
+      user.password === user.confirmPassword &&
+      user.password !== '' &&
+      user.confirmPassword !== ''
+    ) {
       setPasswordValid(true);
       setConfirmPasswordValid(true);
       setUserErr({...userErr, password: '', confirmPassword: ''});
     }
-    if (user.password !== user.confirmPassword && user.password !== '') {
+    if (
+      user.password !== user.confirmPassword &&
+      user.password !== '' &&
+      user.confirmPassword !== ''
+    ) {
       setPasswordValid(false);
       setConfirmPasswordValid(false);
       setUserErr({...userErr, confirmPassword: 'Password does not match'});
-    }
-    if (user.password === '') {
-      setUser({...user, confirmPassword: ''});
-      setUserErr({...userErr, confirmPassword: ''});
     }
     if (user.fullname !== '') {
       setFullnameValid(true);
@@ -99,7 +103,12 @@ const UserModal: FC<modalProps> = ({
       setEmailValid(true);
     }
     // eslint-disable-next-line
-  }, [userErr.password, userErr.confirmPassword]);
+  }, [
+    user.password,
+    user.confirmPassword,
+    userErr.password,
+    userErr.confirmPassword,
+  ]);
 
   const handleErrorCase = Debounce((name: any, value: any) => {
     let message = '';
@@ -233,6 +242,7 @@ const UserModal: FC<modalProps> = ({
             head="Update user"
             content={
               <ModalForm
+                status={modalStatus}
                 handleTyping={handleTyping}
                 userErr={userErr}
                 user={user}

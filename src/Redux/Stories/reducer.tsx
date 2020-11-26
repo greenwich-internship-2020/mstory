@@ -1,4 +1,3 @@
-import {stat} from 'fs/promises';
 import * as ActionTypes from './constant';
 
 const initialState = {
@@ -18,10 +17,9 @@ const storiesReducer = (state = initialState, action: any) => {
       return {...state, loading: true};
 
     case ActionTypes.GET_STORIES:
-      if (
-        (action.keyword !== '' && state.payload.length < 7) ||
-        action.page === 1
-      ) {
+      state.total = action.total;
+      state.filterList = action.filterList;
+      if (action.keyword !== '' && state.payload.length < 7) {
         return {
           payload: [],
           total: action.total,
@@ -31,7 +29,6 @@ const storiesReducer = (state = initialState, action: any) => {
       return {
         ...state,
         loading: false,
-        total: action.total,
         payload: [...state.payload, ...action.payload],
       };
 

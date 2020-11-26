@@ -57,9 +57,10 @@ const User: FC<UserProps> = (props) => {
   useEffect(
     () => {
       resetPage();
+      setPage(1);
     },
     // eslint-disable-next-line
-    [],
+    [keyword],
   );
 
   useEffect(() => {

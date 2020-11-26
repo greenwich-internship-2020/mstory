@@ -28,9 +28,11 @@ const Stories: FC<Props> = (props) => {
   const {id} = useParams<ParamTypes>();
 
   const dispatch = useDispatch();
+
   const getStories = useCallback(
     () => dispatch(action.getStoriesList(id, keyword, status, type, page)),
-    [id, keyword, status, type, page],
+    // eslint-disable-next-line
+    [dispatch, keyword, status, type, page],
   );
 
   const stories = useSelector(
@@ -91,9 +93,13 @@ const Stories: FC<Props> = (props) => {
       {show ? renderModal() : null}
       <StoriesDashboard
         next={() => {
-          // setPage(page + 1);
           return page <= totalPage ? setPage(page + 1) : null;
         }}
+        first={() => {
+          setPage(1);
+        }}
+        setType={setType}
+        setTus={setStatus}
         total={total}
         search={setKeyword}
         load={loading}

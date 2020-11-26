@@ -17,6 +17,8 @@ interface DropProps extends AllHTMLAttributes<HTMLSelectElement> {
   reset?: any;
   first?: any;
   sort?: any;
+  setType?: any;
+  setStat?: any;
 }
 
 const Dropdown: FC<DropProps> = ({
@@ -26,6 +28,8 @@ const Dropdown: FC<DropProps> = ({
   status,
   first,
   sort,
+  setType,
+  setStat,
 }) => {
   const [focus, setFocus] = useState(false);
 
@@ -48,11 +52,13 @@ const Dropdown: FC<DropProps> = ({
   });
 
   const handleClick = (option: any) => {
-    const {stat, view, order} = option.value;
+    const {stat, view, order, stoStat, stoType} = option.value;
     setFocus(false);
     setName(option.name);
     if (stat !== undefined || '') status(stat);
     if (view && order) sort({view, order});
+    if (stoStat !== undefined) setStat(stoStat);
+    if (stoType !== undefined || '') setType(stoType);
     first();
   };
 

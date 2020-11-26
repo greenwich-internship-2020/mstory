@@ -28,11 +28,7 @@ const projectReducer = (state = initialState, action: any) => {
       return {...state, loading: true};
 
     case ActionTypes.GET_PROJECT:
-      state.filterList = action.filterList;
-      if (
-        (action.keyword !== '' && state.payload.length < 7) ||
-        action.page === 1
-      ) {
+      if (action.keyword !== '' && state.payload.length < 7) {
         return {
           payload: [],
           total: action.total,

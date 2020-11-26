@@ -10,9 +10,7 @@ export const getUserList = (page: number, keyword: string) => {
       type: ActionTypes.REQUEST,
     });
     try {
-      const payload = await api.get(
-        `${users}?keyword=${keyword}&page=${keyword === '' ? page : 1}`,
-      );
+      const payload = await api.get(`${users}?keyword=${keyword}&page=${page}`);
       dispatch({
         type: ActionTypes.GET_USER,
         total: payload.data.total_count,

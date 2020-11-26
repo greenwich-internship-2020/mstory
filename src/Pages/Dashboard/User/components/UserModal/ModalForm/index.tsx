@@ -8,9 +8,10 @@ interface FormProps {
   handleTyping?: any;
   userErr?: any;
   user?: any;
+  status?: string;
 }
 
-const ModalForm: FC<FormProps> = ({handleTyping, userErr, user}) => {
+const ModalForm: FC<FormProps> = ({handleTyping, userErr, user, status}) => {
   return (
     <div>
       <div className={styles.info}>
@@ -28,7 +29,7 @@ const ModalForm: FC<FormProps> = ({handleTyping, userErr, user}) => {
           <Input
             name="username"
             defaultValue={user.username}
-            disabled={user.username !== '' ? true : false}
+            disabled={user.username !== '' && status === 'Edit' ? true : false}
             onChange={handleTyping}
             errorNoti={userErr.username}
             label="Username"
@@ -50,11 +51,9 @@ const ModalForm: FC<FormProps> = ({handleTyping, userErr, user}) => {
         <div className={styles.confirmPassword}>
           <Input
             name="confirmPassword"
-            value={user.confirmPassword}
             onChange={handleTyping}
             errorNoti={userErr.confirmPassword}
             type="password"
-            disabled={user.password !== '' ? false : true}
             label="Confirm password"
             placeholder="Type password"
           />

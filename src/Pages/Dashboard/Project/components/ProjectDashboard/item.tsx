@@ -33,40 +33,51 @@ const ProjectItem: FC<ItemProps> = ({
     >
       <td
         onClick={() => {
-          window.location.pathname = `/projects/${project.project_id}/stories`;
-
           localStorage.setItem('project', project.project_id);
         }}
         className={styles.listColumn}
       >
-        {!project.is_public ? <Lock /> : null}
+        <Link
+          className={styles.link}
+          to={`/projects/${project.project_id}/stories`}
+        >
+          {!project.is_public ? <Lock /> : null}
+        </Link>
       </td>
       <td
         onClick={() => {
-          window.location.pathname = `/projects/${project.project_id}/stories`;
-
           localStorage.setItem('project', project.project_id);
         }}
         className={styles.listColumn}
       >
-        <Title className={styles.name}>{project.name}</Title>
-        <Caption className={styles.description}>{project.description}</Caption>
+        <Link
+          className={styles.link}
+          to={`/projects/${project.project_id}/stories`}
+        >
+          <Title className={styles.name}>{project.name}</Title>
+          <Caption className={styles.description}>
+            {project.description}
+          </Caption>
+        </Link>
       </td>
       <td
         onClick={() => {
-          window.location.pathname = `/projects/${project.project_id}/stories`;
-
           localStorage.setItem('project', project.project_id);
         }}
         className={styles.listColumn}
       >
-        <Caption>
-          Updated{' '}
-          {currentDate.getFullYear() - updatedDate.getFullYear() !== 0 ||
-          currentDate.getMonth() - updatedDate.getMonth() !== 0
-            ? 'over a month'
-            : `${currentDate.getDate() - updatedDate.getDate()} days ago`}
-        </Caption>
+        <Link
+          className={styles.link}
+          to={`/projects/${project.project_id}/stories`}
+        >
+          <Caption>
+            Updated{' '}
+            {currentDate.getFullYear() - updatedDate.getFullYear() !== 0 ||
+            currentDate.getMonth() - updatedDate.getMonth() !== 0
+              ? 'over a month'
+              : `${currentDate.getDate() - updatedDate.getDate()} days ago`}
+          </Caption>
+        </Link>
       </td>
       <td>
         <div className={styles.listColumn}>

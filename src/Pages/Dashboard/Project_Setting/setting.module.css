@@ -1,0 +1,52 @@
+.wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.card:last-child {
+  margin-left: 1.1875rem;
+}
+
+.description {
+  margin: 1.5rem 0;
+}
+
+.descriptionContent {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+}
+
+.status {
+  color: var(--default);
+  display: flex;
+  align-items: center;
+}
+
+.lock {
+  margin-right: 0.625rem;
+}
+
+.update {
+  width: fit-content;
+}
+
+.archieve,
+.delete {
+  border-bottom: 1px solid var(--default-lighter);
+  padding: 1.0625rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.archieveIco,
+.deleteIco {
+  color: var(--red);
+  cursor: pointer;
+  margin-left: 1.5rem;
+}

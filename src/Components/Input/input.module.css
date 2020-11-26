@@ -1,0 +1,122 @@
+input:-webkit-autofill {
+  box-shadow: 0 0 0 30px var(--default-lighter) inset !important;
+  border-radius: 0.5rem;
+}
+
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  box-shadow: 0 0 0 30px transparent inset !important;
+  border-radius: 0.5rem;
+}
+
+.label {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  color: var(--default-light);
+  font-size: 0.75rem;
+  line-height: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  border-radius: 0.5rem;
+  background-color: var(--default-lighter);
+  transition: all 0.2s ease-in;
+}
+
+.container.searchContainer {
+  border-radius: 1rem;
+}
+
+.container:hover {
+  box-shadow: inset 0 0 0 2px var(--primary-opacity);
+  background-color: #fff;
+}
+
+.container.focus {
+  background-color: #fff;
+  box-shadow: inset 0 0 0 2px var(--primary);
+}
+
+.container.disabled {
+  background-color: transparent;
+  box-shadow: inset 0 0 0 2px var(--default-lighter);
+}
+
+.container.disabled:hover {
+  box-shadow: inset 0 0 0 2px var(--default-lighter);
+}
+
+.icon {
+  color: var(--dark-light);
+  margin-right: 1.25rem;
+  margin-left: 1.1875rem;
+  width: 1rem;
+  height: 1rem;
+  opacity: 0.2;
+  transition: all 0.2s ease-in;
+}
+
+.icon.focus {
+  color: var(--dark-light);
+  opacity: 1;
+}
+
+.input {
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  font-size: 0.875rem;
+  padding: 1.125rem 1.1875rem;
+  line-height: calc(20 / 16);
+  font-weight: 600;
+}
+
+.input.search {
+  padding-left: 0;
+}
+
+.input::placeholder {
+  color: var(--default-light);
+}
+
+.input:focus {
+  border: none;
+  outline: none;
+}
+
+.textarea {
+  font-family: 'Open Sans', sans-serif;
+  background-color: transparent;
+  padding: 1.125rem 1.1875rem;
+  width: 100%;
+  height: 100%;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: calc(20 / 16);
+  border: none;
+  resize: none;
+}
+
+.textarea:focus {
+  outline: none;
+  border: none;
+}
+
+.errorContainer {
+  background-color: white;
+  box-shadow: inset 0 0 0 2px var(--red);
+}
+
+.errorContainer:hover,
+.errorContainer.focus {
+  box-shadow: inset 0 0 0 2px var(--red);
+}
+
+.error {
+  color: var(--red);
+  margin-top: 0.875rem;
+}

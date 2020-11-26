@@ -1,0 +1,72 @@
+.sidebar {
+  padding: 0 2.4375rem;
+  height: 100%;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  margin-top: 5.625rem;
+  margin-bottom: 4rem;
+}
+
+.logoImg {
+  margin-right: 0.4375rem;
+}
+
+.logoContent {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 800;
+  font-size: 1.5rem;
+  line-height: calc(36 / 16);
+}
+
+.navlink {
+  text-decoration: none;
+  color: var(--default);
+  display: flex;
+  align-items: center;
+  border-radius: 0.75rem;
+  padding: 1rem 1.0625rem;
+  transition: all 0.1s ease-in;
+}
+
+.navlink.active {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.navlink:hover {
+  background-color: var(--primary);
+  color: #fff;
+}
+
+.navicon {
+  width: 1.25rem;
+  height: 1.5rem;
+  margin-right: 1.125rem;
+}
+
+.subnav {
+  margin-left: 1.5rem;
+  min-width: 9.6875rem;
+  height: 0;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.subnav.show {
+  height: fit-content;
+  opacity: 1;
+  visibility: visible;
+}
+
+/* .subnavlink {
+  text-decoration: none;
+  color: var(--default);
+  display: flex;
+  align-items: center;
+  border-radius: 0.75rem;
+  padding: 1rem 1.0625rem;
+  cursor: pointer;
+} */

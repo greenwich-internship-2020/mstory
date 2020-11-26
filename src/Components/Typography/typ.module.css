@@ -1,0 +1,75 @@
+.heading {
+  font-family: 'Montserrat', sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: calc(48 / 16);
+  letter-spacing: -0.5px;
+}
+
+.heading.ultraLarge {
+  font-size: 3.5rem;
+  line-height: calc(64 / 56);
+  letter-spacing: -1px;
+}
+
+.heading.extraLarge {
+  font-size: 3rem;
+  line-height: calc(72 / 48);
+  letter-spacing: -1px;
+}
+
+.heading.large {
+  font-size: 2.5rem;
+  line-height: calc(60 / 40);
+  letter-spacing: -1px;
+}
+
+.heading.small {
+  font-weight: 500;
+  font-size: 1.5rem;
+  line-height: calc(32 / 24);
+}
+
+.heading.extraSmall {
+  font-weight: 500;
+  font-size: 1.125rem;
+  line-height: calc(24 / 16);
+}
+
+.menu {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 0.875rem;
+  line-height: calc(20 / 16);
+}
+
+.body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.875rem;
+  line-height: calc(24 / 16);
+  color: var(--default);
+}
+
+.title {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 600;
+  font-size: 1rem;
+  line-height: calc(19 / 16);
+}
+
+.caption {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  line-height: calc(18 / 16);
+  color: var(--default);
+}
+
+.caption2 {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 600;
+  font-size: 0.75rem;
+  line-height: calc(16 / 12);
+  color: var(--default);
+}

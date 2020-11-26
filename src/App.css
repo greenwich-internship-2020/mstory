@@ -1,0 +1,26 @@
+html {
+  --primary: #6c5dd3;
+  --primary-opacity: rgba(108, 93, 211, 0.3);
+  --secondary: #0049c6;
+  --green: #7fba7a;
+  --accent1: #ff754c;
+  --accent2: #ffce73;
+  --dark: #1b1d21;
+  --dark-light: #200e32;
+  --text: #111142;
+  --default: #808191;
+  --shadow: #e3e6ec;
+  --default-light: #b2b3bd;
+  --default-lighter: #e4e4e4;
+  --red: #be0e62;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}

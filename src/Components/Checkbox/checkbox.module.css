@@ -1,0 +1,41 @@
+.container {
+  display: flex;
+}
+
+.checkbox {
+  -webkit-appearance: none;
+  background-color: transparent;
+  display: block;
+  border-radius: 0.25rem;
+  border: 2px solid var(--default-lighter);
+  width: 1.25rem;
+  height: 1.25rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Handle focus,check */
+.checkbox:checked {
+  border-color: var(--primary);
+  background-color: var(--primary);
+}
+
+.checkbox:checked:after {
+  content: '';
+  background-image: url('../../assets/Check.svg');
+  width: 0.6rem;
+  height: 0.5rem;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  color: white;
+}
+
+.checkbox:focus {
+  outline: none;
+}
+
+.content {
+  margin-left: 1.5rem;
+}

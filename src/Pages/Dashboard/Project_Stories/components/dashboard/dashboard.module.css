@@ -1,0 +1,58 @@
+.function {
+  display: flex;
+  align-items: center;
+}
+
+.search {
+  width: 100%;
+}
+
+.typeSort {
+  margin: 0 1.5rem;
+}
+
+.head {
+  border-bottom: 1px solid var(--default-lighter);
+}
+
+.headItem {
+  padding: 1.6875rem 1.5rem;
+}
+
+.content {
+  border-bottom: 1px solid var(--default-lighter);
+}
+
+.name,
+.action,
+.status,
+.point,
+.type {
+  padding: 1.5rem;
+  text-align: left;
+}
+
+.name {
+  width: 60%;
+}
+
+.type {
+  display: flex;
+  align-items: center;
+  margin: 0;
+}
+
+.typeText {
+  margin-left: 0.625rem;
+}
+
+.action {
+  display: flex;
+  align-items: center;
+  color: var(--default);
+  padding-right: 0;
+}
+
+.edit {
+  margin-right: 1.375rem;
+}

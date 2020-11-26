@@ -1,0 +1,22 @@
+.info,
+.passwordWrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info,
+.passwordWrap,
+.email {
+  margin-bottom: 1.5rem;
+  height: 6.5625rem;
+}
+
+.name,
+.username,
+.password,
+.confirmPassword {
+  width: 49%;
+  height: 4.375rem;
+  transition: all 0.5s;
+}

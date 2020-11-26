@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  overflow: hidden;
+}
+
+.sidenav {
+  background-color: white;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  box-shadow: inset -1px 0 0 var(--default-lighter);
+}
+
+.main {
+  width: 100%;
+  margin-left: 16.5rem;
+}
+
+.content {
+  padding: 0 1.875rem;
+}

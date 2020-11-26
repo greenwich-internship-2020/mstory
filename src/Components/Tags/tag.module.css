@@ -1,0 +1,27 @@
+.tag {
+  width: fit-content;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  background-color: var(--primary);
+  color: white;
+  padding: 0.1875rem 0.625rem;
+  border-radius: 0.5rem;
+  line-height: calc(18 / 16);
+}
+
+.tag.orange {
+  background-color: var(--accent1);
+}
+
+.tag.blue {
+  background-color: var(--secondary);
+}
+
+.tag.green {
+  background-color: var(--green);
+}
+
+.tag.red {
+  background-color: var(--red);
+}

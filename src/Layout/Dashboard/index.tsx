@@ -46,7 +46,7 @@ const DashboardTemplate = <P extends RouteComponentProps>({
         return (
           <DashboardLayout>
             <WrappedComponent {...childProps} {...withProps} />
-            {window.location.pathname === '/' ? (
+            {window.location.pathname === '/' || '/mstory/' ? (
               <Redirect to="/projects" />
             ) : null}
           </DashboardLayout>

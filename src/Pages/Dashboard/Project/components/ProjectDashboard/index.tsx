@@ -54,6 +54,8 @@ const ProjectDashboard: FC<ProjectProps> = ({
 }) => {
   const [show, setShow] = useState(false);
 
+  const [searchValid, setSearchValid] = useState('');
+
   const options = {
     root: null,
     rootMargin: '0px',
@@ -94,8 +96,12 @@ const ProjectDashboard: FC<ProjectProps> = ({
   };
 
   const handleSearch = Debounce((e: any) => {
-    const {value} = e.target;
-    search(value);
+    let {value} = e.target;
+    if (value.trim().length > 3 || value === '') {
+      search(value.trim());
+      setSearchValid('');
+    } else if (value.trim().length <= 3)
+      setSearchValid('Please type over 3 characters');
   }, 500);
 
   return (
@@ -121,7 +127,12 @@ const ProjectDashboard: FC<ProjectProps> = ({
       ) : null}
       <div className={styles.filter}>
         <div className={styles.search}>
-          <Input onChange={handleSearch} search placeholder="Search" />
+          <Input
+            errorNoti={searchValid}
+            onChange={handleSearch}
+            search
+            placeholder="Search"
+          />
         </div>
         <div className={styles.status}>
           <Dropdown
@@ -171,27 +182,29 @@ const ProjectDashboard: FC<ProjectProps> = ({
           </tr>
         }
         tbody={
-          <tbody>
-            {projectData.length > 0 ? (
-              renderProjects()
-            ) : (
-              <tr className={styles.notfound}>
-                <img
-                  className={styles.notfoundimg}
-                  src={Notfound}
-                  alt="not found"
-                />
-                <Heading variant={TextVariants.S}>
-                  Sorry! Can not find any project
-                </Heading>
-              </tr>
-            )}
-            {loading ? (
-              <tr className={styles.load}>
-                <Loading />
-              </tr>
-            ) : null}
-          </tbody>
+          projectData ? (
+            <tbody>
+              {projectData.length > 0 ? (
+                renderProjects()
+              ) : (
+                <tr className={styles.notfound}>
+                  <img
+                    className={styles.notfoundimg}
+                    src={Notfound}
+                    alt="not found"
+                  />
+                  <Heading variant={TextVariants.S}>
+                    Sorry! Can not find any project
+                  </Heading>
+                </tr>
+              )}
+              {loading ? (
+                <tr className={styles.load}>
+                  <Loading />
+                </tr>
+              ) : null}
+            </tbody>
+          ) : null
         }
       />
       <Notification noti={noti} error={err}>

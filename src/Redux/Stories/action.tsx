@@ -1,5 +1,5 @@
 import {api} from '../../Config/api';
-import {projects} from '../../Config/api/subDomain';
+import {stories} from '../../Config/api/subDomain';
 
 import * as ActionTypes from './constant';
 
@@ -16,7 +16,9 @@ export const getStoriesList = (
     });
     try {
       const payload = await api.get(
-        `${projects}/${projectID}/stories?keyword=${keyword}&status=${status}&type=${type}&page=${
+        `${stories(
+          projectID,
+        )}?keyword=${keyword}&status=${status}&type=${type}&page=${
           keyword === '' ? page : 1
         }`,
       );

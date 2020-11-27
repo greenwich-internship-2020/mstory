@@ -35,3 +35,5 @@ export {default as Star} from './Star';
 export {default as Bug} from './Bug';
 
 export {default as Chore} from './Chore';
+
+export {default as Eye} from './Eye';

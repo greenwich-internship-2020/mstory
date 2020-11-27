@@ -14,17 +14,14 @@ export const getProjectList = (
     });
     try {
       const payload = await api.get(
-        `${projects}?keyword=${keyword}&is_active=${status}&view=${
-          sort.view
-        }&order=${sort.order}&page=${keyword === '' ? page : 1}`,
+        `${projects}?keyword=${keyword}&is_active=${status}&view=${sort.view}&order=${sort.order}&page=${page}`,
       );
 
       dispatch({
         type: ActionTypes.GET_PROJECT,
         total: payload.data.total_count,
         filterList: payload.data.projects,
-        payload: keyword === '' ? payload.data.projects : [],
-        status,
+        payload: payload.data.projects,
         keyword,
       });
     } catch (error) {

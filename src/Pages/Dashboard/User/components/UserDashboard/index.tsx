@@ -69,6 +69,8 @@ const UserDashboard: FC<UserProps> = ({
     email: '',
   });
 
+  const [searchValid, setSearchValid] = useState('');
+
   const [modalStatus, setModalStatus] = useState('Create');
 
   const options = {
@@ -95,7 +97,11 @@ const UserDashboard: FC<UserProps> = ({
 
   const handleSearch = Debounce((e: any) => {
     let {value} = e.target;
-    search(value);
+    if (value.trim().length > 3 || value === '') {
+      search(value.trim());
+      setSearchValid('');
+    } else if (value.trim().length < 3)
+      setSearchValid('Please type over 3 characters');
   }, 500);
 
   const handleDelete = (user: any) => {
@@ -182,7 +188,12 @@ const UserDashboard: FC<UserProps> = ({
       ) : null}
       <div className={styles.filter}>
         <div className={styles.search}>
-          <Input onChange={handleSearch} search placeholder="Search" />
+          <Input
+            errorNoti={searchValid}
+            onChange={handleSearch}
+            search
+            placeholder="Search"
+          />
         </div>
         <div className={styles.role}>
           <Dropdown

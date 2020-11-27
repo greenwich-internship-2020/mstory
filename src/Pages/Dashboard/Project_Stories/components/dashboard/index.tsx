@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useState} from 'react';
 import Dropdown from '../../../../../Components/Dropdown';
 import {Loading} from '../../../../../Components/Icons';
 import Input from '../../../../../Components/Input';
@@ -28,15 +28,27 @@ const StoriesDashboard: FC<Props> = ({
   total,
   first,
 }) => {
+  const [searchValid, setSearchValid] = useState('');
+
   const handleSearch = Debounce((e: any) => {
-    const {value} = e.target;
-    search(value);
+    let {value} = e.target;
+    if (value.trim().length > 3 || value === '') {
+      search(value.trim());
+      setSearchValid('');
+    } else if (value.trim().length <= 3)
+      setSearchValid('Please type over 3 characters');
   }, 300);
+
   return (
     <div className={styles.wrapper}>
       <div className={styles.function}>
         <div className={styles.search}>
-          <Input placeholder="Search" search onChange={handleSearch} />
+          <Input
+            errorNoti={searchValid}
+            placeholder="Search"
+            search
+            onChange={handleSearch}
+          />
         </div>
         <div className={styles.typeSort}>
           <Dropdown

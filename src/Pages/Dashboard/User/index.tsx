@@ -11,13 +11,16 @@ interface UserProps {}
 const User: FC<UserProps> = (props) => {
   const [page, setPage] = useState(1);
 
+  const [filterPage, setFilterPage] = useState(1);
+
   const [keyword, setKeyword] = useState('');
 
   const dispatch = useDispatch();
 
   const getUserList = useCallback(
-    () => dispatch(action.getUserList(page, keyword)),
-    [dispatch, page, keyword],
+    () =>
+      dispatch(action.getUserList(keyword !== '' ? filterPage : page, keyword)),
+    [dispatch, filterPage, page, keyword],
   );
 
   const createUser = (user: object) => dispatch(action.createUser(user));
@@ -58,6 +61,7 @@ const User: FC<UserProps> = (props) => {
     () => {
       resetPage();
       setPage(1);
+      setFilterPage(1);
     },
     // eslint-disable-next-line
     [keyword],
@@ -79,7 +83,10 @@ const User: FC<UserProps> = (props) => {
       err={error}
       message={message}
       next={() => {
-        return page <= totalPage ? setPage(page + 1) : null;
+        if (keyword !== '')
+          return filterPage < totalPage ? setFilterPage(filterPage + 1) : null;
+        else if (keyword === '')
+          return page < totalPage ? setPage(page + 1) : null;
       }}
       total={total}
     />

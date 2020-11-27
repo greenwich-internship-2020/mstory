@@ -6,8 +6,8 @@ import Modal from '../../../../../Components/Modal';
 
 import {Body} from '../../../../../Components/Typography';
 
-import Debounce from '../../../../../Helper/debounce';
-import {Validate} from '../../../../../Validation';
+import {handleErrorCase} from '../../Validation';
+
 import ModalForm from './ModalForm';
 
 interface modalProps {
@@ -79,27 +79,29 @@ const UserModal: FC<modalProps> = ({
 
   useEffect(() => {
     if (
-      user.password === user.confirmPassword &&
-      user.password !== '' &&
-      user.confirmPassword !== ''
+      user.password.trim() === user.confirmPassword.trim() &&
+      user.password.trim() !== '' &&
+      user.confirmPassword.trim() !== '' &&
+      user.confirmPassword.trim().length > 5 &&
+      user.password.trim().length > 5
     ) {
       setPasswordValid(true);
       setConfirmPasswordValid(true);
       setUserErr({...userErr, password: '', confirmPassword: ''});
     }
     if (
-      user.password !== user.confirmPassword &&
-      user.password !== '' &&
-      user.confirmPassword !== ''
+      user.password.trim() !== user.confirmPassword.trim() &&
+      user.password.trim() !== '' &&
+      user.confirmPassword.trim() !== ''
     ) {
       setPasswordValid(false);
       setConfirmPasswordValid(false);
       setUserErr({...userErr, confirmPassword: 'Password does not match'});
     }
-    if (user.fullname !== '') {
+    if (user.fullname !== '' && modalStatus === 'Edit') {
       setFullnameValid(true);
     }
-    if (user.email !== '') {
+    if (user.email !== '' && modalStatus === 'Edit') {
       setEmailValid(true);
     }
     // eslint-disable-next-line
@@ -110,83 +112,32 @@ const UserModal: FC<modalProps> = ({
     userErr.confirmPassword,
   ]);
 
-  const handleErrorCase = Debounce((name: any, value: any) => {
-    let message = '';
-    switch (name) {
-      case 'fullname':
-        if (Validate(value, 50) !== '') {
-          setFullnameValid(false);
-          message = Validate(value, 50);
-        } else if (!value.match(/^[a-zA-Z\s]*$/)) {
-          setFullnameValid(false);
-          message = 'The field should contain letters and spaces only';
-        } else if (value.match(/\s{2}/)) {
-          setFullnameValid(false);
-          message = 'The field should not have consecutive spaces';
-        }
-        setFullnameValid((fullnameValid = message ? false : true));
-        break;
-      case 'username':
-        if (Validate(value, 39) !== '') {
-          setUsernameValid(false);
-          message = Validate(value, 39);
-        } else if (!value.match(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/)) {
-          setUsernameValid(false);
-          message =
-            'Username just accept hyphen between, start with lowercase and must have less than 39 characters';
-        }
-        setUsernameValid((usernameValid = message ? false : true));
-        break;
-      case 'password':
-        if (Validate(value, 255) !== '') {
-          setPasswordValid(false);
-          message = Validate(value, 255);
-        }
-        setPasswordValid((passwordValid = message ? false : true));
-        break;
-      case 'confirmPassword':
-        if (Validate(value, 255) !== '') {
-          setConfirmPasswordValid(false);
-          message = Validate(value, 255);
-        } else if (user.password !== value && user.confirmPassword !== '') {
-          setConfirmPasswordValid(false);
-          message = 'Password confirm does not match';
-        }
-        setConfirmPasswordValid(
-          (confirmPasswordValid = message ? false : true),
-        );
-        break;
-      case 'email':
-        // eslint-disable-next-line
-        const emailRegex = /^(([^<>()\[\]\\.,;:\s-@#$!%^&*+=_/`?{}|'"]+(\.[^<>()\[\]\\.,;:\s-@_!#$%^&*()=+/`?{}|'"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
-
-        if (Validate(value, 64) !== '') {
-          setEmailValid(false);
-          message = Validate(value, 64);
-        } else if (!value.match(emailRegex)) {
-          setEmailValid(false);
-          message = 'Invalid type of email';
-        }
-
-        setEmailValid((emailValid = message ? false : true));
-        break;
-      default:
-        message = 'Invalid';
-        break;
-    }
-    setUserErr({...userErr, [name]: message});
-  }, 300);
-
   const handleTyping = (e: any) => {
     let {name, value} = e.target;
     setUser({...user, [name]: value});
-    handleErrorCase(name, value);
+    handleErrorCase(
+      name,
+      value,
+      user,
+      setFullnameValid,
+      fullnameValid,
+      setUsernameValid,
+      usernameValid,
+      setPasswordValid,
+      passwordValid,
+      setConfirmPasswordValid,
+      confirmPasswordValid,
+      setEmailValid,
+      emailValid,
+      setUserErr,
+      userErr,
+    );
   };
 
   const handleCreate = () => {
     createUser({
-      username: user.username,
-      password: user.password,
+      username: user.username.trim(),
+      password: user.password.trim(),
       fullname: user.fullname,
       email: user.email,
     });
@@ -200,15 +151,15 @@ const UserModal: FC<modalProps> = ({
       user.confirmPassword === '' ||
       user.confirmPassword === undefined
         ? {
-            username: user.username,
+            username: user.username.trim(),
             fullname: user.fullname,
-            email: user.email,
+            email: user.email.trim(),
           }
         : {
-            username: user.username,
-            password: user.password,
+            username: user.username.trim(),
+            password: user.password.trim(),
             fullname: user.fullname,
-            email: user.email,
+            email: user.email.trim(),
           };
     editUser(_user, userObj.username);
     setHide();

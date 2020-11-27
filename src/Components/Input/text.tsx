@@ -20,7 +20,7 @@ const Text: FC<TextProps> = ({
 }) => {
   const [focus, setFocus] = useState(false);
   return (
-    <div className={clsx(styles.wrapper, className)}>
+    <div className={styles.wrapper}>
       {label ? <div className={styles.label}>{label}</div> : null}
       <div
         className={clsx(
@@ -38,7 +38,7 @@ const Text: FC<TextProps> = ({
             setFocus(false);
           }}
           {...others}
-          className={styles.textarea}
+          className={clsx(styles.textarea, className)}
         />
       </div>
       {errorNoti ? (

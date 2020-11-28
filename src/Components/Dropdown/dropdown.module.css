@@ -1,6 +1,7 @@
 .container {
   position: relative;
   width: fit-content;
+  width: 100%;
 }
 
 .label {
@@ -9,7 +10,7 @@
   color: var(--default-light);
   font-size: 0.75rem;
   line-height: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
 }
 
 .select {

@@ -19,11 +19,11 @@ const userReducer = (state = initialState, action: any) => {
       return {...state};
     case ActionTypes.GET_USER:
       state.total = action.total;
-      state.searchList = action.searchList;
-      if (action.keyword !== '' && state.payload.length < 7) {
+      if (action.keyword !== '') {
         return {
-          payload: [],
-          searchList: action.searchList,
+          payload: [...state.payload, ...action.payload],
+          total: action.total,
+          searchList: [...state.searchList, ...action.searchList],
         };
       }
       return {

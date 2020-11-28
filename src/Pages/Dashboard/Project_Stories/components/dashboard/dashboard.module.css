@@ -1,10 +1,10 @@
 .function {
   display: flex;
-  align-items: center;
 }
 
 .search {
   width: 100%;
+  height: 5rem;
 }
 
 .typeSort {
@@ -55,4 +55,24 @@
 
 .edit {
   margin-right: 1.375rem;
+}
+
+.edit,
+.time {
+  cursor: pointer;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 0.3rem;
+  transition: all 0.1s ease-in;
+}
+
+.edit:hover,
+.time:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 1.25rem 0 var(--shadow);
 }

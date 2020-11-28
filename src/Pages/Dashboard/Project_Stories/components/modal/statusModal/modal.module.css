@@ -1,0 +1,36 @@
+.label {
+  margin-bottom: 0.875rem;
+}
+
+.title,
+.info,
+.state {
+  margin-bottom: 1.5rem;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.owner {
+  width: 30%;
+}
+
+.type {
+  display: flex;
+  align-items: center;
+}
+
+.typeText {
+  margin-left: 0.625rem;
+}
+
+.state {
+  width: fit-content;
+}
+
+.markdown {
+  white-space: pre-wrap;
+}

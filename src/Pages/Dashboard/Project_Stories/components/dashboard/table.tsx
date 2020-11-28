@@ -1,27 +1,39 @@
-import React, {FC, useCallback, useRef} from 'react';
+import React, {FC, useCallback, useRef, useState} from 'react';
 
-import {Bug, Chore, Edit, Star, Time} from '../../../../../Components/Icons';
+import {Edit, Time} from '../../../../../Components/Icons';
 
 import Table from '../../../../../Components/Table';
 
-import Tag from '../../../../../Components/Tags';
-
 import {Caption, Title} from '../../../../../Components/Typography';
 
+import StatusModal from '../modal/statusModal/status';
+
+import CreateStory from '../modal/mainModal';
+
 import styles from './dashboard.module.css';
+
+import {idenStatus, idenType} from './helper';
 
 interface Props {
   data?: any;
   next?: any;
   total: any;
+  edit?: any;
+  editStatus?: any;
 }
 
-const StoriesTable: FC<Props> = ({data, next, total}) => {
+const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
   const options = {
     root: null,
     rootMargin: '0px',
     threshold: 1.0,
   };
+
+  const [show, setShow] = useState(false);
+
+  const [modal, setModal] = useState('');
+
+  const [story, setStory] = useState({});
 
   const observer: any = useRef();
 
@@ -38,67 +50,6 @@ const StoriesTable: FC<Props> = ({data, next, total}) => {
     // eslint-disable-next-line
     [observer, data],
   );
-
-  const idenType = (type: any) => {
-    switch (type) {
-      case 'feature':
-        return (
-          <td className={styles.type}>
-            <Star />
-            <Caption className={styles.typeText}>Feature</Caption>
-          </td>
-        );
-      case 'bug':
-        return (
-          <td className={styles.type}>
-            <Bug />
-            <Caption className={styles.typeText}>Bug</Caption>
-          </td>
-        );
-      case 'chore':
-        return (
-          <td className={styles.type}>
-            <Chore />
-            <Caption className={styles.typeText}>Chore</Caption>
-          </td>
-        );
-    }
-  };
-
-  const idenStatus = (stat: any) => {
-    switch (stat) {
-      case 'finished':
-        return (
-          <td className={styles.status}>
-            <Tag content="Finished" />
-          </td>
-        );
-      case 'accepted':
-        return (
-          <td className={styles.status}>
-            <Tag content="Accepted" green />
-          </td>
-        );
-      case 'rejected':
-        return (
-          <td className={styles.status}>
-            <Tag content="Rejected" red />
-          </td>
-        );
-      case 'delivered':
-        return (
-          <td className={styles.status}>
-            <Tag content="Delivered" orange />
-          </td>
-        );
-      case 'unstarted':
-        return (
-          <td className={styles.status}>
-            <Tag content="Unstarted" blue />
-          </td>
-        );
-    }
-  };
 
   const renderContent = () => {
     if (data) {
@@ -121,10 +72,24 @@ const StoriesTable: FC<Props> = ({data, next, total}) => {
             {idenStatus(story.status)}
             <td className={styles.point}>{story.points}</td>
             <td className={styles.action}>
-              <div className={styles.edit}>
+              <div
+                onClick={() => {
+                  setShow(true);
+                  setModal('edit');
+                  setStory(story);
+                }}
+                className={styles.edit}
+              >
                 <Edit />
               </div>
-              <div className={styles.edit}>
+              <div
+                onClick={() => {
+                  setShow(true);
+                  setModal('status');
+                  setStory(story);
+                }}
+                className={styles.time}
+              >
                 <Time />
               </div>
             </td>
@@ -135,26 +100,44 @@ const StoriesTable: FC<Props> = ({data, next, total}) => {
   };
 
   return (
-    <Table
-      thead={
-        <tr className={styles.head}>
-          <th className={styles.headItem}>
-            <Caption>User story</Caption>
-          </th>
-          <th className={styles.headItem}>
-            <Caption>Type</Caption>
-          </th>
-          <th className={styles.headItem}>
-            <Caption>Status</Caption>
-          </th>
-          <th className={styles.headItem}>
-            <Caption>Points</Caption>
-          </th>
-          <th></th>
-        </tr>
-      }
-      tbody={<tbody>{renderContent()}</tbody>}
-    />
+    <div>
+      {show && modal === 'edit' ? (
+        <CreateStory
+          editStory={edit}
+          foot="Update"
+          detail={story}
+          hide={() => setShow(false)}
+          head="Update"
+        />
+      ) : null}
+      {show && modal === 'status' ? (
+        <StatusModal
+          editStory={editStatus}
+          detail={story}
+          hide={() => setShow(false)}
+        />
+      ) : null}
+      <Table
+        thead={
+          <tr className={styles.head}>
+            <th className={styles.headItem}>
+              <Caption>User story</Caption>
+            </th>
+            <th className={styles.headItem}>
+              <Caption>Type</Caption>
+            </th>
+            <th className={styles.headItem}>
+              <Caption>Status</Caption>
+            </th>
+            <th className={styles.headItem}>
+              <Caption>Points</Caption>
+            </th>
+            <th></th>
+          </tr>
+        }
+        tbody={<tbody>{renderContent()}</tbody>}
+      />
+    </div>
   );
 };
 

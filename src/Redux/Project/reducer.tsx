@@ -2,7 +2,6 @@ import * as ActionTypes from './constant';
 
 const initialState = {
   loading: false,
-  status: true,
   noti: false,
   error: false,
   total: 0,
@@ -28,17 +27,17 @@ const projectReducer = (state = initialState, action: any) => {
       return {...state, loading: true};
 
     case ActionTypes.GET_PROJECT:
-      if (action.keyword !== '' && state.payload.length < 7) {
+      state.total = action.total;
+      if (action.keyword !== '') {
         return {
-          payload: [],
+          payload: [...state.payload, ...action.payload],
           total: action.total,
-          filterList: action.filterList,
+          filterList: [...state.filterList, ...action.filterList],
         };
       }
       return {
         ...state,
         loading: false,
-        total: action.total,
         payload: [...state.payload, ...action.payload],
       };
 

@@ -31,7 +31,45 @@ const storiesReducer = (state = initialState, action: any) => {
         loading: false,
         payload: [...state.payload, ...action.payload],
       };
-
+    case ActionTypes.POST_STORIES:
+      return {
+        ...state,
+        loading: false,
+        payload: [action.payload, ...state.payload],
+      };
+    case ActionTypes.PUT_STORIES:
+      const newPayload = state.payload.map((story: any, index: number) => {
+        if (story.story_id === action.payload.story_id) {
+          return {
+            ...story,
+            title: action.payload.title,
+            type: action.payload.type,
+            points: action.payload.points,
+            description: action.payload.description,
+          };
+        }
+        return story;
+      });
+      return {
+        ...state,
+        payload: newPayload,
+        loading: false,
+      };
+    case ActionTypes.PUT_STATUS:
+      const newStatus = state.payload.map((story: any, index: number) => {
+        if (story.story_id === action.id) {
+          return {
+            ...story,
+            status: action.status,
+          };
+        }
+        return story;
+      });
+      return {
+        ...state,
+        payload: newStatus,
+        loading: false,
+      };
     default:
       return {...state};
   }

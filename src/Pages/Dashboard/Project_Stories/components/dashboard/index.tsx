@@ -16,6 +16,8 @@ interface Props {
   setType?: any;
   setTus?: any;
   first?: any;
+  edit?: any;
+  editStatus?: any;
 }
 
 const StoriesDashboard: FC<Props> = ({
@@ -27,6 +29,8 @@ const StoriesDashboard: FC<Props> = ({
   next,
   total,
   first,
+  edit,
+  editStatus,
 }) => {
   const [searchValid, setSearchValid] = useState('');
 
@@ -77,7 +81,13 @@ const StoriesDashboard: FC<Props> = ({
           />
         </div>
       </div>
-      <StoriesTable total={total} next={next} data={data} />
+      <StoriesTable
+        editStatus={editStatus}
+        edit={edit}
+        total={total}
+        next={next}
+        data={data}
+      />
       {load ? (
         <div className={styles.load}>
           <Loading />

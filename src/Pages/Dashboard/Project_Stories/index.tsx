@@ -3,7 +3,7 @@ import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import Button from '../../../Components/Button';
 import DashboardTemplate from '../../../Components/Template/dashboard';
 import StoriesDashboard from './components/dashboard';
-import CreateStory from './components/modal/create';
+import CreateStory from './components/modal/mainModal';
 
 import * as action from '../../../Redux/Stories/action';
 import {useParams} from 'react-router-dom';
@@ -34,6 +34,15 @@ const Stories: FC<Props> = (props) => {
     // eslint-disable-next-line
     [dispatch, keyword, status, type, page],
   );
+
+  const createStory = (story: object) =>
+    dispatch(action.createStory(id, story));
+
+  const editStory = (id: string, story: object) =>
+    dispatch(action.editStory(id, story));
+
+  const editStatus = (id: string, story: object) =>
+    dispatch(action.editStatus(id, story));
 
   const stories = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.payload,
@@ -70,6 +79,9 @@ const Stories: FC<Props> = (props) => {
   const renderModal = () => {
     return (
       <CreateStory
+        head="Create"
+        foot="Create"
+        createStory={createStory}
         hide={() => {
           setShow(false);
         }}
@@ -98,8 +110,10 @@ const Stories: FC<Props> = (props) => {
         first={() => {
           setPage(1);
         }}
+        edit={editStory}
         setType={setType}
         setTus={setStatus}
+        editStatus={editStatus}
         total={total}
         search={setKeyword}
         load={loading}

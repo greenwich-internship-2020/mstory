@@ -10,13 +10,20 @@ input:-webkit-autofill:active {
   border-radius: 0.5rem;
 }
 
+.head {
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 .label {
   font-family: 'Montserrat', sans-serif;
   font-weight: 600;
   color: var(--default-light);
   font-size: 0.75rem;
   line-height: 1rem;
-  margin-bottom: 1rem;
+  margin-bottom: 0.875rem;
 }
 
 .container {
@@ -101,6 +108,27 @@ input:-webkit-autofill:active {
   resize: none;
 }
 
+.textarea.hide {
+  display: none;
+}
+
+.text {
+  border-radius: 0.5rem;
+  background-color: var(--default-lighter);
+  transition: all 0.2s ease-in;
+}
+
+.text.eyeFocus {
+  background-color: transparent;
+  overflow: hidden;
+  overflow: auto;
+}
+
+.markdown {
+  white-space: pre-wrap;
+  padding: 1.125rem 1.1875rem;
+}
+
 .textarea:focus {
   outline: none;
   border: none;
@@ -119,4 +147,39 @@ input:-webkit-autofill:active {
 .error {
   color: var(--red);
   margin-top: 0.875rem;
+}
+
+.eye {
+  width: 6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: 1px solid var(--primary);
+  border-radius: 0.875rem;
+  padding: 0 0.5625rem;
+  color: var(--primary);
+  cursor: pointer;
+}
+
+.eye.focus {
+  background-color: var(--primary);
+  color: white;
+}
+
+.eye.focus .view {
+  color: white;
+}
+
+.eye:hover {
+  background-color: var(--primary);
+  color: white;
+}
+
+.eye:hover .view {
+  color: white;
+}
+
+.view {
+  color: var(--primary);
+  margin-left: 0.5625rem;
 }

@@ -24,6 +24,7 @@ export const getProjectList = (
         payload: payload.data.projects,
         keyword,
       });
+      return payload;
     } catch (error) {
       return error;
     }

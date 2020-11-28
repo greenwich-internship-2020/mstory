@@ -1,0 +1,28 @@
+.detail,
+.owner,
+.description {
+  margin-top: 1.5rem;
+}
+
+.descrip {
+  height: 12.25rem;
+}
+
+.detail {
+  display: flex;
+  align-items: center;
+}
+
+.type,
+.points {
+  width: 49%;
+}
+
+.type {
+  margin-right: 0.875rem;
+}
+
+.description {
+  position: relative;
+  padding-top: 0.5rem;
+}

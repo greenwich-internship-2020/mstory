@@ -26,7 +26,7 @@ const UpdateCard: FC<Props> = ({payload, update}) => {
         <div className={styles.content}>
           <div className={styles.name}>
             <Caption2 className={styles.label}>Project name</Caption2>
-            <Body>{payload.name}</Body>
+            <Body className={styles.nameContent}>{payload.name}</Body>
           </div>
           <div className={styles.description}>
             <Caption2 className={styles.label}>Description</Caption2>

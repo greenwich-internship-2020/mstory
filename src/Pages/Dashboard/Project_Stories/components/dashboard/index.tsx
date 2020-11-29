@@ -18,6 +18,7 @@ interface Props {
   first?: any;
   edit?: any;
   editStatus?: any;
+  deleteStory?: any;
 }
 
 const StoriesDashboard: FC<Props> = ({
@@ -31,15 +32,19 @@ const StoriesDashboard: FC<Props> = ({
   first,
   edit,
   editStatus,
+  deleteStory,
 }) => {
   const [searchValid, setSearchValid] = useState('');
 
+  const [keyword, setKeyword] = useState('');
+
   const handleSearch = Debounce((e: any) => {
     let {value} = e.target;
-    if (value.trim().length > 3 || value === '') {
+    if (value.trim().length > 2 || value === '') {
       search(value.trim());
+      setKeyword(value.trim());
       setSearchValid('');
-    } else if (value.trim().length <= 3)
+    } else if (value.trim().length < 3)
       setSearchValid('Please type over 3 characters');
   }, 300);
 
@@ -82,6 +87,9 @@ const StoriesDashboard: FC<Props> = ({
         </div>
       </div>
       <StoriesTable
+        keyword={keyword}
+        loading={load}
+        deleteStory={deleteStory}
         editStatus={editStatus}
         edit={edit}
         total={total}

@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   payload: [],
   total: 0,
-  filterList: [],
 };
 
 const storiesReducer = (state = initialState, action: any) => {
@@ -18,12 +17,10 @@ const storiesReducer = (state = initialState, action: any) => {
 
     case ActionTypes.GET_STORIES:
       state.total = action.total;
-      state.filterList = action.filterList;
-      if (action.keyword !== '' && state.payload.length < 7) {
+      if (action.keyword !== '') {
         return {
-          payload: [],
+          payload: [...state.payload, ...action.payload],
           total: action.total,
-          filterList: action.filterList,
         };
       }
       return {
@@ -69,6 +66,21 @@ const storiesReducer = (state = initialState, action: any) => {
         ...state,
         payload: newStatus,
         loading: false,
+      };
+    case ActionTypes.DELETE_STORIES:
+      let position = -1;
+      state.payload.map((story: any, index: number) => {
+        if (story.story_id === action.storyID) {
+          position = index;
+        }
+        return position;
+      });
+      state.payload.splice(position, 1);
+      // state.message = action.message;
+      return {
+        ...state,
+        loading: false,
+        // noti: action.noti,
       };
     default:
       return {...state};

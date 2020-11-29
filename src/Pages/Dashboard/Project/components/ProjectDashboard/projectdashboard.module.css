@@ -24,6 +24,10 @@
   text-overflow: ellipsis;
 }
 
+.name {
+  color: #000;
+}
+
 .listColumn:first-child {
   color: var(--default);
   text-align: center;

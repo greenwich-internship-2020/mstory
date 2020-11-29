@@ -20,13 +20,23 @@ export const getProjectList = (
       dispatch({
         type: ActionTypes.GET_PROJECT,
         total: payload.data.total_count,
-        filterList: payload.data.projects,
         payload: payload.data.projects,
         keyword,
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };

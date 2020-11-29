@@ -44,17 +44,17 @@ const ProjectModal: FC<ModalProps> = ({setHide, create}) => {
     let message;
     switch (name) {
       case 'name':
-        if (Validate(value, 80)) {
+        if (Validate(value.trim(), 80)) {
           setNameValid(false);
-          message = Validate(value, 80);
+          message = Validate(value.trim(), 80);
         }
         setNameValid((nameValid = message ? false : true));
         break;
 
       case 'description':
-        if (Validate(value, 5000)) {
+        if (Validate(value.trim(), 5000)) {
           setDescriptionValid(false);
-          message = Validate(value, 5000);
+          message = Validate(value.trim(), 5000);
         }
         setDescriptionValid((descriptionValid = message ? false : true));
         break;

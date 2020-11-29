@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   total: 0,
   payload: [],
-  searchList: [],
   noti: false,
   error: false,
   message: '',
@@ -23,7 +22,6 @@ const userReducer = (state = initialState, action: any) => {
         return {
           payload: [...state.payload, ...action.payload],
           total: action.total,
-          searchList: [...state.searchList, ...action.searchList],
         };
       }
       return {

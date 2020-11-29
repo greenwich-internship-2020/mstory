@@ -12,6 +12,7 @@ import Modal from '../../../../../../Components/Modal';
 
 import Debounce from '../../../../../../Helper/debounce';
 import {firstLetterUpper} from '../../../../../../Helper/firstLetterUpper';
+import {Validate} from '../../../../../../Validation';
 
 import styles from './modal.module.css';
 
@@ -34,7 +35,18 @@ const CreateStory: FC<Props> = ({
 }) => {
   const [type, setType] = useState('');
 
+  const [storyErr, setStoryErr] = useState({
+    title: '',
+    description: '',
+  });
+
   const [points, setPoints] = useState(detail ? detail.points : 0);
+
+  const [modalValid, setModalValid] = useState(false);
+
+  let [titleValid, setTitleValid] = useState(false);
+
+  let [descripValid, setdescripValid] = useState(false);
 
   const [story, setStory] = useState({
     title: detail ? detail.title : '',
@@ -43,13 +55,51 @@ const CreateStory: FC<Props> = ({
     description: detail ? detail.description : '',
   });
 
-  const handleTyping = Debounce((e: any) => {
+  useEffect(() => {
+    setModalValid(titleValid && descripValid);
+    if (
+      story.title !== '' &&
+      story.description !== '' &&
+      storyErr.title === '' &&
+      storyErr.description === ''
+    ) {
+      setTitleValid(true);
+      setdescripValid(true);
+    }
+  }, [story, storyErr, titleValid, descripValid]);
+
+  const handleError = Debounce((name: any, value: any) => {
+    let message;
+    switch (name) {
+      case 'title':
+        if (Validate(value.trim(), 80)) {
+          setTitleValid(false);
+          message = Validate(value.trim(), 80);
+        }
+        setTitleValid((titleValid = message ? false : true));
+        break;
+      case 'description':
+        if (Validate(value.trim(), 5000)) {
+          setdescripValid(false);
+          message = Validate(value.trim(), 5000);
+        }
+        setdescripValid((descripValid = message ? false : true));
+        break;
+      default:
+        return 'Invalid';
+    }
+    setStoryErr({...storyErr, [name]: message});
+  }, 300);
+
+  const handleTyping = (e: any) => {
     const {name, value} = e.target;
     setStory({...story, [name]: value});
-  }, 300);
+    handleError(name, value);
+  };
 
   useEffect(() => {
     setStory({...story, type});
+    if (titleValid && descripValid) setModalValid(true);
     // eslint-disable-next-line
   }, [type]);
 
@@ -66,6 +116,7 @@ const CreateStory: FC<Props> = ({
         <div className={styles.wrap}>
           <div className={styles.title}>
             <Input
+              errorNoti={storyErr.title}
               name="title"
               defaultValue={detail ? detail.title : ''}
               onChange={handleTyping}
@@ -114,6 +165,7 @@ const CreateStory: FC<Props> = ({
           </div>
           <div className={styles.description}>
             <Text
+              errorNoti={storyErr.description}
               defaultValue={detail ? detail.description : ''}
               preview={story.description}
               name="description"
@@ -127,6 +179,7 @@ const CreateStory: FC<Props> = ({
       }
       foot={
         <Button
+          disabled={!modalValid}
           onOK={() => {
             createStory
               ? createStory(story)

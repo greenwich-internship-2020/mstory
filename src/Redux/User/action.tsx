@@ -14,7 +14,6 @@ export const getUserList = (page: number, keyword: string) => {
       dispatch({
         type: ActionTypes.GET_USER,
         total: payload.data.total_count,
-        searchList: payload.data.users,
         payload: payload.data.users,
         keyword,
       });

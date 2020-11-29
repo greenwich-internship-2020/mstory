@@ -20,3 +20,7 @@
   height: 4.375rem;
   transition: all 0.5s;
 }
+
+.modalRole {
+  width: fit-content;
+}

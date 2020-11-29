@@ -18,14 +18,11 @@ export const getStoriesList = (
       const payload = await api.get(
         `${storiesProject(
           projectID,
-        )}?keyword=${keyword}&status=${status}&type=${type}&page=${
-          keyword === '' ? page : 1
-        }`,
+        )}?keyword=${keyword}&status=${status}&type=${type}&page=${page}`,
       );
       dispatch({
         type: ActionTypes.GET_STORIES,
-        payload: keyword === '' ? payload.data.project_stories : [],
-        filterList: payload.data.project_stories,
+        payload: payload.data.project_stories,
         total: payload.data.total_count,
         keyword,
       });
@@ -83,6 +80,26 @@ export const editStatus = (id: string, story: object) => {
         type: ActionTypes.PUT_STATUS,
         status: Object.values(story)[0],
         id,
+      });
+      return payload;
+    } catch (error) {
+      return error;
+    }
+  };
+};
+
+export const deleteStory = (projectID: string, storyID: string) => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: ActionTypes.REQUEST,
+    });
+    try {
+      const payload = await api.delete(
+        `${storiesProject(projectID)}/${storyID}`,
+      );
+      dispatch({
+        type: ActionTypes.DELETE_STORIES,
+        storyID,
       });
       return payload;
     } catch (error) {

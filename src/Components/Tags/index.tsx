@@ -11,7 +11,7 @@ interface TagProps extends AllHTMLAttributes<HTMLDivElement> {
   red?: boolean;
 }
 
-const Tag: FC<TagProps> = ({content, orange, blue, green, red}) => {
+const Tag: FC<TagProps> = ({content, orange, blue, green, red, className}) => {
   return (
     <div
       className={clsx(
@@ -20,6 +20,7 @@ const Tag: FC<TagProps> = ({content, orange, blue, green, red}) => {
         blue && styles.blue,
         green && styles.green,
         red && styles.red,
+        className,
       )}
     >
       {content}

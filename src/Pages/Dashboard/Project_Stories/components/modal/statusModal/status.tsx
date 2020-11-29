@@ -21,9 +21,10 @@ interface Props {
   hide?: any;
   editStory?: any;
   detail?: any;
+  deleteStory?: any;
 }
 
-const StatusModal: FC<Props> = ({hide, editStory, detail}) => {
+const StatusModal: FC<Props> = ({hide, editStory, detail, deleteStory}) => {
   const [state, setState] = useState(detail ? detail.status : '');
 
   const [status, setStatus] = useState({status: ''});
@@ -32,10 +33,24 @@ const StatusModal: FC<Props> = ({hide, editStory, detail}) => {
     setStatus({status: state});
   }, [state]);
 
+  const handleClose = () => {
+    deleteStory(detail.story_id);
+    hide();
+  };
+
+  const handleUpdate = () => {
+    editStory(detail.story_id, status);
+    hide();
+  };
+
   return (
     <Modal
       cancel={hide}
-      thirdFoot={<Button error>Close</Button>}
+      thirdFoot={
+        <Button onOK={handleClose} error>
+          Close
+        </Button>
+      }
       head={`User story`}
       infoHead="Miles Davis"
       infoDetail="#163012590 - Updated: 15 Mar 2019, 09:42pm"
@@ -48,7 +63,11 @@ const StatusModal: FC<Props> = ({hide, editStory, detail}) => {
           <div className={styles.info}>
             <div className={styles.owner}>
               <Caption2 className={styles.label}>Owner</Caption2>
-              <Tag content="tupac" />
+              <div className={styles.ownTag}>
+                <Tag className={styles.tag} content="tupac" />
+                <Tag className={styles.tag} content="miles" />
+                <Tag className={styles.tag} content="congminh" />
+              </div>
             </div>
             <div className={styles.statType}>
               <Caption2 className={styles.label}>Story type</Caption2>
@@ -83,16 +102,7 @@ const StatusModal: FC<Props> = ({hide, editStory, detail}) => {
           </div>
         </div>
       }
-      foot={
-        <Button
-          onOK={() => {
-            editStory(detail.story_id, status);
-            hide();
-          }}
-        >
-          Update
-        </Button>
-      }
+      foot={<Button onOK={handleUpdate}>Update</Button>}
     />
   );
 };

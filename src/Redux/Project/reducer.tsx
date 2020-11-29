@@ -13,7 +13,6 @@ const initialState = {
     project_id: '',
   },
   payload: [],
-  filterList: [],
   message: '',
 };
 
@@ -32,7 +31,6 @@ const projectReducer = (state = initialState, action: any) => {
         return {
           payload: [...state.payload, ...action.payload],
           total: action.total,
-          filterList: [...state.filterList, ...action.filterList],
         };
       }
       return {

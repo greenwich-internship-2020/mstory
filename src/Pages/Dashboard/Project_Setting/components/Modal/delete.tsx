@@ -39,7 +39,14 @@ const DeleteModal: FC<Props> = ({name, hide, deleteProject}) => {
       cancel={hide}
       head="Delete project"
       foot={
-        <Button onOK={deleteProject} disabled={!delValid} error>
+        <Button
+          onOK={() => {
+            deleteProject();
+            hide();
+          }}
+          disabled={!delValid}
+          error
+        >
           Confirm
         </Button>
       }

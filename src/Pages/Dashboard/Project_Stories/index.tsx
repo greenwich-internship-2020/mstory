@@ -35,6 +35,8 @@ const Stories: FC<Props> = (props) => {
     [dispatch, keyword, status, type, page],
   );
 
+  const resetPage = () => dispatch({type: 'RESET_MODULE'});
+
   const createStory = (story: object) =>
     dispatch(action.createStory(id, story));
 
@@ -44,6 +46,9 @@ const Stories: FC<Props> = (props) => {
   const editStatus = (id: string, story: object) =>
     dispatch(action.editStatus(id, story));
 
+  const deleteStory = (storyID: string) =>
+    dispatch(action.deleteStory(id, storyID));
+
   const stories = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.payload,
   );
@@ -52,24 +57,19 @@ const Stories: FC<Props> = (props) => {
     (state: RootStateOrAny) => state.storiesReducer.total,
   );
 
-  const filterList = useSelector(
-    (state: RootStateOrAny) => state.storiesReducer.filterList,
-  );
-
   const loading = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.loading,
   );
-
-  const resetPage = () => dispatch({type: 'RESET_MODULE'});
 
   const totalPage = Math.round(total / 6);
 
   useEffect(
     () => {
       resetPage();
+      setPage(1);
     },
     // eslint-disable-next-line
-    [status, type],
+    [keyword, status, type],
   );
 
   useEffect(() => {
@@ -105,11 +105,13 @@ const Stories: FC<Props> = (props) => {
       {show ? renderModal() : null}
       <StoriesDashboard
         next={() => {
-          return page <= totalPage ? setPage(page + 1) : null;
+          // setPage(page + 1);
+          return page < totalPage ? setPage(page + 1) : null;
         }}
         first={() => {
           setPage(1);
         }}
+        deleteStory={deleteStory}
         edit={editStory}
         setType={setType}
         setTus={setStatus}
@@ -117,7 +119,7 @@ const Stories: FC<Props> = (props) => {
         total={total}
         search={setKeyword}
         load={loading}
-        data={keyword === '' ? stories : filterList}
+        data={stories}
       />
     </DashboardTemplate>
   );

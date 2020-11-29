@@ -15,12 +15,17 @@ import Table from '../../../../../Components/Table';
 import DashboardTemplate from '../../../../../Components/Template/dashboard';
 
 import {Caption, Heading} from '../../../../../Components/Typography';
+
 import Debounce from '../../../../../Helper/debounce';
+
 import ProjectModal from '../ProjectModal';
 
 import styles from './projectdashboard.module.css';
+
 import {TextVariants} from '../../../../../Components/Typography/types';
+
 import Notification from '../../../../../Components/Notification';
+
 import ProjectItem from './item';
 
 interface ProjectProps {
@@ -53,6 +58,8 @@ const ProjectDashboard: FC<ProjectProps> = ({
   createProject,
 }) => {
   const [show, setShow] = useState(false);
+
+  const [keyword, setKeyword] = useState('');
 
   const [searchValid, setSearchValid] = useState('');
 
@@ -97,10 +104,11 @@ const ProjectDashboard: FC<ProjectProps> = ({
 
   const handleSearch = Debounce((e: any) => {
     let {value} = e.target;
-    if (value.trim().length > 3 || value === '') {
+    if (value.trim().length > 2 || value === '') {
       search(value.trim());
+      setKeyword(value.trim());
       setSearchValid('');
-    } else if (value.trim().length <= 3)
+    } else if (value.trim().length < 3)
       setSearchValid('Please type over 3 characters');
   }, 500);
 
@@ -194,7 +202,9 @@ const ProjectDashboard: FC<ProjectProps> = ({
                     alt="not found"
                   />
                   <Heading variant={TextVariants.S}>
-                    Sorry! Can not find any project
+                    {keyword !== ''
+                      ? 'Sorry! Can not find any project'
+                      : 'Sorry! there is nothing here'}
                   </Heading>
                 </tr>
               )}

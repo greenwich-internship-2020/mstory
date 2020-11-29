@@ -4,7 +4,7 @@ import {Edit, Time} from '../../../../../Components/Icons';
 
 import Table from '../../../../../Components/Table';
 
-import {Caption, Title} from '../../../../../Components/Typography';
+import {Caption, Heading, Title} from '../../../../../Components/Typography';
 
 import StatusModal from '../modal/statusModal/status';
 
@@ -14,15 +14,32 @@ import styles from './dashboard.module.css';
 
 import {idenStatus, idenType} from './helper';
 
+import Notfound from '../../../../../assets/notfound.png';
+
+import clsx from 'clsx';
+import {TextVariants} from '../../../../../Components/Typography/types';
+
 interface Props {
   data?: any;
   next?: any;
   total: any;
   edit?: any;
   editStatus?: any;
+  deleteStory?: any;
+  loading?: boolean;
+  keyword?: string;
 }
 
-const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
+const StoriesTable: FC<Props> = ({
+  data,
+  next,
+  total,
+  edit,
+  editStatus,
+  deleteStory,
+  loading,
+  keyword,
+}) => {
   const options = {
     root: null,
     rootMargin: '0px',
@@ -66,7 +83,7 @@ const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
           >
             <td className={styles.name}>
               <Title>{story.title}</Title>
-              {/* <Caption>{story}</Caption> */}
+              <Caption>tupac</Caption>
             </td>
             {idenType(story.type)}
             {idenStatus(story.status)}
@@ -78,7 +95,7 @@ const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
                   setModal('edit');
                   setStory(story);
                 }}
-                className={styles.edit}
+                className={clsx(styles.edit, loading && styles.disabled)}
               >
                 <Edit />
               </div>
@@ -88,7 +105,7 @@ const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
                   setModal('status');
                   setStory(story);
                 }}
-                className={styles.time}
+                className={clsx(styles.time, loading && styles.disabled)}
               >
                 <Time />
               </div>
@@ -112,6 +129,7 @@ const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
       ) : null}
       {show && modal === 'status' ? (
         <StatusModal
+          deleteStory={deleteStory}
           editStory={editStatus}
           detail={story}
           hide={() => setShow(false)}
@@ -135,7 +153,28 @@ const StoriesTable: FC<Props> = ({data, next, total, edit, editStatus}) => {
             <th></th>
           </tr>
         }
-        tbody={<tbody>{renderContent()}</tbody>}
+        tbody={
+          data ? (
+            <tbody>
+              {data.length > 0 ? (
+                renderContent()
+              ) : (
+                <tr className={styles.notfound}>
+                  <img
+                    className={styles.notfoundimg}
+                    src={Notfound}
+                    alt="not found"
+                  />
+                  <Heading variant={TextVariants.S}>
+                    {keyword !== ''
+                      ? 'Sorry! Can not find any stories'
+                      : 'Sorry! there is nothing here'}
+                  </Heading>
+                </tr>
+              )}
+            </tbody>
+          ) : null
+        }
       />
     </div>
   );

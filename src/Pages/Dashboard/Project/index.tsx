@@ -22,19 +22,9 @@ const Project: FC<ProjectProps> = (props) => {
 
   const [page, setPage] = useState(1);
 
-  const [filterPage, setFilterPage] = useState(1);
-
   const getProjectList = useCallback(
-    () =>
-      dispatch(
-        action.getProjectList(
-          status,
-          keyword !== '' ? filterPage : page,
-          keyword,
-          sort,
-        ),
-      ),
-    [dispatch, filterPage, page, keyword, status, sort],
+    () => dispatch(action.getProjectList(status, page, keyword, sort)),
+    [dispatch, page, keyword, status, sort],
   );
 
   const createProject = (project: any) =>
@@ -52,10 +42,6 @@ const Project: FC<ProjectProps> = (props) => {
 
   const loading = useSelector(
     (state: RootStateOrAny) => state.projectReducer.loading,
-  );
-
-  const filterList = useSelector(
-    (state: RootStateOrAny) => state.projectReducer.filterList,
   );
 
   const noti = useSelector(
@@ -76,7 +62,6 @@ const Project: FC<ProjectProps> = (props) => {
     () => {
       resetPage();
       setPage(1);
-      setFilterPage(1);
     },
     // eslint-disable-next-line
     [keyword, status, sort],
@@ -89,10 +74,7 @@ const Project: FC<ProjectProps> = (props) => {
   return (
     <ProjectDashboard
       next={() => {
-        if (keyword !== '')
-          return filterPage < totalPage ? setFilterPage(filterPage + 1) : null;
-        else if (keyword === '')
-          return page < totalPage ? setPage(page + 1) : null;
+        return page < totalPage ? setPage(page + 1) : null;
       }}
       first={() => {
         setPage(1);
@@ -104,7 +86,7 @@ const Project: FC<ProjectProps> = (props) => {
       err={error}
       message={message}
       loading={loading}
-      projectData={keyword === '' ? ProjectData : filterList}
+      projectData={ProjectData}
       total={total}
       search={setKeyword}
     />

@@ -25,6 +25,7 @@ import Notfound from '../../../../../assets/notfound.png';
 import styles from './userdashboard.module.css';
 
 import Notification from '../../../../../Components/Notification';
+import clsx from 'clsx';
 
 interface UserProps {
   userData?: any;
@@ -69,6 +70,8 @@ const UserDashboard: FC<UserProps> = ({
     email: '',
   });
 
+  const [keyword, setKeyword] = useState('');
+
   const [searchValid, setSearchValid] = useState('');
 
   const [modalStatus, setModalStatus] = useState('Create');
@@ -97,8 +100,9 @@ const UserDashboard: FC<UserProps> = ({
 
   const handleSearch = Debounce((e: any) => {
     let {value} = e.target;
-    if (value.trim().length > 3 || value === '') {
+    if (value.trim().length > 2 || value === '') {
       search(value.trim());
+      setKeyword(value.trim());
       setSearchValid('');
     } else if (value.trim().length < 3)
       setSearchValid('Please type over 3 characters');
@@ -144,11 +148,14 @@ const UserDashboard: FC<UserProps> = ({
                     setModalStatus('Edit');
                     setShow(true);
                   }}
-                  className={styles.edit}
+                  className={clsx(styles.edit, loading && styles.disabled)}
                 >
                   <Edit />
                 </div>
-                <div onClick={() => handleDelete(user)} className={styles.del}>
+                <div
+                  onClick={() => handleDelete(user)}
+                  className={clsx(styles.del, loading && styles.disabled)}
+                >
                   <Delete />
                 </div>
               </div>
@@ -225,7 +232,9 @@ const UserDashboard: FC<UserProps> = ({
                     alt="not found"
                   />
                   <Heading variant={TextVariants.S}>
-                    Sorry! Can not find any user
+                    {keyword !== ''
+                      ? 'Sorry! Can not find any user'
+                      : 'Sorry! there is nothing here'}
                   </Heading>
                 </tr>
               )}

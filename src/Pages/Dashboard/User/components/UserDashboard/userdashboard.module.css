@@ -70,6 +70,12 @@
   transition: all 0.1s ease-in;
 }
 
+.edit.disabled,
+.del.disabled {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
 .edit:hover,
 .del:hover {
   transform: translateY(-2px);

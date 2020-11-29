@@ -34,3 +34,16 @@
 .markdown {
   white-space: pre-wrap;
 }
+
+.ownTag {
+  display: flex;
+  align-items: center;
+}
+
+.tag {
+  margin-right: 0.25rem;
+}
+
+.tag:last-child {
+  margin-right: 0;
+}

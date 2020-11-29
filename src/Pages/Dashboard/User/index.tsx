@@ -11,16 +11,13 @@ interface UserProps {}
 const User: FC<UserProps> = (props) => {
   const [page, setPage] = useState(1);
 
-  const [filterPage, setFilterPage] = useState(1);
-
   const [keyword, setKeyword] = useState('');
 
   const dispatch = useDispatch();
 
   const getUserList = useCallback(
-    () =>
-      dispatch(action.getUserList(keyword !== '' ? filterPage : page, keyword)),
-    [dispatch, filterPage, page, keyword],
+    () => dispatch(action.getUserList(page, keyword)),
+    [dispatch, page, keyword],
   );
 
   const createUser = (user: object) => dispatch(action.createUser(user));
@@ -35,10 +32,6 @@ const User: FC<UserProps> = (props) => {
 
   const UserData = useSelector(
     (state: RootStateOrAny) => state.userReducer.payload,
-  );
-
-  const searchList = useSelector(
-    (state: RootStateOrAny) => state.userReducer.searchList,
   );
 
   const total = useSelector((state: RootStateOrAny) => state.userReducer.total);
@@ -61,7 +54,6 @@ const User: FC<UserProps> = (props) => {
     () => {
       resetPage();
       setPage(1);
-      setFilterPage(1);
     },
     // eslint-disable-next-line
     [keyword],
@@ -77,16 +69,13 @@ const User: FC<UserProps> = (props) => {
       editUser={editUser}
       deleteUser={deleteUser}
       loading={Loading}
-      userData={keyword === '' ? UserData : searchList}
+      userData={UserData}
       search={setKeyword}
       noti={noti}
       err={error}
       message={message}
       next={() => {
-        if (keyword !== '')
-          return filterPage < totalPage ? setFilterPage(filterPage + 1) : null;
-        else if (keyword === '')
-          return page < totalPage ? setPage(page + 1) : null;
+        return page < totalPage ? setPage(page + 1) : null;
       }}
       total={total}
     />

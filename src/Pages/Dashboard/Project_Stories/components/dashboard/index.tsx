@@ -1,10 +1,17 @@
 import React, {FC, useState} from 'react';
+
 import Dropdown from '../../../../../Components/Dropdown';
+
 import {Loading} from '../../../../../Components/Icons';
+
 import Input from '../../../../../Components/Input';
+
+import Notification from '../../../../../Components/Notification';
+
 import Debounce from '../../../../../Helper/debounce';
 
 import styles from './dashboard.module.css';
+
 import StoriesTable from './table';
 
 interface Props {
@@ -19,6 +26,9 @@ interface Props {
   edit?: any;
   editStatus?: any;
   deleteStory?: any;
+  noti?: boolean;
+  err?: boolean;
+  message?: string;
 }
 
 const StoriesDashboard: FC<Props> = ({
@@ -33,6 +43,9 @@ const StoriesDashboard: FC<Props> = ({
   edit,
   editStatus,
   deleteStory,
+  noti,
+  err,
+  message,
 }) => {
   const [searchValid, setSearchValid] = useState('');
 
@@ -101,6 +114,9 @@ const StoriesDashboard: FC<Props> = ({
           <Loading />
         </div>
       ) : null}
+      <Notification noti={noti} error={err}>
+        {message}
+      </Notification>
     </div>
   );
 };

@@ -61,6 +61,12 @@ const Stories: FC<Props> = (props) => {
     (state: RootStateOrAny) => state.storiesReducer.loading,
   );
 
+  const message = useSelector(
+    (state: RootStateOrAny) => state.storiesReducer.message,
+  );
+
+  const err = useSelector((state: RootStateOrAny) => state.storiesReducer.err);
+
   const totalPage = Math.round(total / 6);
 
   useEffect(
@@ -111,6 +117,8 @@ const Stories: FC<Props> = (props) => {
         first={() => {
           setPage(1);
         }}
+        err={err}
+        message={message}
         deleteStory={deleteStory}
         edit={editStory}
         setType={setType}

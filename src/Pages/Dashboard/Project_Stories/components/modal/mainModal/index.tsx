@@ -93,7 +93,7 @@ const CreateStory: FC<Props> = ({
 
   const handleTyping = (e: any) => {
     const {name, value} = e.target;
-    setStory({...story, [name]: value});
+    setStory({...story, [name]: value.trim()});
     handleError(name, value);
   };
 

@@ -83,7 +83,7 @@ const StoriesTable: FC<Props> = ({
           >
             <td className={styles.name}>
               <Title>{story.title}</Title>
-              <Caption>tupac</Caption>
+              <Caption className={styles.username}>tupac</Caption>
             </td>
             {idenType(story.type)}
             {idenStatus(story.status)}

@@ -20,6 +20,10 @@
   width: 60%;
 }
 
+.dropdown {
+  width: fit-content;
+}
+
 .username {
   margin-top: 0.5rem;
 }
@@ -74,6 +78,13 @@
 .del.disabled {
   opacity: 0.7;
   pointer-events: none;
+}
+
+.edit.disabled:hover,
+.del.disabled:hover {
+  cursor: no-drop;
+  transform: translateY(0);
+  box-shadow: none;
 }
 
 .edit:hover,

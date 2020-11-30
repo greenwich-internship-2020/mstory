@@ -132,13 +132,15 @@ const UserDashboard: FC<UserProps> = ({
               <Caption className={styles.username}>{user.username}</Caption>
             </td>
             <td className={styles.listColumn}>
-              <Dropdown
-                options={[
-                  {name: 'Member'},
-                  {name: 'Admin'},
-                  {name: 'Super Admin'},
-                ]}
-              />
+              <div className={styles.dropdown}>
+                <Dropdown
+                  options={[
+                    {name: 'Member'},
+                    {name: 'Admin'},
+                    {name: 'Super Admin'},
+                  ]}
+                />
+              </div>
             </td>
             <td>
               <div className={styles.listColumn}>

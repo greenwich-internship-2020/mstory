@@ -28,7 +28,18 @@ export const getStoriesList = (
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };
@@ -46,7 +57,18 @@ export const createStory = (id: string, story: object) => {
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };
@@ -64,7 +86,18 @@ export const editStory = (id: string, story: object) => {
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };
@@ -83,7 +116,18 @@ export const editStatus = (id: string, story: object) => {
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };
@@ -103,7 +147,18 @@ export const deleteStory = (projectID: string, storyID: string) => {
       });
       return payload;
     } catch (error) {
-      return error;
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };

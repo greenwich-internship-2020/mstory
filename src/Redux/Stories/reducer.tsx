@@ -4,6 +4,8 @@ const initialState = {
   loading: false,
   payload: [],
   total: 0,
+  err: false,
+  message: '',
 };
 
 const storiesReducer = (state = initialState, action: any) => {
@@ -76,11 +78,16 @@ const storiesReducer = (state = initialState, action: any) => {
         return position;
       });
       state.payload.splice(position, 1);
-      // state.message = action.message;
       return {
         ...state,
         loading: false,
-        // noti: action.noti,
+      };
+    case ActionTypes.ERROR:
+      state.message = action.message;
+      return {
+        ...state,
+        loading: false,
+        err: action.error,
       };
     default:
       return {...state};

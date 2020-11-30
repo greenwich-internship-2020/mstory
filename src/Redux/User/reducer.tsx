@@ -4,7 +4,6 @@ const initialState = {
   loading: false,
   total: 0,
   payload: [],
-  noti: false,
   error: false,
   message: '',
 };
@@ -35,13 +34,7 @@ const userReducer = (state = initialState, action: any) => {
         loading: false,
         payload: [action.payload, ...state.payload],
       };
-    case ActionTypes.ERROR:
-      state.message = action.message;
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
+
     case ActionTypes.PUT_USER:
       const newPayload = state.payload.map((user: any, index: number) => {
         if (user.username === action.payload.username) {
@@ -73,6 +66,14 @@ const userReducer = (state = initialState, action: any) => {
         ...state,
         loading: false,
         noti: action.noti,
+      };
+
+    case ActionTypes.ERROR:
+      state.message = action.message;
+      return {
+        ...state,
+        loading: false,
+        error: action.error,
       };
     default:
       return {...state, loading: false};

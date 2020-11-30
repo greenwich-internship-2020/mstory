@@ -2,6 +2,8 @@ import Notfound from './Pages/Dashboard/Notfound';
 
 import Project from './Pages/Dashboard/Project';
 
+import Members from './Pages/Dashboard/Project_Members';
+
 import Setting from './Pages/Dashboard/Project_Setting';
 
 import Stories from './Pages/Dashboard/Project_Stories';
@@ -31,6 +33,12 @@ export const dashboard = [
     path: '/projects/:id/stories',
     exact: false,
     component: Stories,
+  },
+
+  {
+    path: '/projects/:id/members',
+    exact: false,
+    component: Members,
   },
 
   {

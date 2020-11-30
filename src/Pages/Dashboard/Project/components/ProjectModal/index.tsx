@@ -68,7 +68,7 @@ const ProjectModal: FC<ModalProps> = ({setHide, create}) => {
 
   const handleTyping = (e: any) => {
     let {name, value} = e.target;
-    setProject({...project, [name]: value});
+    setProject({...project, [name]: value.trim()});
     handleErrorCase(name, value);
   };
 

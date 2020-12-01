@@ -1,24 +1,26 @@
 {
   "files": {
-    "main.css": "/mstory/static/css/main.434ceb4c.chunk.css",
-    "main.js": "/mstory/static/js/main.884a4834.chunk.js",
-    "main.js.map": "/mstory/static/js/main.884a4834.chunk.js.map",
-    "runtime-main.js": "/mstory/static/js/runtime-main.b8b88e68.js",
-    "runtime-main.js.map": "/mstory/static/js/runtime-main.b8b88e68.js.map",
-    "static/js/2.49f30909.chunk.js": "/mstory/static/js/2.49f30909.chunk.js",
-    "static/js/2.49f30909.chunk.js.map": "/mstory/static/js/2.49f30909.chunk.js.map",
-    "static/js/3.361ad04a.chunk.js": "/mstory/static/js/3.361ad04a.chunk.js",
-    "static/js/3.361ad04a.chunk.js.map": "/mstory/static/js/3.361ad04a.chunk.js.map",
+    "main.css": "/mstory/static/css/main.df67c0f5.chunk.css",
+    "main.js": "/mstory/static/js/main.5e4edfe7.chunk.js",
+    "main.js.map": "/mstory/static/js/main.5e4edfe7.chunk.js.map",
+    "runtime-main.js": "/mstory/static/js/runtime-main.e5189b53.js",
+    "runtime-main.js.map": "/mstory/static/js/runtime-main.e5189b53.js.map",
+    "static/js/2.ee371401.chunk.js": "/mstory/static/js/2.ee371401.chunk.js",
+    "static/js/2.ee371401.chunk.js.map": "/mstory/static/js/2.ee371401.chunk.js.map",
+    "static/js/3.ced0e019.chunk.js": "/mstory/static/js/3.ced0e019.chunk.js",
+    "static/js/3.ced0e019.chunk.js.map": "/mstory/static/js/3.ced0e019.chunk.js.map",
     "index.html": "/mstory/index.html",
-    "static/css/main.434ceb4c.chunk.css.map": "/mstory/static/css/main.434ceb4c.chunk.css.map",
-    "static/js/2.49f30909.chunk.js.LICENSE.txt": "/mstory/static/js/2.49f30909.chunk.js.LICENSE.txt",
+    "static/css/main.df67c0f5.chunk.css.map": "/mstory/static/css/main.df67c0f5.chunk.css.map",
+    "static/js/2.ee371401.chunk.js.LICENSE.txt": "/mstory/static/js/2.ee371401.chunk.js.LICENSE.txt",
     "static/media/checkbox.module.css": "/mstory/static/media/Check.389ee3e9.svg",
-    "static/media/notfound.52bad775.png": "/mstory/static/media/notfound.52bad775.png"
+    "static/media/astronaut.d05a6930.svg": "/mstory/static/media/astronaut.d05a6930.svg",
+    "static/media/notfound.52bad775.png": "/mstory/static/media/notfound.52bad775.png",
+    "static/media/security.e200d075.svg": "/mstory/static/media/security.e200d075.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b8b88e68.js",
-    "static/js/2.49f30909.chunk.js",
-    "static/css/main.434ceb4c.chunk.css",
-    "static/js/main.884a4834.chunk.js"
+    "static/js/runtime-main.e5189b53.js",
+    "static/js/2.ee371401.chunk.js",
+    "static/css/main.df67c0f5.chunk.css",
+    "static/js/main.5e4edfe7.chunk.js"
   ]
 }

@@ -1,6 +1,7 @@
 .wrap {
   position: relative;
   max-width: 24.4375rem;
+  min-width: 21.25rem;
   margin: 0 auto;
   background-color: #fff;
   border-radius: 1.5rem;
@@ -25,4 +26,5 @@
 
 .head {
   text-align: center;
+  margin-bottom: 2rem;
 }

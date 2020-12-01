@@ -12,11 +12,18 @@ import User from './Pages/Dashboard/User';
 
 import Login from './Pages/Landing/Login';
 
+import Register from './Pages/Landing/Register';
+
 const landing = [
   {
     path: '/login',
     exact: false,
     component: Login,
+  },
+  {
+    path: '/register',
+    exact: false,
+    component: Register,
   },
 ];
 

@@ -10,10 +10,27 @@ import Stories from './Pages/Dashboard/Project_Stories';
 
 import User from './Pages/Dashboard/User';
 
-export const dashboard = [
+import Login from './Pages/Landing/Login';
+
+import Register from './Pages/Landing/Register';
+
+const landing = [
+  {
+    path: '/login',
+    exact: false,
+    component: Login,
+  },
+  {
+    path: '/register',
+    exact: false,
+    component: Register,
+  },
+];
+
+const dashboard = [
   {
     path: '/projects',
-    exact: true,
+    exact: false,
     component: Project,
   },
 
@@ -47,3 +64,5 @@ export const dashboard = [
     component: Notfound,
   },
 ];
+
+export {landing, dashboard};

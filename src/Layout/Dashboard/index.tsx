@@ -1,7 +1,7 @@
 import React, {ComponentType, ReactElement} from 'react';
 
 import {
-  Redirect,
+  // Redirect,
   Route,
   RouteComponentProps,
   RouteProps,
@@ -46,11 +46,11 @@ const DashboardTemplate = <P extends RouteComponentProps>({
         return (
           <DashboardLayout>
             <WrappedComponent {...childProps} {...withProps} />
-            {window.location.pathname === '/' ||
+            {/* {window.location.pathname === '/' ||
             window.location.pathname === '/mstory' ||
             window.location.pathname === '/mstory/' ? (
               <Redirect to="/projects" />
-            ) : null}
+            ) : null} */}
           </DashboardLayout>
         );
       }}

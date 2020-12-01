@@ -35,6 +35,10 @@ export const Body: FC<TypoProps> = ({children, className}) => {
   return <p className={clsx(styles.body, className)}>{children}</p>;
 };
 
+export const BodySmall: FC<TypoProps> = ({children, className}) => {
+  return <p className={clsx(styles.bodysmall, className)}>{children}</p>;
+};
+
 export const Title: FC<TypoProps> = ({children, className}) => {
   return <p className={clsx(styles.title, className)}>{children}</p>;
 };

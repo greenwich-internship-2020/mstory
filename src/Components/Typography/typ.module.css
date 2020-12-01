@@ -1,8 +1,8 @@
 .heading {
   font-family: 'Montserrat', sans-serif;
   font-size: 2rem;
-  font-weight: 600;
-  line-height: calc(48 / 16);
+  font-weight: 500;
+  line-height: calc(48 / 32);
   letter-spacing: -0.5px;
 }
 
@@ -48,6 +48,14 @@
   font-weight: 400;
   font-size: 0.875rem;
   line-height: calc(24 / 16);
+  color: var(--default);
+}
+
+.bodysmall {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 400;
+  font-size: 0.8125rem;
+  line-height: calc(24 / 13);
   color: var(--default);
 }
 

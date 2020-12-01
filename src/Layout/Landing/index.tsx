@@ -1,0 +1,46 @@
+import React, {ComponentType, ReactElement} from 'react';
+
+import {Route, RouteComponentProps, RouteProps} from 'react-router-dom';
+import LandingFooter from '../../Components/LandingFooter';
+
+import LandingHeader from '../../Components/LandingHeader';
+
+import styles from './landing.module.css';
+
+type LandingProps<P> = P extends RouteComponentProps<any>
+  ? RouteProps & {
+      component: ComponentType<P>;
+      withProps?: Omit<P, keyof RouteComponentProps<any>>;
+    }
+  : never;
+
+const LandingLayout = (props: any) => {
+  return (
+    <div className={styles.container}>
+      <LandingHeader />
+      <div className={styles.content}>{props.children}</div>
+      <LandingFooter />
+    </div>
+  );
+};
+
+const LandingTemplate = <P extends RouteComponentProps>({
+  component: WrappedComponent,
+  withProps,
+  ...routeProps
+}: LandingProps<P>): ReactElement<P> => {
+  return (
+    <Route
+      {...routeProps}
+      render={(childProps) => {
+        return (
+          <LandingLayout>
+            <WrappedComponent {...childProps} {...withProps} />
+          </LandingLayout>
+        );
+      }}
+    />
+  );
+};
+
+export default LandingTemplate;

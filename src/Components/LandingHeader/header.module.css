@@ -9,6 +9,8 @@
 .logo {
   display: flex;
   align-items: center;
+  text-decoration: none;
+  color: #000;
 }
 
 .title {
@@ -66,11 +68,7 @@
   background-color: #000;
 }
 
-@media (min-width: 1024px) {
-  .wrapper {
-    padding: 1.0625rem 2.1875rem;
-  }
-
+@media (min-width: 768px) {
   .link {
     display: flex;
   }
@@ -96,6 +94,12 @@
   .login.active,
   .signup.active {
     color: var(--primary);
+  }
+}
+
+@media (min-width: 1024px) {
+  .wrapper {
+    padding: 1.0625rem 2.1875rem;
   }
 }
 

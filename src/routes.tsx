@@ -9,12 +9,18 @@ import Setting from './Pages/Dashboard/Project_Setting';
 import Stories from './Pages/Dashboard/Project_Stories';
 
 import User from './Pages/Dashboard/User';
+import Home from './Pages/Landing/Home';
 
 import Login from './Pages/Landing/Login';
 
 import Register from './Pages/Landing/Register';
 
 const landing = [
+  {
+    path: '/mstory',
+    exact: false,
+    component: Home,
+  },
   {
     path: '/login',
     exact: false,

@@ -1,0 +1,33 @@
+.wrap {
+  background-color: var(--primary);
+  padding: 5rem 1rem;
+  text-align: center;
+}
+
+.text:first-child {
+  margin-bottom: 0.5rem;
+}
+
+.text {
+  color: #fff;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding: 5rem 9rem;
+  }
+}
+@media (min-width: 1024px) {
+  .wrap {
+    padding: 5rem 12.1875rem;
+  }
+}
+@media (min-width: 1440px) {
+  .wrap {
+    padding: 3.75rem 20.1875rem;
+  }
+  .text:first-child {
+    font-size: 2rem;
+    line-height: calc(48 / 32);
+  }
+}

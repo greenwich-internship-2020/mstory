@@ -31,10 +31,10 @@ const LandingHeader: FC<Props> = (props) => {
 
   return (
     <div className={styles.wrapper}>
-      <div className={styles.logo}>
+      <Link to="/mstory" className={styles.logo}>
         <img alt="Topping" src={topping} />
         <p className={styles.title}>MStory</p>
-      </div>
+      </Link>
       <div className={styles.menu}>
         <div className={styles.link}>
           <NavLink

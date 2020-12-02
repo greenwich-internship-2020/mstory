@@ -1,0 +1,22 @@
+.wrap {
+  padding: 5rem 1rem;
+}
+
+.content {
+  text-align: center;
+}
+
+.text {
+  margin-bottom: 2rem;
+}
+
+@media (min-width: 768px) {
+  .wrap {
+    padding: 5rem 8.375rem;
+  }
+
+  .start {
+    margin: 0 auto;
+    width: fit-content;
+  }
+}

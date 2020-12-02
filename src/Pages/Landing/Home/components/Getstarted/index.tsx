@@ -3,7 +3,10 @@ import Button from '../../../../../Components/Button';
 import {Heading} from '../../../../../Components/Typography';
 import {TextVariants} from '../../../../../Components/Typography/types';
 
+import laptop from '../../../../../assets/laptop.svg';
+
 import styles from './getstart.module.css';
+import {Link} from 'react-router-dom';
 
 interface Props {}
 
@@ -19,10 +22,11 @@ const Getstarted: FC<Props> = (props) => {
             Try us free for 30 days.
           </Heading>
         </div>
-        <div className={styles.start}>
+        <Link to="/register" className={styles.start}>
           <Button>Get Started</Button>
-        </div>
+        </Link>
       </div>
+      <img className={styles.laptop} alt="robot" src={laptop} />
     </div>
   );
 };

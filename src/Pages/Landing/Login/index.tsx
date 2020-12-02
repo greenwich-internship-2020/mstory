@@ -33,10 +33,10 @@ const Login: FC<Props> = (props) => {
           <Button>Sign in</Button>
         </div>
         <div className={styles.support}>
-          <Link className={styles.signup} to="register">
+          <Link className={styles.signup} to="/register">
             Sign Up instead?
           </Link>
-          <Link className={styles.forgot} to="register">
+          <Link className={styles.forgot} to="/forgot-password">
             Forgot password
           </Link>
         </div>

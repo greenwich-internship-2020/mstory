@@ -35,7 +35,7 @@ const Notfound: FC<NotfoundProps> = ({history}) => {
                 Back
               </Button>
             </div>
-            <Link to="/">
+            <Link to="/mstory">
               <Button>Go to Homepage</Button>
             </Link>
           </div>

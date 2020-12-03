@@ -7,15 +7,18 @@ import Main from './components/Main';
 
 import * as action from '../../../Redux/Project/action';
 
-interface SettingProps {}
+import {RouteComponentProps} from 'react-router-dom';
 
-const Setting: FC<SettingProps> = () => {
+interface SettingProps extends RouteComponentProps<any> {}
+
+const Setting: FC<SettingProps> = ({history}) => {
   const dispatch = useDispatch();
 
   const getSpecProject = (id: string) =>
     dispatch(action.getSpecificProject(id));
 
-  const deleteProject = (id: string) => dispatch(action.deleteProject(id));
+  const deleteProject = (id: string) =>
+    dispatch(action.deleteProject(id, history));
 
   const editProject = (id: string, project: object) =>
     dispatch(action.updateProject(id, project));

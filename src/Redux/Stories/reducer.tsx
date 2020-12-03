@@ -19,12 +19,6 @@ const storiesReducer = (state = initialState, action: any) => {
 
     case ActionTypes.GET_STORIES:
       state.total = action.total;
-      if (action.keyword !== '') {
-        return {
-          payload: [...state.payload, ...action.payload],
-          total: action.total,
-        };
-      }
       return {
         ...state,
         loading: false,

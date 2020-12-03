@@ -1,7 +1,8 @@
-.wrapper {
+.wrap {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
+  height: 100%;
   margin: 3rem 1rem;
 }
 
@@ -9,28 +10,12 @@
   display: none;
 }
 
-.fullname,
-.username,
-.email,
-.password {
-  margin-bottom: 1.5rem;
-}
-
-.content {
-  margin-bottom: 2rem;
-}
-
-.eventHandle {
-  margin-bottom: 0.75rem;
-}
-
-.signin {
-  color: var(--secondary);
-  text-decoration: none;
+.button {
+  margin-top: 1.5rem;
 }
 
 @media (min-width: 768px) {
-  .wrapper {
+  .wrap {
     margin: 7.5rem 2rem;
   }
 }
@@ -38,15 +23,14 @@
 @media (min-width: 1024px) {
   .img {
     display: block;
-    margin-right: 6rem;
   }
-  .wrapper {
-    margin: 3rem 2rem;
+  .wrap {
+    margin: 7.5rem 2rem;
   }
 }
 
 @media (min-width: 1440px) {
-  .wrapper {
+  .wrap {
     margin: 7.5rem;
   }
 }

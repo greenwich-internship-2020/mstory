@@ -9,3 +9,11 @@ export const storiesProject = (id: string) => {
 export const stories = (id: string) => {
   return `/stories/${id}`;
 };
+
+export const membersProject = (id: string) => {
+  return `/projects/${id}/members`;
+};
+
+export const members = (id: string) => {
+  return `/members/${id}`;
+};

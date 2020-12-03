@@ -27,12 +27,6 @@ const projectReducer = (state = initialState, action: any) => {
 
     case ActionTypes.GET_PROJECT:
       state.total = action.total;
-      if (action.keyword !== '') {
-        return {
-          payload: [...state.payload, ...action.payload],
-          total: action.total,
-        };
-      }
       return {
         ...state,
         loading: false,
@@ -59,7 +53,7 @@ const projectReducer = (state = initialState, action: any) => {
       return {...state, loading: false};
 
     case ActionTypes.DELETE_PROJECT:
-      window.location.pathname = '/projects';
+      action.history.goBack();
       return {...state, loading: false};
 
     case ActionTypes.ERROR:

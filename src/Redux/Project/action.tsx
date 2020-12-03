@@ -87,7 +87,7 @@ export const createProject = (project: any) => {
   };
 };
 
-export const deleteProject = (id: string) => {
+export const deleteProject = (id: string, history: any) => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionTypes.REQUEST,
@@ -97,6 +97,7 @@ export const deleteProject = (id: string) => {
 
       dispatch({
         type: ActionTypes.DELETE_PROJECT,
+        history,
       });
     } catch (error) {
       dispatch({

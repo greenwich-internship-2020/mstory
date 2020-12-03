@@ -9,6 +9,7 @@ import Setting from './Pages/Dashboard/Project_Setting';
 import Stories from './Pages/Dashboard/Project_Stories';
 
 import User from './Pages/Dashboard/User';
+import Forgot from './Pages/Landing/Forgot';
 
 import Home from './Pages/Landing/Home';
 
@@ -33,6 +34,12 @@ const landing = [
     path: '/register',
     exact: false,
     component: Register,
+  },
+
+  {
+    path: '/forgot-password',
+    exact: false,
+    component: Forgot,
   },
 ];
 

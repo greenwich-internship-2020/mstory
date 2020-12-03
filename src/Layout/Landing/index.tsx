@@ -29,6 +29,7 @@ const LandingTemplate = <P extends RouteComponentProps>({
   withProps,
   ...routeProps
 }: LandingProps<P>): ReactElement<P> => {
+  localStorage.removeItem('project');
   return (
     <Route
       {...routeProps}

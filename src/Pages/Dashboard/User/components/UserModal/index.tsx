@@ -149,14 +149,14 @@ const UserModal: FC<modalProps> = ({
       user.password === '' ||
       user.password === undefined ||
       user.confirmPassword === '' ||
-      user.confirmPassword === undefined
+      user.confirmPassword === undefined ||
+      userErr.password !== '' ||
+      userErr.confirmPassword !== ''
         ? {
-            username: user.username.trim(),
             fullname: user.fullname,
             email: user.email.trim(),
           }
         : {
-            username: user.username.trim(),
             password: user.password.trim(),
             fullname: user.fullname,
             email: user.email.trim(),

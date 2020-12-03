@@ -41,6 +41,7 @@ const Main: FC<Props> = ({
 
   useEffect(() => {
     getSpec(id);
+    localStorage.removeItem('project');
     // eslint-disable-next-line
   }, []);
 

@@ -1,4 +1,5 @@
 import React, {FC, useState} from 'react';
+import {useParams} from 'react-router-dom';
 import Button from '../../../../../Components/Button';
 import Dropdown from '../../../../../Components/Dropdown';
 import Input from '../../../../../Components/Input';
@@ -10,13 +11,19 @@ import styles from './modal.module.css';
 
 interface Props {
   hide?: any;
+  invite?: any;
 }
 
-const MemberModal: FC<Props> = ({hide}) => {
-  const [member, setMember] = useState({
-    email: '',
-    role: 'guest',
-  });
+interface ParamTypes {
+  id?: string;
+}
+
+const MemberModal: FC<Props> = ({invite, hide}) => {
+  const [memberEmail, setMemberEmail] = useState('');
+
+  const [memberRole, setMemberRole] = useState('guest');
+
+  const {id} = useParams<ParamTypes>();
 
   const [emailErr, setEmailErr] = useState({
     email: '',
@@ -24,23 +31,41 @@ const MemberModal: FC<Props> = ({hide}) => {
 
   let [valid, setValid] = useState(false);
 
-  const handleTyping = Debounce((e: any) => {
-    const {name, value} = e.target;
+  const handleEmail = (name: string, value: string) => {
     let msg;
-    setMember({...member, [name]: value.trim()});
-    if (Validate(member.email, 64) !== '') {
+    const emailRegex = /^(([^<>()\[\]\\.,;:\s-@#$!%^&*+=_/`?{}|'"]+(\.[^<>()\[\]\\.,;:\s-@_!#$%^&*()=+/`?{}|'"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
+
+    if (Validate(value, 64) !== '') {
       setValid(false);
-      msg = Validate(member.email, 64);
+      msg = Validate(value.trim(), 64);
+    } else if (!value.match(emailRegex)) {
+      setValid(false);
+      msg = 'Invalid type of email';
     }
     setEmailErr({...emailErr, [name]: msg});
     setValid((valid = msg ? false : true));
+  };
+
+  const handleTyping = Debounce((e: any) => {
+    const {name, value} = e.target;
+    setMemberEmail(value.trim());
+    handleEmail(name, value);
   }, 200);
+
+  const handleSubmit = () => {
+    invite(id, {invited_email: memberEmail, role: memberRole});
+    hide();
+  };
 
   return (
     <Modal
       cancel={() => hide()}
       head="Invite member"
-      foot={<Button disabled={!valid}>Invite</Button>}
+      foot={
+        <Button onOK={handleSubmit} disabled={!valid}>
+          Invite
+        </Button>
+      }
       content={
         <div>
           <div className={styles.info}>
@@ -55,6 +80,7 @@ const MemberModal: FC<Props> = ({hide}) => {
           <div className={styles.inviteRole}>
             <Dropdown
               edit
+              setRole={setMemberRole}
               label="Choose a role"
               options={[
                 {name: 'Guest', value: {memRole: 'guest'}},

@@ -17,12 +17,6 @@ const userReducer = (state = initialState, action: any) => {
       return {...state};
     case ActionTypes.GET_USER:
       state.total = action.total;
-      if (action.keyword !== '') {
-        return {
-          payload: [...state.payload, ...action.payload],
-          total: action.total,
-        };
-      }
       return {
         ...state,
         loading: false,

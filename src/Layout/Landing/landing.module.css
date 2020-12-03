@@ -4,6 +4,12 @@
 
 .content {
   max-width: 100rem;
-  min-height: 39.375rem;
+  min-height: 34.725rem;
   margin: 0 auto;
+}
+
+@media (min-width: 768px) {
+  .content {
+    min-height: 43rem;
+  }
 }

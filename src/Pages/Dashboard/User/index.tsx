@@ -61,6 +61,7 @@ const User: FC<UserProps> = (props) => {
 
   useEffect(() => {
     getUserList();
+    localStorage.removeItem('project');
   }, [getUserList]);
 
   return (

@@ -13,6 +13,8 @@ import Button from '../../../Components/Button';
 interface NotfoundProps extends RouteComponentProps<any> {}
 
 const Notfound: FC<NotfoundProps> = ({history}) => {
+  localStorage.removeItem('project');
+
   return (
     <div className={styles.container}>
       <div className={styles.notfound}>

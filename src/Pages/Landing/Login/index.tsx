@@ -30,7 +30,9 @@ const Login: FC<Props> = (props) => {
           </div>
         </div>
         <div className={styles.eventHandle}>
-          <Button>Sign in</Button>
+          <Link to="/projects">
+            <Button>Sign in</Button>
+          </Link>
         </div>
         <div className={styles.support}>
           <Link className={styles.signup} to="/register">

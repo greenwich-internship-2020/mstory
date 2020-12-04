@@ -74,8 +74,20 @@ const UserModal: FC<modalProps> = ({
   ]);
 
   useEffect(() => {
-    setEditValid(fullnameValid && emailValid);
-  }, [fullnameValid, emailValid]);
+    setEditValid(
+      user.password !== '' || userErr.password !== ''
+        ? fullnameValid && emailValid && passwordValid && confirmPasswordValid
+        : fullnameValid && emailValid,
+    );
+  }, [
+    userErr,
+    user,
+    fullnameValid,
+    emailValid,
+    passwordValid,
+    confirmPasswordValid,
+    edtiValid,
+  ]);
 
   useEffect(() => {
     if (
@@ -114,7 +126,7 @@ const UserModal: FC<modalProps> = ({
 
   const handleTyping = (e: any) => {
     let {name, value} = e.target;
-    setUser({...user, [name]: value});
+    setUser({...user, [name]: value.trim()});
     handleErrorCase(
       name,
       value,

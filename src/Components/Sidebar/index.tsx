@@ -8,6 +8,7 @@ import {Menu} from '../Typography';
 import {NavLink} from 'react-router-dom';
 
 import {Member, Project, Role, Story, User} from '../Icons';
+
 import clsx from 'clsx';
 
 interface SidebarProps {}
@@ -15,18 +16,26 @@ interface SidebarProps {}
 const Sidebar: FC<SidebarProps> = (props) => {
   const [subnav, setSubnav] = useState(false);
 
+  let project: any;
+
+  const storage = localStorage.getItem('project');
+
+  if (storage) {
+    project = JSON.parse(storage);
+  }
+
   useEffect(() => {
     if (
       window.location.pathname ===
-        `/projects/${localStorage.getItem('project')}/members` ||
+        `/projects/${project ? project.id : ''}/members` ||
       window.location.pathname ===
-        `/projects/${localStorage.getItem('project')}/stories`
+        `/projects/${project ? project.id : ''}/stories`
     ) {
       setSubnav(true);
     } else {
       setSubnav(false);
     }
-  }, [subnav]);
+  }, [subnav, project]);
 
   return (
     <div className={styles.sidebar}>
@@ -53,7 +62,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
           <div className={clsx(styles.subnav, subnav && styles.show)}>
             <NavLink
               activeClassName={styles.active}
-              to={`/projects/${localStorage.getItem('project')}/stories`}
+              to={`/projects/${project ? project.id : ''}/stories`}
               className={styles.navlink}
             >
               <div className={styles.navicon}>
@@ -63,7 +72,7 @@ const Sidebar: FC<SidebarProps> = (props) => {
             </NavLink>
             <NavLink
               activeClassName={styles.active}
-              to={`/projects/${localStorage.getItem('project')}/members`}
+              to={`/projects/${project ? project.id : ''}/members`}
               className={styles.navlink}
             >
               <div className={styles.navicon}>

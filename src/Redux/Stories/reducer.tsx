@@ -25,6 +25,7 @@ const storiesReducer = (state = initialState, action: any) => {
         payload: [...state.payload, ...action.payload],
       };
     case ActionTypes.POST_STORIES:
+      state.total += 1;
       return {
         ...state,
         loading: false,

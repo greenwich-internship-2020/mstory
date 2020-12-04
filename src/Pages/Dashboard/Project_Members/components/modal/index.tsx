@@ -33,6 +33,7 @@ const MemberModal: FC<Props> = ({invite, hide}) => {
 
   const handleEmail = (name: string, value: string) => {
     let msg;
+    // eslint-disable-next-line
     const emailRegex = /^(([^<>()\[\]\\.,;:\s-@#$!%^&*+=_/`?{}|'"]+(\.[^<>()\[\]\\.,;:\s-@_!#$%^&*()=+/`?{}|'"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/i;
 
     if (Validate(value, 64) !== '') {

@@ -33,7 +33,10 @@ const ProjectItem: FC<ItemProps> = ({
     >
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
@@ -46,7 +49,10 @@ const ProjectItem: FC<ItemProps> = ({
       </td>
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
@@ -62,7 +68,10 @@ const ProjectItem: FC<ItemProps> = ({
       </td>
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
@@ -84,7 +93,10 @@ const ProjectItem: FC<ItemProps> = ({
           <Link
             to={`/projects/${project.project_id}/members`}
             onClick={() => {
-              localStorage.setItem('project', project.project_id);
+              localStorage.setItem(
+                'project',
+                JSON.stringify({id: project.project_id, name: project.name}),
+              );
             }}
             className={styles.member}
           >

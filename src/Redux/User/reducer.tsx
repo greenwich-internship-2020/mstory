@@ -23,6 +23,7 @@ const userReducer = (state = initialState, action: any) => {
         payload: [...state.payload, ...action.payload],
       };
     case ActionTypes.POST_USER:
+      state.total += 1;
       return {
         ...state,
         loading: false,

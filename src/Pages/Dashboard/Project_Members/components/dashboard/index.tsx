@@ -13,16 +13,44 @@ import MemberTable from './table';
 import styles from './dashboard.module.css';
 
 import MemberModal from '../modal';
+import Debounce from '../../../../../Helper/debounce';
+import {Loading} from '../../../../../Components/Icons';
 
 interface Props {
   inviteMember?: any;
   data?: any;
   total: number;
   next?: any;
+  search?: any;
+  setRole?: any;
+  first?: any;
+  load?: boolean;
+  keyword?: string;
 }
 
-const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
+const MemberDashboard: FC<Props> = ({
+  search,
+  setRole,
+  total,
+  next,
+  data,
+  first,
+  load,
+  keyword,
+  inviteMember,
+}) => {
   const [show, setShow] = useState(false);
+
+  const [searchValid, setSearchValid] = useState('');
+
+  const handleSearch = Debounce((e: any) => {
+    let {value} = e.target;
+    if (value.trim().length > 2 || value === '') {
+      search(value.trim());
+      setSearchValid('');
+    } else if (value.trim().length < 3)
+      setSearchValid('Please type over 3 characters');
+  }, 500);
 
   return (
     <DashboardTemplate
@@ -34,10 +62,17 @@ const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
       ) : null}
       <div className={styles.event}>
         <div className={styles.search}>
-          <Input search placeholder="Search" />
+          <Input
+            errorNoti={searchValid}
+            onChange={handleSearch}
+            search
+            placeholder="Search"
+          />
         </div>
         <div className={styles.roles}>
           <Dropdown
+            setRole={setRole}
+            first={first}
             options={[
               {name: 'All roles', value: {memRole: ''}},
               {name: 'Guest', value: {memRole: 'guest'}},
@@ -49,7 +84,18 @@ const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
           />
         </div>
       </div>
-      <MemberTable total={total} next={next} data={data} />
+      <MemberTable
+        keyword={keyword}
+        load={load}
+        total={total}
+        next={next}
+        data={data}
+      />
+      {load ? (
+        <tr className={styles.load}>
+          <Loading />
+        </tr>
+      ) : null}
     </DashboardTemplate>
   );
 };

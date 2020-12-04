@@ -8,9 +8,18 @@ import {Body} from '../../../../../Components/Typography';
 
 interface Props {
   hide?: any;
+  member?: any;
 }
 
-const MemberDeleteModal: FC<Props> = ({hide}) => {
+const MemberDeleteModal: FC<Props> = ({member, hide}) => {
+  let project: any;
+
+  const storage = localStorage.getItem('project');
+
+  if (storage) {
+    project = JSON.parse(storage);
+  }
+
   return (
     <Modal
       cancel={() => hide()}
@@ -19,8 +28,8 @@ const MemberDeleteModal: FC<Props> = ({hide}) => {
       foot={<Button error>Remove</Button>}
       content={
         <Body>
-          Are you sure you want to remove "<strong>Tupac</strong>" from the
-          "Company Website"?
+          Are you sure you want to remove "<strong>{member.fullname}</strong>"
+          from the "{project.name}"?
         </Body>
       }
     />

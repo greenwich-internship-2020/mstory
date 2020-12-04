@@ -33,30 +33,32 @@ const ProjectItem: FC<ItemProps> = ({
     >
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
         <Link
           className={styles.link}
-          to={`/projects/${
-            project.project_id
-          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
+          to={`/projects/${project.project_id}/stories`}
         >
           {!project.is_public ? <Lock /> : null}
         </Link>
       </td>
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
         <Link
           className={styles.link}
-          to={`/projects/${
-            project.project_id
-          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
+          to={`/projects/${project.project_id}/stories`}
         >
           <Title className={styles.name}>{project.name}</Title>
           <Caption className={styles.description}>
@@ -66,15 +68,16 @@ const ProjectItem: FC<ItemProps> = ({
       </td>
       <td
         onClick={() => {
-          localStorage.setItem('project', project.project_id);
+          localStorage.setItem(
+            'project',
+            JSON.stringify({id: project.project_id, name: project.name}),
+          );
         }}
         className={styles.listColumn}
       >
         <Link
           className={styles.link}
-          to={`/projects/${
-            project.project_id
-          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
+          to={`/projects/${project.project_id}/stories`}
         >
           <Caption>
             Updated{' '}
@@ -88,20 +91,19 @@ const ProjectItem: FC<ItemProps> = ({
       <td>
         <div className={styles.listColumn}>
           <Link
-            to={`/projects/${
-              project.project_id
-            }/members/${project.name.toLowerCase().replace(/ /g, '-')}`}
+            to={`/projects/${project.project_id}/members`}
             onClick={() => {
-              localStorage.setItem('project', project.project_id);
+              localStorage.setItem(
+                'project',
+                JSON.stringify({id: project.project_id, name: project.name}),
+              );
             }}
             className={styles.member}
           >
             <MemberLink />
           </Link>
           <Link
-            to={`/projects/${
-              project.project_id
-            }/setting/${project.name.toLowerCase().replace(/ /g, '-')}`}
+            to={`/projects/${project.project_id}/setting`}
             className={styles.setting}
           >
             <Setting />

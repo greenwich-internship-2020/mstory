@@ -31,6 +31,8 @@ interface Props {
 const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
   const [show, setShow] = useState(false);
 
+  const [member, setMember] = useState({});
+
   const options = {
     root: null,
     rootMargin: '0px',
@@ -89,6 +91,7 @@ const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
               <div
                 onClick={() => {
                   setShow(true);
+                  setMember(member);
                 }}
                 className={clsx(styles.delete, load && styles.disabled)}
               >
@@ -103,7 +106,9 @@ const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
 
   return (
     <div className={styles.tableWrap}>
-      {show ? <MemberDeleteModal hide={() => setShow(false)} /> : null}
+      {show ? (
+        <MemberDeleteModal member={member} hide={() => setShow(false)} />
+      ) : null}
       <Heading className={styles.count} variant={TextVariants.XS}>
         Members ({total})
       </Heading>

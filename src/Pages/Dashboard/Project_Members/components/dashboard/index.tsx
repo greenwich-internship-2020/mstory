@@ -41,6 +41,17 @@ const MemberDashboard: FC<Props> = ({
 }) => {
   const [show, setShow] = useState(false);
 
+  const [searchValid, setSearchValid] = useState('');
+
+  const handleSearch = Debounce((e: any) => {
+    let {value} = e.target;
+    if (value.trim().length > 2 || value === '') {
+      search(value.trim());
+      setSearchValid('');
+    } else if (value.trim().length < 3)
+      setSearchValid('Please type over 3 characters');
+  }, 500);
+
   return (
     <DashboardTemplate
       head="Members"
@@ -52,7 +63,8 @@ const MemberDashboard: FC<Props> = ({
       <div className={styles.event}>
         <div className={styles.search}>
           <Input
-            onChange={Debounce((e: any) => search(e.target.value), 200)}
+            errorNoti={searchValid}
+            onChange={handleSearch}
             search
             placeholder="Search"
           />

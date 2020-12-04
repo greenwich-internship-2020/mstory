@@ -74,8 +74,20 @@ const UserModal: FC<modalProps> = ({
   ]);
 
   useEffect(() => {
-    setEditValid(fullnameValid && emailValid);
-  }, [fullnameValid, emailValid]);
+    setEditValid(
+      user.password !== '' || userErr.password !== ''
+        ? fullnameValid && emailValid && passwordValid && confirmPasswordValid
+        : fullnameValid && emailValid,
+    );
+  }, [
+    userErr,
+    user,
+    fullnameValid,
+    emailValid,
+    passwordValid,
+    confirmPasswordValid,
+    edtiValid,
+  ]);
 
   useEffect(() => {
     if (

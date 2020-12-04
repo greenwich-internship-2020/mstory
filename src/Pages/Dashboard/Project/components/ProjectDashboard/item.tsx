@@ -39,7 +39,9 @@ const ProjectItem: FC<ItemProps> = ({
       >
         <Link
           className={styles.link}
-          to={`/projects/${project.project_id}/stories`}
+          to={`/projects/${
+            project.project_id
+          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
         >
           {!project.is_public ? <Lock /> : null}
         </Link>
@@ -52,7 +54,9 @@ const ProjectItem: FC<ItemProps> = ({
       >
         <Link
           className={styles.link}
-          to={`/projects/${project.project_id}/stories`}
+          to={`/projects/${
+            project.project_id
+          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
         >
           <Title className={styles.name}>{project.name}</Title>
           <Caption className={styles.description}>
@@ -68,7 +72,9 @@ const ProjectItem: FC<ItemProps> = ({
       >
         <Link
           className={styles.link}
-          to={`/projects/${project.project_id}/stories`}
+          to={`/projects/${
+            project.project_id
+          }/stories/${project.name.toLowerCase().replace(/ /g, '-')}`}
         >
           <Caption>
             Updated{' '}
@@ -82,7 +88,9 @@ const ProjectItem: FC<ItemProps> = ({
       <td>
         <div className={styles.listColumn}>
           <Link
-            to={`/projects/${project.project_id}/members`}
+            to={`/projects/${
+              project.project_id
+            }/members/${project.name.toLowerCase().replace(/ /g, '-')}`}
             onClick={() => {
               localStorage.setItem('project', project.project_id);
             }}
@@ -91,7 +99,9 @@ const ProjectItem: FC<ItemProps> = ({
             <MemberLink />
           </Link>
           <Link
-            to={`/projects/${project.project_id}/setting`}
+            to={`/projects/${
+              project.project_id
+            }/setting/${project.name.toLowerCase().replace(/ /g, '-')}`}
             className={styles.setting}
           >
             <Setting />

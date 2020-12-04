@@ -20,6 +20,9 @@ const Members: FC<Props> = (props) => {
 
   const [role, setRole] = useState('');
 
+  const inviteMember = (id: string, member: object) =>
+    dispatch(action.inviteMember(id, member));
+
   const dispatch = useDispatch();
 
   const resetPage = () => dispatch({type: 'RESET_MODULE'});
@@ -37,6 +40,10 @@ const Members: FC<Props> = (props) => {
     (state: RootStateOrAny) => state.memberReducer.total,
   );
 
+  const loading = useSelector(
+    (state: RootStateOrAny) => state.memberReducer.loading,
+  );
+
   const totalPage = Math.round(total / 6);
 
   useEffect(
@@ -52,11 +59,13 @@ const Members: FC<Props> = (props) => {
     getMemberList();
   }, [getMemberList]);
 
-  const inviteMember = (id: string, member: object) =>
-    dispatch(action.inviteMember(id, member));
-
   return (
     <MemberDashboard
+      load={loading}
+      search={setKeyword}
+      first={() => setPage(1)}
+      setRole={setRole}
+      keyword={keyword}
       next={() => (page < totalPage ? setPage(page + 1) : null)}
       total={total}
       data={payload}

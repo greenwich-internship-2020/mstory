@@ -126,7 +126,7 @@ const UserModal: FC<modalProps> = ({
 
   const handleTyping = (e: any) => {
     let {name, value} = e.target;
-    setUser({...user, [name]: value});
+    setUser({...user, [name]: value.trim()});
     handleErrorCase(
       name,
       value,

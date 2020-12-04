@@ -29,6 +29,7 @@ const memberReducer = (state = initialState, action: any) => {
       };
 
     case ActionTypes.POST_MEMBER:
+      state.total += 1;
       return {
         ...state,
         loading: false,

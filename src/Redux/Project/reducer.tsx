@@ -38,6 +38,7 @@ const projectReducer = (state = initialState, action: any) => {
       return {...state, loading: false};
 
     case ActionTypes.POST_PROJECT:
+      state.total += 1;
       return {
         ...state,
         loading: false,

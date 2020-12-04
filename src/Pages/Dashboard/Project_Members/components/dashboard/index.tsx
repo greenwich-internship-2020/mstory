@@ -13,15 +13,32 @@ import MemberTable from './table';
 import styles from './dashboard.module.css';
 
 import MemberModal from '../modal';
+import Debounce from '../../../../../Helper/debounce';
+import {Loading} from '../../../../../Components/Icons';
 
 interface Props {
   inviteMember?: any;
   data?: any;
   total: number;
   next?: any;
+  search?: any;
+  setRole?: any;
+  first?: any;
+  load?: boolean;
+  keyword?: string;
 }
 
-const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
+const MemberDashboard: FC<Props> = ({
+  search,
+  setRole,
+  total,
+  next,
+  data,
+  first,
+  load,
+  keyword,
+  inviteMember,
+}) => {
   const [show, setShow] = useState(false);
 
   return (
@@ -34,10 +51,16 @@ const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
       ) : null}
       <div className={styles.event}>
         <div className={styles.search}>
-          <Input search placeholder="Search" />
+          <Input
+            onChange={Debounce((e: any) => search(e.target.value), 200)}
+            search
+            placeholder="Search"
+          />
         </div>
         <div className={styles.roles}>
           <Dropdown
+            setRole={setRole}
+            first={first}
             options={[
               {name: 'All roles', value: {memRole: ''}},
               {name: 'Guest', value: {memRole: 'guest'}},
@@ -49,7 +72,18 @@ const MemberDashboard: FC<Props> = ({total, next, data, inviteMember}) => {
           />
         </div>
       </div>
-      <MemberTable total={total} next={next} data={data} />
+      <MemberTable
+        keyword={keyword}
+        load={load}
+        total={total}
+        next={next}
+        data={data}
+      />
+      {load ? (
+        <tr className={styles.load}>
+          <Loading />
+        </tr>
+      ) : null}
     </DashboardTemplate>
   );
 };

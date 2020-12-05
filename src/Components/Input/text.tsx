@@ -58,9 +58,7 @@ const Text: FC<TextProps> = ({
       >
         {eyeFocus ? (
           <div className={styles.markdown}>
-            <ReactMarkdown unwrapDisallowed allowDangerousHtml>
-              {preview}
-            </ReactMarkdown>
+            <ReactMarkdown>{preview}</ReactMarkdown>
           </div>
         ) : null}
         <textarea

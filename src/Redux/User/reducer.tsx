@@ -56,6 +56,7 @@ const userReducer = (state = initialState, action: any) => {
         return position;
       });
       state.payload.splice(position, 1);
+      state.total--;
       return {
         ...state,
         loading: false,

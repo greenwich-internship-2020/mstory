@@ -118,7 +118,7 @@ const Dropdown: FC<DropProps> = ({
       <div
         ref={ref}
         onClick={() => {
-          focus ? setFocus(false) : setFocus(true);
+          return !disabled ? (focus ? setFocus(false) : setFocus(true)) : null;
         }}
         className={clsx(styles.container, focus && styles.focus)}
       >

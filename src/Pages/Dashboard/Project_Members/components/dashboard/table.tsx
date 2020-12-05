@@ -26,9 +26,19 @@ interface Props {
   load?: boolean;
   next?: any;
   keyword?: string;
+  removeMember?: any;
+  changeRole?: any;
 }
 
-const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
+const MemberTable: FC<Props> = ({
+  keyword,
+  load,
+  data,
+  total,
+  next,
+  removeMember,
+  changeRole,
+}) => {
   const [show, setShow] = useState(false);
 
   const [member, setMember] = useState({});
@@ -75,14 +85,18 @@ const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
             <td className={styles.rolesColumn}>
               <div className={styles.role}>
                 <Dropdown
+                  disabled={load}
                   defaultName={firstLetterUpper(member.role)}
                   defaultValue={member.role}
+                  edit
+                  memberId={member.user_id}
+                  setRole={changeRole}
                   options={[
-                    {name: 'Guest', value: {memRole: 'guest'}},
-                    {name: 'Owner', value: {memRole: 'owner'}},
-                    {name: 'Reporter', value: {memRole: 'reporter'}},
-                    {name: 'Developer', value: {memRole: 'developer'}},
-                    {name: 'Maintainer', value: {memRole: 'maintainer'}},
+                    {name: 'Guest', value: {setMemRole: 'guest'}},
+                    {name: 'Owner', value: {setMemRole: 'owner'}},
+                    {name: 'Reporter', value: {setMemRole: 'reporter'}},
+                    {name: 'Developer', value: {setMemRole: 'developer'}},
+                    {name: 'Maintainer', value: {setMemRole: 'maintainer'}},
                   ]}
                 />
               </div>
@@ -107,7 +121,11 @@ const MemberTable: FC<Props> = ({keyword, load, data, total, next}) => {
   return (
     <div className={styles.tableWrap}>
       {show ? (
-        <MemberDeleteModal member={member} hide={() => setShow(false)} />
+        <MemberDeleteModal
+          removeMember={removeMember}
+          member={member}
+          hide={() => setShow(false)}
+        />
       ) : null}
       <Heading className={styles.count} variant={TextVariants.XS}>
         Members ({total})

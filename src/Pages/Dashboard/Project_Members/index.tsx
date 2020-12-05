@@ -23,6 +23,12 @@ const Members: FC<Props> = (props) => {
   const inviteMember = (id: string, member: object) =>
     dispatch(action.inviteMember(id, member));
 
+  const removeMember = (projectId: string, memberId: string) =>
+    dispatch(action.removeMember(projectId, memberId));
+
+  const changeRole = (projectId: string, memberId: string, role: string) =>
+    dispatch(action.changeRole(projectId, memberId, role));
+
   const dispatch = useDispatch();
 
   const resetPage = () => dispatch({type: 'RESET_MODULE'});
@@ -61,6 +67,8 @@ const Members: FC<Props> = (props) => {
 
   return (
     <MemberDashboard
+      changeRole={changeRole}
+      removeMember={removeMember}
       load={loading}
       search={setKeyword}
       first={() => setPage(1)}

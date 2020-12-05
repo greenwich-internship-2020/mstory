@@ -65,3 +65,60 @@ export const inviteMember = (id: string, member: object) => {
     }
   };
 };
+
+export const removeMember = (projectId: string, memberId: string) => {
+  return async (dispatch: any) => {
+    dispatch({type: ActionTypes.REQUEST});
+    try {
+      await api.delete(`${membersProject(projectId)}/${memberId}`);
+      dispatch({
+        type: ActionTypes.DELETE_MEMBER,
+        memberId,
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: err.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: err.response.data.message,
+          error: false,
+        });
+      }, 2000);
+    }
+  };
+};
+
+export const changeRole = (
+  projectId: string,
+  memberId: string,
+  role: string,
+) => {
+  return async (dispatch: any) => {
+    dispatch({type: ActionTypes.REQUEST});
+    try {
+      await api.put(`${membersProject(projectId)}/${memberId}/set_role`, {
+        role: role,
+      });
+      dispatch({
+        type: ActionTypes.PUT_STATUS,
+      });
+    } catch (err) {
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: err.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: err.response.data.message,
+          error: false,
+        });
+      }, 2000);
+    }
+  };
+};

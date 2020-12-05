@@ -26,6 +26,8 @@ interface Props {
   first?: any;
   load?: boolean;
   keyword?: string;
+  removeMember?: any;
+  changeRole?: any;
 }
 
 const MemberDashboard: FC<Props> = ({
@@ -38,6 +40,8 @@ const MemberDashboard: FC<Props> = ({
   load,
   keyword,
   inviteMember,
+  removeMember,
+  changeRole,
 }) => {
   const [show, setShow] = useState(false);
 
@@ -85,6 +89,8 @@ const MemberDashboard: FC<Props> = ({
         </div>
       </div>
       <MemberTable
+        changeRole={changeRole}
+        removeMember={removeMember}
         keyword={keyword}
         load={load}
         total={total}

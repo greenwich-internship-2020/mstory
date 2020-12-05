@@ -35,7 +35,24 @@ const memberReducer = (state = initialState, action: any) => {
         loading: false,
         payload: [action.payload, ...state.payload],
       };
-
+    case ActionTypes.PUT_STATUS:
+      return {
+        ...state,
+        loading: false,
+      };
+    case ActionTypes.DELETE_MEMBER:
+      let position = -1;
+      state.payload.map((member: any, index: number) => {
+        if (member.user_id === action.memberId) {
+          position = index;
+        }
+        return position;
+      });
+      state.payload.splice(position, 1);
+      return {
+        ...state,
+        loading: false,
+      };
     case ActionTypes.ERROR:
       state.message = action.message;
       return {

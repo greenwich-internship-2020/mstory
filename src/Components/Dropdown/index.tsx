@@ -11,6 +11,7 @@ import styles from './dropdown.module.css';
 interface DropProps extends AllHTMLAttributes<HTMLSelectElement> {
   options: any;
   defaultValue?: string;
+  memberId?: string;
   defaultName?: any;
   label?: string;
   status?: any;
@@ -35,7 +36,9 @@ const Dropdown: FC<DropProps> = ({
   setStat,
   edit,
   setPoints,
+  memberId,
   setRole,
+  disabled,
 }) => {
   const [focus, setFocus] = useState(false);
 
@@ -48,6 +51,14 @@ const Dropdown: FC<DropProps> = ({
       setFocus(false);
     }
   };
+
+  let project: any;
+
+  const storage = localStorage.getItem('project');
+
+  if (storage) {
+    project = JSON.parse(storage);
+  }
 
   useEffect(() => {
     document.addEventListener('click', handleClickOutside);
@@ -66,6 +77,7 @@ const Dropdown: FC<DropProps> = ({
       stoType,
       stoPoint,
       memRole,
+      setMemRole,
     } = option.value;
     setFocus(false);
     setName(option.name);
@@ -80,6 +92,9 @@ const Dropdown: FC<DropProps> = ({
     if (stoPoint !== undefined) setPoints(stoPoint);
 
     if (memRole !== undefined) setRole(memRole);
+
+    if (setMemRole !== undefined) setRole(project.id, memberId, setMemRole);
+
     if (!edit) first();
   };
 
@@ -107,7 +122,13 @@ const Dropdown: FC<DropProps> = ({
         }}
         className={clsx(styles.container, focus && styles.focus)}
       >
-        <div className={clsx(styles.select, focus && styles.focus)}>
+        <div
+          className={clsx(
+            styles.select,
+            focus && styles.focus,
+            disabled && styles.disabled,
+          )}
+        >
           <Menu className={styles.text}>{name}</Menu>
           <span className={clsx(styles.icon, focus && styles.focus)}>
             <Arrow />

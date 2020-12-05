@@ -9,9 +9,10 @@ import {Body} from '../../../../../Components/Typography';
 interface Props {
   hide?: any;
   member?: any;
+  removeMember?: any;
 }
 
-const MemberDeleteModal: FC<Props> = ({member, hide}) => {
+const MemberDeleteModal: FC<Props> = ({member, hide, removeMember}) => {
   let project: any;
 
   const storage = localStorage.getItem('project');
@@ -20,12 +21,21 @@ const MemberDeleteModal: FC<Props> = ({member, hide}) => {
     project = JSON.parse(storage);
   }
 
+  const handleRemove = () => {
+    removeMember(project.id, member.user_id);
+    hide();
+  };
+
   return (
     <Modal
       cancel={() => hide()}
       error
       head="Remove member"
-      foot={<Button error>Remove</Button>}
+      foot={
+        <Button onOK={handleRemove} error>
+          Remove
+        </Button>
+      }
       content={
         <Body>
           Are you sure you want to remove "<strong>{member.fullname}</strong>"

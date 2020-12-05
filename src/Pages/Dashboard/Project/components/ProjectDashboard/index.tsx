@@ -136,6 +136,7 @@ const ProjectDashboard: FC<ProjectProps> = ({
       <div className={styles.filter}>
         <div className={styles.search}>
           <Input
+            disabled={loading}
             errorNoti={searchValid}
             onChange={handleSearch}
             search
@@ -144,6 +145,7 @@ const ProjectDashboard: FC<ProjectProps> = ({
         </div>
         <div className={styles.status}>
           <Dropdown
+            disabled={loading}
             status={status}
             first={first}
             options={[
@@ -154,6 +156,7 @@ const ProjectDashboard: FC<ProjectProps> = ({
         </div>
         <div className={styles.update}>
           <Dropdown
+            disabled={loading}
             sort={sort}
             first={first}
             options={[

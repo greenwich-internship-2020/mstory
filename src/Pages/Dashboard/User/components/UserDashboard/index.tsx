@@ -134,6 +134,7 @@ const UserDashboard: FC<UserProps> = ({
             <td className={styles.listColumn}>
               <div className={styles.dropdown}>
                 <Dropdown
+                  disabled={loading}
                   options={[
                     {name: 'Member'},
                     {name: 'Admin'},
@@ -198,6 +199,7 @@ const UserDashboard: FC<UserProps> = ({
       <div className={styles.filter}>
         <div className={styles.search}>
           <Input
+            disabled={loading}
             errorNoti={searchValid}
             onChange={handleSearch}
             search
@@ -206,6 +208,7 @@ const UserDashboard: FC<UserProps> = ({
         </div>
         <div className={styles.role}>
           <Dropdown
+            disabled={loading}
             options={[{name: 'Member'}, {name: 'Admin'}, {name: 'Super Admin'}]}
           />
         </div>

@@ -66,6 +66,7 @@ const StoriesDashboard: FC<Props> = ({
       <div className={styles.function}>
         <div className={styles.search}>
           <Input
+            disabled={load}
             errorNoti={searchValid}
             placeholder="Search"
             search
@@ -74,6 +75,7 @@ const StoriesDashboard: FC<Props> = ({
         </div>
         <div className={styles.typeSort}>
           <Dropdown
+            disabled={load}
             setType={setType}
             first={first}
             options={[
@@ -86,6 +88,7 @@ const StoriesDashboard: FC<Props> = ({
         </div>
         <div className={styles.statusSort}>
           <Dropdown
+            disabled={load}
             setStat={setTus}
             first={first}
             options={[

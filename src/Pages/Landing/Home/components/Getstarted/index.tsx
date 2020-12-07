@@ -23,7 +23,7 @@ const Getstarted: FC<Props> = (props) => {
           </Heading>
         </div>
         <Link to="/register" className={styles.start}>
-          <Button>Get Started</Button>
+          <Button className={styles.button}>Get Started</Button>
         </Link>
       </div>
       <img className={styles.laptop} alt="robot" src={laptop} />

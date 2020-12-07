@@ -13,11 +13,21 @@ interface Props {}
 const LandingHeader: FC<Props> = (props) => {
   const [show, setShow] = useState(false);
 
+  const [top, setTop] = useState(true);
+
   const ref = useRef<HTMLDivElement>(null);
 
   const handleClickOutside = (e: any) => {
     if (ref.current && !ref.current.contains(e.target)) {
       setShow(false);
+    }
+  };
+
+  const handleScroll = () => {
+    if (window.pageYOffset === 0) {
+      setTop(true);
+    } else {
+      setTop(false);
     }
   };
 
@@ -29,8 +39,16 @@ const LandingHeader: FC<Props> = (props) => {
     };
   });
 
+  useEffect(() => {
+    document.addEventListener('scroll', handleScroll);
+
+    return () => {
+      document.removeEventListener('scroll', handleScroll);
+    };
+  });
+
   return (
-    <div className={styles.wrapper}>
+    <div className={clsx(styles.wrapper, top && styles.top)}>
       <Link to="/mstory" className={styles.logo}>
         <img alt="Topping" src={topping} />
         <p className={styles.title}>MStory</p>

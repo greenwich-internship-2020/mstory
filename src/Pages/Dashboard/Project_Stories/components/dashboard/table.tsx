@@ -28,6 +28,9 @@ interface Props {
   deleteStory?: any;
   loading?: boolean;
   keyword?: string;
+  members?: any;
+  memberSearch?: any;
+  memberKeyword?: string;
 }
 
 const StoriesTable: FC<Props> = ({
@@ -39,6 +42,9 @@ const StoriesTable: FC<Props> = ({
   deleteStory,
   loading,
   keyword,
+  memberKeyword,
+  memberSearch,
+  members,
 }) => {
   const options = {
     root: null,
@@ -120,6 +126,9 @@ const StoriesTable: FC<Props> = ({
     <div>
       {show && modal === 'edit' ? (
         <CreateStory
+          search={memberSearch}
+          data={members}
+          keyword={memberKeyword}
           editStory={edit}
           foot="Update"
           detail={story}

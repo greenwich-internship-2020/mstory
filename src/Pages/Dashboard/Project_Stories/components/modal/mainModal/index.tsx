@@ -1,4 +1,4 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 
 import Button from '../../../../../../Components/Button';
 
@@ -9,10 +9,15 @@ import Input from '../../../../../../Components/Input';
 import Text from '../../../../../../Components/Input/text';
 
 import Modal from '../../../../../../Components/Modal';
+import Tag from '../../../../../../Components/Tags';
 
 import Debounce from '../../../../../../Helper/debounce';
+
 import {firstLetterUpper} from '../../../../../../Helper/firstLetterUpper';
+
 import {Validate} from '../../../../../../Validation';
+
+import DropdownList from './dropdownList';
 
 import styles from './modal.module.css';
 
@@ -23,6 +28,9 @@ interface Props {
   detail?: any;
   head?: string;
   foot?: string;
+  data?: any;
+  search?: any;
+  keyword?: string;
 }
 
 const CreateStory: FC<Props> = ({
@@ -32,6 +40,9 @@ const CreateStory: FC<Props> = ({
   detail,
   head,
   foot,
+  data,
+  search,
+  keyword,
 }) => {
   const [type, setType] = useState('');
 
@@ -39,6 +50,14 @@ const CreateStory: FC<Props> = ({
     title: '',
     description: '',
   });
+
+  const [owners, setOwners] = useState([]);
+
+  const [ownerName, setOwnerName] = useState([]);
+
+  const [listVisible, setListVisible] = useState(false);
+
+  const ref = useRef<HTMLDivElement>(null);
 
   const [points, setPoints] = useState(detail ? detail.points : 0);
 
@@ -48,12 +67,31 @@ const CreateStory: FC<Props> = ({
 
   let [descripValid, setdescripValid] = useState(false);
 
+  const handleClickOutside = (e: any) => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setListVisible(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  });
+
   const [story, setStory] = useState({
     title: detail ? detail.title : '',
     type: detail ? detail.type : 'feature',
     points: 0,
     description: detail ? detail.description : '',
+    owner_ids: [],
   });
+
+  useEffect(() => {
+    setStory({...story, owner_ids: owners});
+  }, [owners]);
 
   useEffect(() => {
     setModalValid(titleValid && descripValid);
@@ -108,6 +146,21 @@ const CreateStory: FC<Props> = ({
     // eslint-disable-next-line
   }, [points]);
 
+  const handleSearchMember = Debounce((e: any) => {
+    search(e.target.value);
+  }, 300);
+  const renderOwnerTag = () => {
+    if (ownerName) {
+      return ownerName.map((owner, index) => {
+        return <Tag key={index} className={styles.tag} content={owner} />;
+      });
+    }
+  };
+
+  const setNewOner = (ownerId: any) => setOwners(owners.concat(ownerId));
+
+  const setNewOwnerName = (name: any) => setOwnerName(ownerName.concat(name));
+
   return (
     <Modal
       cancel={hide}
@@ -155,13 +208,23 @@ const CreateStory: FC<Props> = ({
               />
             </div>
           </div>
-          <div className={styles.owner}>
+          <div ref={ref} className={styles.owner}>
             <Input
-              disabled
+              onClick={() => setListVisible(true)}
+              onChange={handleSearchMember}
               name="owner"
-              placeholder="Type owner"
+              placeholder="Type owner name"
               label="Owner"
             />
+            {keyword !== '' && listVisible ? (
+              <DropdownList
+                setVisible={() => setListVisible(false)}
+                setOwnerName={setNewOwnerName}
+                setOwner={setNewOner}
+                data={data}
+              />
+            ) : null}
+            <div className={styles.tagWrap}>{renderOwnerTag()}</div>
           </div>
           <div className={styles.description}>
             <Text
@@ -184,6 +247,7 @@ const CreateStory: FC<Props> = ({
             createStory
               ? createStory(story)
               : editStory(detail.story_id, story);
+            search('');
             hide();
           }}
         >

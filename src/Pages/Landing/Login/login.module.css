@@ -2,12 +2,19 @@
   display: flex;
   align-items: center;
   justify-content: space-evenly;
-  height: 100%;
-  margin: 3rem 1rem;
+  background-image: url('../../../assets/userFormbg.jpg');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 100vh;
+  padding: 3rem 1rem;
 }
 
 .img {
   display: none;
+  /* background-color: rgba(255, 255, 255, 0.6);
+  padding: 5rem 1rem;
+  border-radius: 50%; */
 }
 
 .content {
@@ -29,6 +36,12 @@
   margin-bottom: 1.5rem;
 }
 
+.login {
+  background-color: #e0afa0;
+  box-shadow: none;
+  color: #111142;
+}
+
 .signup,
 .forgot {
   color: var(--secondary);
@@ -37,7 +50,7 @@
 
 @media (min-width: 768px) {
   .wrapper {
-    margin: 7.5rem 2rem;
+    padding: 7.5rem 2rem;
   }
 }
 
@@ -46,12 +59,12 @@
     display: block;
   }
   .wrapper {
-    margin: 3rem 2rem;
+    padding: 3rem 2rem;
   }
 }
 
 @media (min-width: 1440px) {
   .wrapper {
-    margin: 7.5rem;
+    padding: 7.5rem;
   }
 }

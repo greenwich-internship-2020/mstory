@@ -1,4 +1,4 @@
-export const REQUEST = 'REQUEST';
+export const REQUEST = 'STORIES_REQUEST';
 
 export const GET_STORIES = 'GET_STORIES';
 

@@ -9,6 +9,7 @@
   padding: 1.0625rem 1.1875rem;
   background-color: rgba(0, 0, 0, 0.5);
   transition: all 0.3s ease-in-out;
+  z-index: 2004;
 }
 
 .wrapper.top {
@@ -90,19 +91,23 @@
     display: none;
   }
 
-  .login {
-    margin-right: 1.5rem;
-  }
-
   .login,
   .signup {
     text-decoration: none;
     color: #fff;
+    padding: 0.625rem 1.5rem;
+    border-radius: 0.625rem;
+  }
+
+  .login:hover,
+  .signup:hover {
+    color: #000;
   }
 
   .login.active,
   .signup.active {
-    color: var(--primary);
+    background-color: var(--primary);
+    color: #fff;
   }
 }
 

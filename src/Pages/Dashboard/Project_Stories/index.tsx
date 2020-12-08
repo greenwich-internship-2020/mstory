@@ -1,11 +1,19 @@
 import React, {FC, useCallback, useEffect, useState} from 'react';
+
 import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
+
 import Button from '../../../Components/Button';
+
 import DashboardTemplate from '../../../Components/Template/dashboard';
+
 import StoriesDashboard from './components/dashboard';
+
 import CreateStory from './components/modal/mainModal';
 
 import * as action from '../../../Redux/Stories/action';
+
+import * as memberAction from '../../../Redux/Member/action';
+
 import {useParams} from 'react-router-dom';
 
 interface Props {}
@@ -21,6 +29,10 @@ const Stories: FC<Props> = (props) => {
 
   const [keyword, setKeyword] = useState('');
 
+  const [memberKeyword, setMemberKeyword] = useState('');
+
+  const role = '';
+
   const [status, setStatus] = useState('');
 
   const [type, setType] = useState('');
@@ -33,6 +45,11 @@ const Stories: FC<Props> = (props) => {
     () => dispatch(action.getStoriesList(id, keyword, status, type, page)),
     // eslint-disable-next-line
     [dispatch, keyword, status, type, page],
+  );
+
+  const getMemberList = useCallback(
+    () => dispatch(memberAction.getMemberList(id, memberKeyword, role, page)),
+    [dispatch, id, memberKeyword, page],
   );
 
   const resetPage = () => dispatch({type: 'RESET_MODULE'});
@@ -51,6 +68,10 @@ const Stories: FC<Props> = (props) => {
 
   const stories = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.payload,
+  );
+
+  const members = useSelector(
+    (state: RootStateOrAny) => state.memberReducer.filterList,
   );
 
   const total = useSelector(
@@ -82,9 +103,16 @@ const Stories: FC<Props> = (props) => {
     getStories();
   }, [getStories]);
 
+  useEffect(() => {
+    getMemberList();
+  }, [getMemberList]);
+
   const renderModal = () => {
     return (
       <CreateStory
+        keyword={memberKeyword}
+        data={members}
+        search={setMemberKeyword}
         head="Create"
         foot="Create"
         createStory={createStory}
@@ -118,6 +146,9 @@ const Stories: FC<Props> = (props) => {
           setPage(1);
         }}
         err={err}
+        memberSearch={setMemberKeyword}
+        memberKeyword={memberKeyword}
+        members={members}
         message={message}
         deleteStory={deleteStory}
         edit={editStory}

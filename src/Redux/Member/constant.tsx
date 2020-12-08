@@ -1,4 +1,4 @@
-export const REQUEST = 'REQUEST';
+export const REQUEST = 'MEMBER_REQUEST';
 
 export const GET_MEMBER = 'GET_MEMBER';
 

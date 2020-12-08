@@ -29,6 +29,9 @@ interface Props {
   noti?: boolean;
   err?: boolean;
   message?: string;
+  members?: any;
+  memberSearch?: any;
+  memberKeyword?: string;
 }
 
 const StoriesDashboard: FC<Props> = ({
@@ -46,6 +49,9 @@ const StoriesDashboard: FC<Props> = ({
   noti,
   err,
   message,
+  memberKeyword,
+  memberSearch,
+  members,
 }) => {
   const [searchValid, setSearchValid] = useState('');
 
@@ -103,6 +109,9 @@ const StoriesDashboard: FC<Props> = ({
         </div>
       </div>
       <StoriesTable
+        memberKeyword={memberKeyword}
+        memberSearch={memberSearch}
+        members={members}
         keyword={keyword}
         loading={load}
         deleteStory={deleteStory}

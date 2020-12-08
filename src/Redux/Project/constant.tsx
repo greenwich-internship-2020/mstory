@@ -1,4 +1,4 @@
-export const REQUEST = 'REQUEST';
+export const REQUEST = 'PROJECT_REQUEST';
 
 export const GET_PROJECT = 'GET_PROJECT';
 

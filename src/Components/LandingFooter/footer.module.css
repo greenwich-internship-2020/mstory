@@ -1,17 +1,9 @@
 .wrapper {
-  border-top: 1px solid var(--default-lighter);
   background-color: #111142;
   text-align: center;
-  margin-top: 1.5rem;
   padding: 1.5rem 0;
 }
 
 .title {
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 800;
-  font-size: 1.5rem;
-  margin-left: 0.4375rem;
-  line-height: calc(36 / 24);
-  margin-bottom: 0.25rem;
   color: #fff;
 }

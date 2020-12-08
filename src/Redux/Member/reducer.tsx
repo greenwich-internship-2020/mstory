@@ -3,6 +3,7 @@ import * as ActionTypes from './constant';
 const initialState = {
   loading: false,
   payload: [],
+  filterList: [],
   total: 0,
   err: false,
   message: '',
@@ -26,6 +27,7 @@ const memberReducer = (state = initialState, action: any) => {
         ...state,
         loading: false,
         payload: [...state.payload, ...action.payload],
+        filterList: action.payload,
       };
 
     case ActionTypes.POST_MEMBER:

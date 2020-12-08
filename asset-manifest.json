@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/mstory/static/css/main.514cb615.chunk.css",
-    "main.js": "/mstory/static/js/main.c4414ef3.chunk.js",
-    "main.js.map": "/mstory/static/js/main.c4414ef3.chunk.js.map",
+    "main.css": "/mstory/static/css/main.ebd4c366.chunk.css",
+    "main.js": "/mstory/static/js/main.c1ab703c.chunk.js",
+    "main.js.map": "/mstory/static/js/main.c1ab703c.chunk.js.map",
     "runtime-main.js": "/mstory/static/js/runtime-main.63db3ed9.js",
     "runtime-main.js.map": "/mstory/static/js/runtime-main.63db3ed9.js.map",
-    "static/js/2.a7ba78d2.chunk.js": "/mstory/static/js/2.a7ba78d2.chunk.js",
-    "static/js/2.a7ba78d2.chunk.js.map": "/mstory/static/js/2.a7ba78d2.chunk.js.map",
+    "static/js/2.697fa8be.chunk.js": "/mstory/static/js/2.697fa8be.chunk.js",
+    "static/js/2.697fa8be.chunk.js.map": "/mstory/static/js/2.697fa8be.chunk.js.map",
     "static/js/3.6244b746.chunk.js": "/mstory/static/js/3.6244b746.chunk.js",
     "static/js/3.6244b746.chunk.js.map": "/mstory/static/js/3.6244b746.chunk.js.map",
     "index.html": "/mstory/index.html",
-    "static/css/main.514cb615.chunk.css.map": "/mstory/static/css/main.514cb615.chunk.css.map",
-    "static/js/2.a7ba78d2.chunk.js.LICENSE.txt": "/mstory/static/js/2.a7ba78d2.chunk.js.LICENSE.txt",
+    "static/css/main.ebd4c366.chunk.css.map": "/mstory/static/css/main.ebd4c366.chunk.css.map",
+    "static/js/2.697fa8be.chunk.js.LICENSE.txt": "/mstory/static/js/2.697fa8be.chunk.js.LICENSE.txt",
     "static/media/checkbox.module.css": "/mstory/static/media/Check.389ee3e9.svg",
     "static/media/astronaut.d05a6930.svg": "/mstory/static/media/astronaut.d05a6930.svg",
     "static/media/better.module.css": "/mstory/static/media/betterway.f06f9e40.jpg",
@@ -22,12 +22,13 @@
     "static/media/laptop.1ba5af4f.svg": "/mstory/static/media/laptop.1ba5af4f.svg",
     "static/media/notfound.52bad775.png": "/mstory/static/media/notfound.52bad775.png",
     "static/media/robot.3203e896.svg": "/mstory/static/media/robot.3203e896.svg",
-    "static/media/security.e200d075.svg": "/mstory/static/media/security.e200d075.svg"
+    "static/media/security.e200d075.svg": "/mstory/static/media/security.e200d075.svg",
+    "static/media/forgot.module.css": "/mstory/static/media/userFormbg.aa0a105e.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.63db3ed9.js",
-    "static/js/2.a7ba78d2.chunk.js",
-    "static/css/main.514cb615.chunk.css",
-    "static/js/main.c4414ef3.chunk.js"
+    "static/js/2.697fa8be.chunk.js",
+    "static/css/main.ebd4c366.chunk.css",
+    "static/js/main.c1ab703c.chunk.js"
   ]
 }

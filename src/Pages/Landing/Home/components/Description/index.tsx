@@ -17,25 +17,53 @@ import clsx from 'clsx';
 interface Props {}
 
 const Description: FC<Props> = (props) => {
-  const [show, setShow] = useState(false);
+  const [head, setHead] = useState(false);
+
+  const [head2, setHead2] = useState(false);
+
+  const [head3, setHead3] = useState(false);
 
   const text = useRef<HTMLDivElement>(null);
 
+  const text2 = useRef<HTMLDivElement>(null);
+
+  const text3 = useRef<HTMLDivElement>(null);
+
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', scrollHead);
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', scrollHead);
     };
   }, []);
 
-  const handleScroll = (e: any) => {
+  const scrollHead = (e: any) => {
     if (text.current && !text.current.contains(e.target)) {
       let windowHeight = window.innerHeight;
+
       let scrollItem = text.current.getBoundingClientRect().top;
-      if (scrollItem < windowHeight / 1.2) {
-        setShow(true);
-      } else {
-        setShow(false);
+
+      if (scrollItem < windowHeight / 1.1) {
+        setHead(true);
+      }
+    }
+
+    if (text2.current && !text2.current.contains(e.target)) {
+      let windowHeight = window.innerHeight;
+
+      let scrollItem2 = text2.current.getBoundingClientRect().top;
+
+      if (scrollItem2 < windowHeight / 1.1) {
+        setHead2(true);
+      }
+    }
+
+    if (text3.current && !text3.current.contains(e.target)) {
+      let windowHeight = window.innerHeight;
+
+      let scrollItem3 = text3.current.getBoundingClientRect().top;
+
+      if (scrollItem3 < windowHeight / 1.1) {
+        setHead3(true);
       }
     }
   };
@@ -46,7 +74,7 @@ const Description: FC<Props> = (props) => {
         <img className={styles.img} alt="plan" src={plan} />
         <div ref={text} className={styles.text}>
           <Heading
-            className={clsx(styles.head, show && styles.show)}
+            className={clsx(styles.head, head && styles.show)}
             variant={TextVariants.S}
           >
             Better organization to get focused
@@ -61,8 +89,11 @@ const Description: FC<Props> = (props) => {
       </div>
       <div className={styles.item}>
         <img className={styles.img} alt="plan" src={support} />
-        <div className={styles.text}>
-          <Heading className={styles.head2} variant={TextVariants.S}>
+        <div ref={text2} className={styles.text}>
+          <Heading
+            className={clsx(styles.head2, head2 && styles.show)}
+            variant={TextVariants.S}
+          >
             Tools to help you adapt and evolve
           </Heading>
           <Body className={styles.body}>
@@ -75,8 +106,11 @@ const Description: FC<Props> = (props) => {
       </div>
       <div className={styles.item}>
         <img className={styles.img} alt="plan" src={idea} />
-        <div className={styles.text}>
-          <Heading className={styles.head3} variant={TextVariants.S}>
+        <div ref={text3} className={styles.text}>
+          <Heading
+            className={clsx(styles.head3, head3 && styles.show)}
+            variant={TextVariants.S}
+          >
             Team transparency at a glance
           </Heading>
           <Body className={styles.body}>

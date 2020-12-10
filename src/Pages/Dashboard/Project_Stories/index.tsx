@@ -110,7 +110,6 @@ const Stories: FC<Props> = (props) => {
   const renderModal = () => {
     return (
       <CreateStory
-        keyword={memberKeyword}
         data={members}
         search={setMemberKeyword}
         head="Create"
@@ -118,6 +117,7 @@ const Stories: FC<Props> = (props) => {
         createStory={createStory}
         hide={() => {
           setShow(false);
+          setMemberKeyword('');
         }}
       />
     );

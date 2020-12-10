@@ -1,0 +1,16 @@
+import React, {SVGAttributes} from 'react';
+
+const Plus = (props: SVGAttributes<HTMLOrSVGElement>) => {
+  return (
+    <svg
+      width={16}
+      height={16}
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+    >
+      <path d="M24 10h-10v-10h-4v10h-10v4h10v10h4v-10h10z" />
+    </svg>
+  );
+};
+
+export default Plus;

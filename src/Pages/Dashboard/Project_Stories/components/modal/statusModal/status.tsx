@@ -43,6 +43,14 @@ const StatusModal: FC<Props> = ({hide, editStory, detail, deleteStory}) => {
     hide();
   };
 
+  const renderTag = () => {
+    if (detail.owners) {
+      return detail.owners.map((owner: any) => (
+        <Tag className={styles.tag} content={owner.fullname} />
+      ));
+    }
+  };
+
   return (
     <Modal
       cancel={hide}
@@ -63,11 +71,7 @@ const StatusModal: FC<Props> = ({hide, editStory, detail, deleteStory}) => {
           <div className={styles.info}>
             <div className={styles.owner}>
               <Caption2 className={styles.label}>Owner</Caption2>
-              <div className={styles.ownTag}>
-                <Tag className={styles.tag} content="tupac" />
-                <Tag className={styles.tag} content="miles" />
-                <Tag className={styles.tag} content="congminh" />
-              </div>
+              <div className={styles.ownTag}>{renderTag()}</div>
             </div>
             <div className={styles.statType}>
               <Caption2 className={styles.label}>Story type</Caption2>

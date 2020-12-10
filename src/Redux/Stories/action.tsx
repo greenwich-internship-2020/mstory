@@ -57,18 +57,19 @@ export const createStory = (id: string, story: object) => {
       });
       return payload;
     } catch (error) {
-      dispatch({
-        type: ActionTypes.ERROR,
-        message: error.response.data.message,
-        error: true,
-      });
-      setTimeout(() => {
-        dispatch({
-          type: ActionTypes.ERROR,
-          message: error.response.data.message,
-          error: false,
-        });
-      }, 2000);
+      return error;
+      // dispatch({
+      //   type: ActionTypes.ERROR,
+      //   message: error.response.data.message,
+      //   error: true,
+      // });
+      // setTimeout(() => {
+      //   dispatch({
+      //     type: ActionTypes.ERROR,
+      //     message: error.response.data.message,
+      //     error: false,
+      //   });
+      // }, 2000);
     }
   };
 };

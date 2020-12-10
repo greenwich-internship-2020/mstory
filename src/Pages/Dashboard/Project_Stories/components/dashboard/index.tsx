@@ -109,7 +109,6 @@ const StoriesDashboard: FC<Props> = ({
         </div>
       </div>
       <StoriesTable
-        memberKeyword={memberKeyword}
         memberSearch={memberSearch}
         members={members}
         keyword={keyword}

@@ -1,8 +1,9 @@
-import React, {FC, useEffect, useRef, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 import Button from '../../../../../../Components/Button';
 
 import Dropdown from '../../../../../../Components/Dropdown';
+
 import {Plus} from '../../../../../../Components/Icons';
 
 import Input from '../../../../../../Components/Input';
@@ -33,6 +34,7 @@ interface Props {
   foot?: string;
   data?: any;
   search?: any;
+  getMember?: any;
 }
 
 interface story {
@@ -52,6 +54,7 @@ const CreateStory: FC<Props> = ({
   foot,
   data,
   search,
+  getMember,
 }) => {
   const [type, setType] = useState('');
 
@@ -85,7 +88,13 @@ const CreateStory: FC<Props> = ({
       .filter((owner) => owner.user_id !== '')
       .map((owner) => owner.user_id);
     setStory({...story, owner_ids: ownersId});
+
+    // eslint-disable-next-line
   }, [owners]);
+
+  useEffect(() => {
+    if (getMember) getMember();
+  }, [getMember]);
 
   useEffect(() => {
     setModalValid(titleValid && descripValid);
@@ -146,6 +155,7 @@ const CreateStory: FC<Props> = ({
 
   const renderOwnerTag = () => {
     if (owners) {
+      // eslint-disable-next-line
       return owners.map((owner, index) => {
         if (owner.fullname !== '')
           return (
@@ -223,23 +233,28 @@ const CreateStory: FC<Props> = ({
               />
             </div>
           </div>
-          <div className={styles.owner}>
-            <Caption2 className={styles.ownerLabel}>Owners (option)</Caption2>
-            <div className={styles.tagWrap}>
-              {renderOwnerTag()}
-              <div onClick={() => setListVisible(true)} className={styles.plus}>
-                <Plus />
-                {listVisible ? (
-                  <DropdownList
-                    handleSearchMember={handleSearchMember}
-                    setVisible={() => setListVisible(false)}
-                    setOwner={setNewOner}
-                    data={data}
-                  />
-                ) : null}
+          {!detail ? (
+            <div className={styles.owner}>
+              <Caption2 className={styles.ownerLabel}>Owners (option)</Caption2>
+              <div className={styles.tagWrap}>
+                {renderOwnerTag()}
+                <div
+                  onClick={() => setListVisible(true)}
+                  className={styles.plus}
+                >
+                  <Plus />
+                  {listVisible ? (
+                    <DropdownList
+                      handleSearchMember={handleSearchMember}
+                      setVisible={() => setListVisible(false)}
+                      setOwner={setNewOner}
+                      data={data}
+                    />
+                  ) : null}
+                </div>
               </div>
             </div>
-          </div>
+          ) : null}
           <div className={styles.description}>
             <Text
               errorNoti={storyErr.description}

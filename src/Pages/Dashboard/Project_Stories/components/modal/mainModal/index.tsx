@@ -3,13 +3,16 @@ import React, {FC, useEffect, useRef, useState} from 'react';
 import Button from '../../../../../../Components/Button';
 
 import Dropdown from '../../../../../../Components/Dropdown';
+import {Plus} from '../../../../../../Components/Icons';
 
 import Input from '../../../../../../Components/Input';
 
 import Text from '../../../../../../Components/Input/text';
 
 import Modal from '../../../../../../Components/Modal';
+
 import Tag from '../../../../../../Components/Tags';
+import {Caption2} from '../../../../../../Components/Typography';
 
 import Debounce from '../../../../../../Helper/debounce';
 
@@ -30,7 +33,14 @@ interface Props {
   foot?: string;
   data?: any;
   search?: any;
-  keyword?: string;
+}
+
+interface story {
+  title: string;
+  type: string;
+  points: number;
+  description: string;
+  owner_ids: string[];
 }
 
 const CreateStory: FC<Props> = ({
@@ -42,7 +52,6 @@ const CreateStory: FC<Props> = ({
   foot,
   data,
   search,
-  keyword,
 }) => {
   const [type, setType] = useState('');
 
@@ -51,13 +60,9 @@ const CreateStory: FC<Props> = ({
     description: '',
   });
 
-  const [owners, setOwners] = useState([]);
-
-  const [ownerName, setOwnerName] = useState([]);
+  const [owners, setOwners] = useState<any[]>([]);
 
   const [listVisible, setListVisible] = useState(false);
-
-  const ref = useRef<HTMLDivElement>(null);
 
   const [points, setPoints] = useState(detail ? detail.points : 0);
 
@@ -67,21 +72,7 @@ const CreateStory: FC<Props> = ({
 
   let [descripValid, setdescripValid] = useState(false);
 
-  const handleClickOutside = (e: any) => {
-    if (ref.current && !ref.current.contains(e.target)) {
-      setListVisible(false);
-    }
-  };
-
-  useEffect(() => {
-    document.addEventListener('click', handleClickOutside);
-
-    return () => {
-      document.removeEventListener('click', handleClickOutside);
-    };
-  });
-
-  const [story, setStory] = useState({
+  const [story, setStory] = useState<story>({
     title: detail ? detail.title : '',
     type: detail ? detail.type : 'feature',
     points: 0,
@@ -90,7 +81,10 @@ const CreateStory: FC<Props> = ({
   });
 
   useEffect(() => {
-    setStory({...story, owner_ids: owners});
+    const ownersId = owners
+      .filter((owner) => owner.user_id !== '')
+      .map((owner) => owner.user_id);
+    setStory({...story, owner_ids: ownersId});
   }, [owners]);
 
   useEffect(() => {
@@ -149,17 +143,38 @@ const CreateStory: FC<Props> = ({
   const handleSearchMember = Debounce((e: any) => {
     search(e.target.value);
   }, 300);
+
   const renderOwnerTag = () => {
-    if (ownerName) {
-      return ownerName.map((owner, index) => {
-        return <Tag key={index} className={styles.tag} content={owner} />;
+    if (owners) {
+      return owners.map((owner, index) => {
+        if (owner.fullname !== '')
+          return (
+            <Tag key={index} className={styles.tag} content={owner.fullname} />
+          );
       });
     }
   };
 
-  const setNewOner = (ownerId: any) => setOwners(owners.concat(ownerId));
+  const setNewOner = (owner: any) => {
+    const _owners = [...owners];
 
-  const setNewOwnerName = (name: any) => setOwnerName(ownerName.concat(name));
+    let position = -1;
+
+    owners.map((_owner: any, index: number) => {
+      if (_owner.user_id === owner.user_id) {
+        position = index;
+      }
+      return position;
+    });
+
+    _owners.splice(position, 1);
+
+    if (position === -1) {
+      setOwners([...owners, owner]);
+    } else {
+      setOwners(_owners);
+    }
+  };
 
   return (
     <Modal
@@ -208,23 +223,22 @@ const CreateStory: FC<Props> = ({
               />
             </div>
           </div>
-          <div ref={ref} className={styles.owner}>
-            <Input
-              onClick={() => setListVisible(true)}
-              onChange={handleSearchMember}
-              name="owner"
-              placeholder="Type owner name"
-              label="Owner"
-            />
-            {keyword !== '' && listVisible ? (
-              <DropdownList
-                setVisible={() => setListVisible(false)}
-                setOwnerName={setNewOwnerName}
-                setOwner={setNewOner}
-                data={data}
-              />
-            ) : null}
-            <div className={styles.tagWrap}>{renderOwnerTag()}</div>
+          <div className={styles.owner}>
+            <Caption2 className={styles.ownerLabel}>Owners (option)</Caption2>
+            <div className={styles.tagWrap}>
+              {renderOwnerTag()}
+              <div onClick={() => setListVisible(true)} className={styles.plus}>
+                <Plus />
+                {listVisible ? (
+                  <DropdownList
+                    handleSearchMember={handleSearchMember}
+                    setVisible={() => setListVisible(false)}
+                    setOwner={setNewOner}
+                    data={data}
+                  />
+                ) : null}
+              </div>
+            </div>
           </div>
           <div className={styles.description}>
             <Text

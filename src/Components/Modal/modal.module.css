@@ -15,9 +15,6 @@
   background-color: white;
   width: 100%;
   max-width: 45rem;
-  max-height: 45rem;
-  overflow-y: hidden;
-  overflow: auto;
   padding: 1.5rem;
   border-radius: 1.5rem;
   animation: show 0.3s;

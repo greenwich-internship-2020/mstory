@@ -37,3 +37,5 @@ export {default as Bug} from './Bug';
 export {default as Chore} from './Chore';
 
 export {default as Eye} from './Eye';
+
+export {default as Plus} from './plus';

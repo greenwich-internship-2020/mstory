@@ -27,16 +27,29 @@
   padding-top: 0.5rem;
 }
 
-.owner {
+.ownerLabel {
+  margin-bottom: 0.875rem;
+}
+
+.plus {
   position: relative;
+  padding: 0.675rem 0.675rem;
+  background-color: var(--default-light);
+  border-radius: 0.75rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  cursor: pointer;
 }
 
 .list {
   position: absolute;
-  top: 70%;
-  left: 0;
+  top: 100%;
+  left: 3%;
   right: 0;
-  width: 100%;
+  width: fit-content;
+  min-width: 20rem;
   max-height: 18.75rem;
   overflow: hidden;
   overflow: auto;
@@ -45,6 +58,22 @@
   border: 1px solid var(--default-lighter);
   border-radius: 1rem;
   z-index: 2;
+}
+
+.tagWrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
+.tag {
+  margin-right: 0.5rem;
+}
+
+.tag,
+.plus {
+  margin-bottom: 0.5rem;
 }
 
 .listItem {
@@ -65,17 +94,11 @@
   font-weight: 700;
 }
 
+.listRole {
+  margin-left: 2rem;
+}
+
 .listRole,
 .listUsername {
   color: var(--default);
-}
-
-.tagWrap {
-  display: flex;
-  align-items: center;
-  margin-top: 1rem;
-}
-
-.tag {
-  margin-right: 0.5rem;
 }

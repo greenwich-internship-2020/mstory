@@ -128,7 +128,6 @@ const StoriesTable: FC<Props> = ({
         <CreateStory
           search={memberSearch}
           data={members}
-          keyword={memberKeyword}
           editStory={edit}
           foot="Update"
           detail={story}

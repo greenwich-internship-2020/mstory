@@ -137,5 +137,9 @@
 }
 
 .username {
+  white-space: nowrap;
+  width: 35rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: 0.875rem;
 }

@@ -30,7 +30,6 @@ interface Props {
   keyword?: string;
   members?: any;
   memberSearch?: any;
-  memberKeyword?: string;
 }
 
 const StoriesTable: FC<Props> = ({
@@ -42,7 +41,6 @@ const StoriesTable: FC<Props> = ({
   deleteStory,
   loading,
   keyword,
-  memberKeyword,
   memberSearch,
   members,
 }) => {
@@ -77,6 +75,9 @@ const StoriesTable: FC<Props> = ({
   const renderContent = () => {
     if (data) {
       return data.map((story: any, index: number) => {
+        const owners = story.owners
+          ? story.owners.map((owner: any) => owner.username).join(', ')
+          : '';
         return (
           <tr
             ref={
@@ -89,7 +90,7 @@ const StoriesTable: FC<Props> = ({
           >
             <td className={styles.name}>
               <Title>{story.title}</Title>
-              <Caption className={styles.username}>tupac</Caption>
+              <Caption className={styles.username}>{owners}</Caption>
             </td>
             {idenType(story.type)}
             {idenStatus(story.status)}

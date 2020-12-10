@@ -58,12 +58,14 @@ const DropdownList: FC<Props> = ({
 
   return (
     <div ref={ref} className={styles.list}>
-      <Input
-        autoComplete="off"
-        onChange={handleSearchMember}
-        name="owner"
-        placeholder="Type owner name"
-      />
+      <div className={styles.searchMember}>
+        <Input
+          autoComplete="off"
+          onChange={handleSearchMember}
+          name="owner"
+          placeholder="Type owner name"
+        />
+      </div>
       {data && data.length > 0
         ? renderItem()
         : 'Can not find any member have name like this, please try another name'}

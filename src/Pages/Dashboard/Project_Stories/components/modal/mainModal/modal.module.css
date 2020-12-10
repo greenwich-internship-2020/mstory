@@ -102,3 +102,7 @@
 .listUsername {
   color: var(--default);
 }
+
+.searchMember {
+  margin-bottom: 0.875rem;
+}

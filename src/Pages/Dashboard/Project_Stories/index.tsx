@@ -48,8 +48,8 @@ const Stories: FC<Props> = (props) => {
   );
 
   const getMemberList = useCallback(
-    () => dispatch(memberAction.getMemberList(id, memberKeyword, role, page)),
-    [dispatch, id, memberKeyword, page],
+    () => dispatch(memberAction.getMemberList(id, memberKeyword, role, 1)),
+    [dispatch, id, memberKeyword, role],
   );
 
   const resetPage = () => dispatch({type: 'RESET_MODULE'});
@@ -103,13 +103,10 @@ const Stories: FC<Props> = (props) => {
     getStories();
   }, [getStories]);
 
-  useEffect(() => {
-    getMemberList();
-  }, [getMemberList]);
-
   const renderModal = () => {
     return (
       <CreateStory
+        getMember={getMemberList}
         data={members}
         search={setMemberKeyword}
         head="Create"

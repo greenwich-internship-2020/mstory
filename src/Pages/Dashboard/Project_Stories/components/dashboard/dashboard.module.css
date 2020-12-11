@@ -53,18 +53,22 @@
   padding-right: 0;
 }
 
-.edit {
-  margin-right: 1.375rem;
+.owner {
+  position: relative;
+}
+
+.memberIco {
+  margin: 0 1.375rem;
 }
 
 .edit,
+.memberIco,
 .time {
   position: relative;
   cursor: pointer;
   border-radius: 50%;
   text-align: center;
   display: flex;
-  border-radius: 50%;
   justify-content: center;
   align-items: center;
   flex-direction: column;
@@ -72,22 +76,33 @@
   transition: all 0.1s ease-in;
 }
 
+.edit:hover,
+.time:hover,
+.memberIco:hover {
+  position: relative;
+  transform: translateY(-2px);
+  box-shadow: 0 0 1.25rem 0 var(--shadow);
+}
+
 .time.disabled,
-.edit.disabled {
+.edit.disabled,
+.memberIco.disabled {
   opacity: 0.7;
   pointer-events: none;
   cursor: no-drop;
 }
 
 .edit.disabled:hover,
-.time.disabled:hover {
+.time.disabled:hover,
+.memberIco.disabled:hover {
   cursor: no-drop;
   transform: translateY(0);
   box-shadow: none;
 }
 
 .edit.disabled:before,
-.time.disabled:before {
+.time.disabled:before,
+.memberIco.disabled:before {
   content: '';
   position: absolute;
   top: 0;
@@ -101,6 +116,10 @@
   animation: rotate 2s linear infinite;
 }
 
+.dropList {
+  left: -350% !important;
+}
+
 @keyframes rotate {
   0% {
     transform: rotate(0);
@@ -108,12 +127,6 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.edit:hover,
-.time:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 0 1.25rem 0 var(--shadow);
 }
 
 .load {

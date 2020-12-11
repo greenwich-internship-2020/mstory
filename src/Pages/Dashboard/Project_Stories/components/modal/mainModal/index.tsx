@@ -245,8 +245,10 @@ const CreateStory: FC<Props> = ({
                   <Plus />
                   {listVisible ? (
                     <DropdownList
+                      assignedList={owners}
                       handleSearchMember={handleSearchMember}
                       setVisible={() => setListVisible(false)}
+                      search={search}
                       setOwner={setNewOner}
                       data={data}
                     />

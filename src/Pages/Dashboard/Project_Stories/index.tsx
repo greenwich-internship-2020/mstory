@@ -57,6 +57,9 @@ const Stories: FC<Props> = (props) => {
   const createStory = (story: object) =>
     dispatch(action.createStory(id, story));
 
+  const addOwner = (storyID: string, owner: any) =>
+    dispatch(action.addOwner(storyID, owner));
+
   const editStory = (id: string, story: object) =>
     dispatch(action.editStory(id, story));
 
@@ -65,6 +68,9 @@ const Stories: FC<Props> = (props) => {
 
   const deleteStory = (storyID: string) =>
     dispatch(action.deleteStory(id, storyID));
+
+  const removeOwner = (storyID: string, owner: any) =>
+    dispatch(action.deleteOwner(storyID, owner));
 
   const stories = useSelector(
     (state: RootStateOrAny) => state.storiesReducer.payload,
@@ -103,6 +109,10 @@ const Stories: FC<Props> = (props) => {
     getStories();
   }, [getStories]);
 
+  useEffect(() => {
+    getMemberList();
+  }, [getMemberList]);
+
   const renderModal = () => {
     return (
       <CreateStory
@@ -136,15 +146,16 @@ const Stories: FC<Props> = (props) => {
       {show ? renderModal() : null}
       <StoriesDashboard
         next={() => {
-          // setPage(page + 1);
           return page < totalPage ? setPage(page + 1) : null;
         }}
         first={() => {
           setPage(1);
         }}
+        removeOwner={removeOwner}
+        addOwner={addOwner}
         err={err}
+        memberList={members}
         memberSearch={setMemberKeyword}
-        memberKeyword={memberKeyword}
         members={members}
         message={message}
         deleteStory={deleteStory}

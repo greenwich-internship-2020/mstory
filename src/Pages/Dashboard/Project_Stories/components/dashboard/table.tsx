@@ -132,7 +132,7 @@ const StoriesTable: FC<Props> = ({
               <div className={clsx(styles.owner, loading && styles.disabled)}>
                 <div
                   onClick={() => handleVisibleList(story.story_id)}
-                  className={styles.memberIco}
+                  className={clsx(styles.memberIco, loading && styles.disabled)}
                 >
                   <MemberLink />
                 </div>

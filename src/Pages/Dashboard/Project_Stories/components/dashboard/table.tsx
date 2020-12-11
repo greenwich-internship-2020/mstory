@@ -136,7 +136,7 @@ const StoriesTable: FC<Props> = ({
                 >
                   <MemberLink />
                 </div>
-                {visible && story.story_id === storyId ? (
+                {!loading && visible && story.story_id === storyId ? (
                   <DropdownList
                     assignedList={story.owners}
                     search={memberSearch}

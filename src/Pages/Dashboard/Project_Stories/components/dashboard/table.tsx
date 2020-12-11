@@ -132,11 +132,11 @@ const StoriesTable: FC<Props> = ({
               <div className={clsx(styles.owner, loading && styles.disabled)}>
                 <div
                   onClick={() => handleVisibleList(story.story_id)}
-                  className={styles.memberIco}
+                  className={clsx(styles.memberIco, loading && styles.disabled)}
                 >
                   <MemberLink />
                 </div>
-                {visible && story.story_id === storyId ? (
+                {!loading && visible && story.story_id === storyId ? (
                   <DropdownList
                     assignedList={story.owners}
                     search={memberSearch}

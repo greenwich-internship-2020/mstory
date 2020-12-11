@@ -57,19 +57,51 @@ export const createStory = (id: string, story: object) => {
       });
       return payload;
     } catch (error) {
-      return error;
-      // dispatch({
-      //   type: ActionTypes.ERROR,
-      //   message: error.response.data.message,
-      //   error: true,
-      // });
-      // setTimeout(() => {
-      //   dispatch({
-      //     type: ActionTypes.ERROR,
-      //     message: error.response.data.message,
-      //     error: false,
-      //   });
-      // }, 2000);
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
+    }
+  };
+};
+
+export const addOwner = (storyId: string, owner: any) => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: ActionTypes.REQUEST,
+    });
+    try {
+      const payload = await api.post(`${stories(storyId)}/ownerIDs`, {
+        owner_id: owner.user_id,
+      });
+      console.log(payload);
+      dispatch({
+        type: ActionTypes.POST_OWNER,
+        id: storyId,
+        payload: payload.data,
+      });
+      return payload;
+    } catch (error) {
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
     }
   };
 };
@@ -145,6 +177,38 @@ export const deleteStory = (projectID: string, storyID: string) => {
       dispatch({
         type: ActionTypes.DELETE_STORIES,
         storyID,
+      });
+      return payload;
+    } catch (error) {
+      dispatch({
+        type: ActionTypes.ERROR,
+        message: error.response.data.message,
+        error: true,
+      });
+      setTimeout(() => {
+        dispatch({
+          type: ActionTypes.ERROR,
+          message: error.response.data.message,
+          error: false,
+        });
+      }, 2000);
+    }
+  };
+};
+
+export const deleteOwner = (storyID: string, owner: any) => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: ActionTypes.REQUEST,
+    });
+    try {
+      const payload = await api.delete(
+        `${stories(storyID)}/ownerIDs/${owner.user_id}`,
+      );
+      dispatch({
+        type: ActionTypes.DELETE_OWNER,
+        storyID,
+        owner,
       });
       return payload;
     } catch (error) {

@@ -31,6 +31,23 @@ const storiesReducer = (state = initialState, action: any) => {
         loading: false,
         payload: [action.payload, ...state.payload],
       };
+    case ActionTypes.POST_OWNER:
+      const newPayloadOwners = state.payload.map(
+        (story: any, index: number) => {
+          if (story.story_id === action.id) {
+            return {
+              ...story,
+              owners: action.payload,
+            };
+          }
+          return story;
+        },
+      );
+      return {
+        ...state,
+        loading: false,
+        payload: newPayloadOwners,
+      };
     case ActionTypes.PUT_STORIES:
       const newPayload = state.payload.map((story: any, index: number) => {
         if (story.story_id === action.payload.story_id) {
@@ -74,6 +91,24 @@ const storiesReducer = (state = initialState, action: any) => {
       });
       state.payload.splice(position, 1);
       state.total--;
+      return {
+        ...state,
+        loading: false,
+      };
+    case ActionTypes.DELETE_OWNER:
+      // eslint-disable-next-line
+      state.payload.map((story: any) => {
+        let position = -1;
+        if (story.story_id === action.storyID) {
+          story.owners.map((owner: any, index: number) => {
+            if (owner.user_id === action.owner.user_id) {
+              position = index;
+            }
+            return position;
+          });
+          story.owners.splice(position, 1);
+        }
+      });
       return {
         ...state,
         loading: false,

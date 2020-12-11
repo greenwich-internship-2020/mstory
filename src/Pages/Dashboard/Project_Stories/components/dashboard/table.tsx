@@ -1,6 +1,6 @@
 import React, {FC, useCallback, useRef, useState} from 'react';
 
-import {Edit, Time} from '../../../../../Components/Icons';
+import {Edit, MemberLink, Time} from '../../../../../Components/Icons';
 
 import Table from '../../../../../Components/Table';
 
@@ -17,7 +17,10 @@ import {idenStatus, idenType} from './helper';
 import Notfound from '../../../../../assets/notfound.png';
 
 import clsx from 'clsx';
+
 import {TextVariants} from '../../../../../Components/Typography/types';
+import DropdownList from '../modal/mainModal/dropdownList';
+import Debounce from '../../../../../Helper/debounce';
 
 interface Props {
   data?: any;
@@ -30,6 +33,9 @@ interface Props {
   keyword?: string;
   members?: any;
   memberSearch?: any;
+  memberList?: any;
+  addOwner?: any;
+  removeOwner?: any;
 }
 
 const StoriesTable: FC<Props> = ({
@@ -43,6 +49,9 @@ const StoriesTable: FC<Props> = ({
   keyword,
   memberSearch,
   members,
+  memberList,
+  addOwner,
+  removeOwner,
 }) => {
   const options = {
     root: null,
@@ -52,7 +61,11 @@ const StoriesTable: FC<Props> = ({
 
   const [show, setShow] = useState(false);
 
+  const [visible, setVisible] = useState(false);
+
   const [modal, setModal] = useState('');
+
+  const [storyId, setStoryId] = useState('');
 
   const [story, setStory] = useState({});
 
@@ -71,6 +84,16 @@ const StoriesTable: FC<Props> = ({
     // eslint-disable-next-line
     [observer, data],
   );
+
+  const handleVisibleList = (storyId: string) => {
+    setStoryId(storyId);
+    setVisible(true);
+  };
+
+  const handleSearchMember = Debounce((e: any) => {
+    const {value} = e.target;
+    memberSearch(value);
+  }, 200);
 
   const renderContent = () => {
     if (data) {
@@ -105,6 +128,28 @@ const StoriesTable: FC<Props> = ({
                 className={clsx(styles.edit, loading && styles.disabled)}
               >
                 <Edit />
+              </div>
+              <div className={clsx(styles.owner, loading && styles.disabled)}>
+                <div
+                  onClick={() => handleVisibleList(story.story_id)}
+                  className={styles.memberIco}
+                >
+                  <MemberLink />
+                </div>
+                {visible && story.story_id === storyId ? (
+                  <DropdownList
+                    assignedList={story.owners}
+                    search={memberSearch}
+                    removeOwner={(owner: any) =>
+                      removeOwner(story.story_id, owner)
+                    }
+                    setOwner={(owner: any) => addOwner(story.story_id, owner)}
+                    handleSearchMember={handleSearchMember}
+                    className={styles.dropList}
+                    data={memberList}
+                    setVisible={() => setVisible(false)}
+                  />
+                ) : null}
               </div>
               <div
                 onClick={() => {

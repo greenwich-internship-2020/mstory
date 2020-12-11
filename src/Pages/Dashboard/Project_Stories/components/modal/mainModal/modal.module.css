@@ -31,6 +31,13 @@
   margin-bottom: 0.875rem;
 }
 
+.tagWrap {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+}
+
 .plus {
   position: relative;
   padding: 0.675rem 0.675rem;
@@ -54,17 +61,11 @@
   overflow: hidden;
   overflow: auto;
   background-color: #fff;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem 0.5rem;
   border: 1px solid var(--default-lighter);
   border-radius: 1rem;
-  z-index: 2;
-}
-
-.tagWrap {
-  display: flex;
-  align-items: center;
-  flex-wrap: wrap;
-  margin-top: 1rem;
+  box-shadow: 0 15px 27.1828px var(--shadow);
+  z-index: 4;
 }
 
 .tag {
@@ -80,9 +81,13 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.8rem 0;
+  padding: 0.8rem;
   cursor: pointer;
   border-bottom: 1px solid var(--default-lighter);
+}
+
+.listItem.checked {
+  background-color: var(--default-lighter);
 }
 
 .listItem:last-child {

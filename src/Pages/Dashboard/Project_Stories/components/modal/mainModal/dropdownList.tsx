@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import React, {AllHTMLAttributes, FC, useEffect, useRef} from 'react';
 import Input from '../../../../../../Components/Input';
 
@@ -8,6 +9,9 @@ interface Props extends AllHTMLAttributes<HTMLDivElement> {
   setOwner?: any;
   setVisible?: any;
   handleSearchMember?: any;
+  assignedList?: any;
+  search?: any;
+  removeOwner?: any;
 }
 
 const DropdownList: FC<Props> = ({
@@ -15,6 +19,10 @@ const DropdownList: FC<Props> = ({
   setVisible,
   data,
   setOwner,
+  className,
+  assignedList,
+  search,
+  removeOwner,
   ...others
 }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -30,19 +38,23 @@ const DropdownList: FC<Props> = ({
   const handleClickOutside = (e: any) => {
     if (ref.current && !ref.current.contains(e.target)) {
       setVisible();
+      search('');
     }
   };
 
   const renderItem = () => {
     if (data) {
       return data.map((item: any) => {
+        const assignedItem = assignedList.find(
+          (owner: any) => owner.user_id === item.user_id,
+        );
         return (
           <div
             onClick={() => {
-              setOwner(item);
+              assignedItem && removeOwner ? removeOwner(item) : setOwner(item);
             }}
             key={item.user_id}
-            className={styles.listItem}
+            className={clsx(styles.listItem, assignedItem && styles.checked)}
             {...others}
           >
             <div className={styles.basicInfo}>
@@ -57,7 +69,7 @@ const DropdownList: FC<Props> = ({
   };
 
   return (
-    <div ref={ref} className={styles.list}>
+    <div ref={ref} className={clsx(styles.list, className)}>
       <div className={styles.searchMember}>
         <Input
           autoComplete="off"

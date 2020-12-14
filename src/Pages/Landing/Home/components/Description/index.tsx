@@ -17,11 +17,11 @@ import clsx from 'clsx';
 interface Props {}
 
 const Description: FC<Props> = (props) => {
-  const [head, setHead] = useState(false);
+  const [item, setItem] = useState(false);
 
-  const [head2, setHead2] = useState(false);
+  const [item2, setItem2] = useState(false);
 
-  const [head3, setHead3] = useState(false);
+  const [item3, setItem3] = useState(false);
 
   const text = useRef<HTMLDivElement>(null);
 
@@ -42,8 +42,8 @@ const Description: FC<Props> = (props) => {
 
       let scrollItem = text.current.getBoundingClientRect().top;
 
-      if (scrollItem < windowHeight / 1.1) {
-        setHead(true);
+      if (scrollItem < windowHeight / 1.5) {
+        setItem(true);
       }
     }
 
@@ -52,8 +52,8 @@ const Description: FC<Props> = (props) => {
 
       let scrollItem2 = text2.current.getBoundingClientRect().top;
 
-      if (scrollItem2 < windowHeight / 1.1) {
-        setHead2(true);
+      if (scrollItem2 < windowHeight / 1.5) {
+        setItem2(true);
       }
     }
 
@@ -62,21 +62,18 @@ const Description: FC<Props> = (props) => {
 
       let scrollItem3 = text3.current.getBoundingClientRect().top;
 
-      if (scrollItem3 < windowHeight / 1.1) {
-        setHead3(true);
+      if (scrollItem3 < windowHeight / 1.5) {
+        setItem3(true);
       }
     }
   };
 
   return (
     <div className={styles.wrap}>
-      <div className={styles.item}>
+      <div ref={text} className={clsx(styles.item, item && styles.show)}>
         <img className={styles.img} alt="plan" src={plan} />
-        <div ref={text} className={styles.text}>
-          <Heading
-            className={clsx(styles.head, head && styles.show)}
-            variant={TextVariants.S}
-          >
+        <div className={styles.text}>
+          <Heading className={styles.head} variant={TextVariants.S}>
             Better organization to get focused
           </Heading>
           <Body className={styles.body}>
@@ -87,13 +84,10 @@ const Description: FC<Props> = (props) => {
           </Body>
         </div>
       </div>
-      <div className={styles.item}>
+      <div ref={text2} className={clsx(styles.item, item2 && styles.show)}>
         <img className={styles.img} alt="plan" src={support} />
-        <div ref={text2} className={styles.text}>
-          <Heading
-            className={clsx(styles.head2, head2 && styles.show)}
-            variant={TextVariants.S}
-          >
+        <div className={styles.text}>
+          <Heading className={styles.head2} variant={TextVariants.S}>
             Tools to help you adapt and evolve
           </Heading>
           <Body className={styles.body}>
@@ -104,13 +98,10 @@ const Description: FC<Props> = (props) => {
           </Body>
         </div>
       </div>
-      <div className={styles.item}>
+      <div ref={text3} className={clsx(styles.item, item3 && styles.show)}>
         <img className={styles.img} alt="plan" src={idea} />
-        <div ref={text3} className={styles.text}>
-          <Heading
-            className={clsx(styles.head3, head3 && styles.show)}
-            variant={TextVariants.S}
-          >
+        <div className={styles.text}>
+          <Heading className={styles.head3} variant={TextVariants.S}>
             Team transparency at a glance
           </Heading>
           <Body className={styles.body}>

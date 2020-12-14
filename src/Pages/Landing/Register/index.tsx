@@ -10,7 +10,7 @@ import Input from '../../../Components/Input';
 
 import {BodySmall} from '../../../Components/Typography';
 
-import space from '../../../assets/astronaut.svg';
+// import space from '../../../assets/astronaut.svg';
 
 import styles from './register.module.css';
 
@@ -19,9 +19,9 @@ interface Props {}
 const Register: FC<Props> = (props) => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.img}>
+      {/* <div className={styles.img}>
         <img alt="Guard" src={space} />
-      </div>
+      </div> */}
       <Form head="Sign up">
         <div className={styles.content}>
           <div className={styles.fullname}>

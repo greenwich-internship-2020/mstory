@@ -22,24 +22,26 @@ export const getStoriesList = (
       );
       dispatch({
         type: ActionTypes.GET_STORIES,
-        payload: payload.data.project_stories,
+        payload: payload.data.stories,
         total: payload.data.total_count,
         keyword,
       });
       return payload;
     } catch (error) {
-      dispatch({
-        type: ActionTypes.ERROR,
-        message: error.response.data.message,
-        error: true,
-      });
-      setTimeout(() => {
+      if (error.response) {
         dispatch({
           type: ActionTypes.ERROR,
           message: error.response.data.message,
-          error: false,
+          error: true,
         });
-      }, 2000);
+        setTimeout(() => {
+          dispatch({
+            type: ActionTypes.ERROR,
+            message: error.response.data.message,
+            error: false,
+          });
+        }, 2000);
+      }
     }
   };
 };

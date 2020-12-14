@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 
 // import guard from '../../../assets/security.svg';
 
@@ -9,12 +9,65 @@ import Button from '../../../Components/Button';
 import Form from '../../../Components/Form';
 
 import Input from '../../../Components/Input';
+import Debounce from '../../../Helper/debounce';
+import {passwordValid, usernameValid} from '../Register/validate';
 
 import styles from './login.module.css';
 
 interface Props {}
 
 const Login: FC<Props> = (props) => {
+  const [user, setUser] = useState({
+    username: '',
+    password: '',
+  });
+
+  const [userErr, setUserErr] = useState({
+    username: '',
+    password: '',
+  });
+
+  let [formValid, setFormValid] = useState(false);
+
+  let [_usernameValid, setUsernameValid] = useState(false);
+
+  let [_passwordValid, setPasswordValid] = useState(false);
+
+  useEffect(() => {
+    setFormValid(_usernameValid && _passwordValid);
+  }, [_usernameValid, _passwordValid]);
+
+  const handleError = Debounce((name: string, value: string) => {
+    let message = '';
+    switch (name) {
+      case 'fullname':
+      case 'username':
+        if (usernameValid(value, 39) !== '') {
+          setUsernameValid(false);
+          message = usernameValid(value, 39);
+        }
+        setUsernameValid((_usernameValid = message ? false : true));
+        break;
+      case 'password':
+        if (passwordValid(value.trim(), 255) !== '') {
+          setPasswordValid(false);
+          message = passwordValid(value.trim(), 255);
+        }
+        setPasswordValid((_passwordValid = message ? false : true));
+        break;
+      default:
+        message = 'Invalid';
+        break;
+    }
+    setUserErr({...userErr, [name]: message});
+  }, 300);
+
+  const handleTyping = (e: any) => {
+    const {name, value} = e.target;
+    setUser({...user, [name]: value});
+    handleError(name, value);
+  };
+
   return (
     <div className={styles.wrapper}>
       {/* <div className={styles.img}>
@@ -23,15 +76,30 @@ const Login: FC<Props> = (props) => {
       <Form head="Sign in">
         <div className={styles.content}>
           <div className={styles.username}>
-            <Input label="Username" placeholder="Type username" />
+            <Input
+              name="username"
+              onChange={handleTyping}
+              errorNoti={userErr.username}
+              label="Username"
+              placeholder="Type username"
+            />
           </div>
           <div className={styles.password}>
-            <Input label="Password" placeholder="Type password" />
+            <Input
+              type="password"
+              name="password"
+              onChange={handleTyping}
+              errorNoti={userErr.password}
+              label="Password"
+              placeholder="Type password"
+            />
           </div>
         </div>
         <div className={styles.eventHandle}>
           <Link to="/projects">
-            <Button className={styles.login}>Sign in</Button>
+            <Button disabled={!formValid} className={styles.login}>
+              Sign in
+            </Button>
           </Link>
         </div>
         <div className={styles.support}>

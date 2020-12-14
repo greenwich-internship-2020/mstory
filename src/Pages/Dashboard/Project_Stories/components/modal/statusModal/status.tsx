@@ -46,7 +46,11 @@ const StatusModal: FC<Props> = ({hide, editStory, detail, deleteStory}) => {
   const renderTag = () => {
     if (detail.owners) {
       return detail.owners.map((owner: any) => (
-        <Tag className={styles.tag} content={owner.fullname} />
+        <Tag
+          key={owner.user_id}
+          className={styles.tag}
+          content={owner.fullname}
+        />
       ));
     }
   };

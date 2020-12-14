@@ -1,5 +1,6 @@
 .wrap {
   padding: 5rem 1rem;
+  overflow-x: hidden;
 }
 
 .img {
@@ -11,13 +12,13 @@
   padding: 1.25rem 0;
   opacity: 0;
   transform: translateX(-30%);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .item:nth-child(2) {
   opacity: 0;
   transform: translateX(30%);
-  transition: all 0.5s ease-in-out;
+  transition: all 0.8s ease-in-out;
 }
 
 .item:first-child {

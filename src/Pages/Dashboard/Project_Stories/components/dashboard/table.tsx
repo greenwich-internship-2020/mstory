@@ -19,7 +19,7 @@ import Notfound from '../../../../../assets/notfound.png';
 import clsx from 'clsx';
 
 import {TextVariants} from '../../../../../Components/Typography/types';
-import DropdownList from '../modal/mainModal/dropdownList';
+import DropdownList from '../../../../../Components/DropdownList';
 import Debounce from '../../../../../Helper/debounce';
 
 interface Props {

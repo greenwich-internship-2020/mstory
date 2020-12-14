@@ -34,6 +34,12 @@
   text-decoration: none;
 }
 
+.button {
+  background-color: #e0afa0;
+  box-shadow: none;
+  color: #111142;
+}
+
 @media (min-width: 768px) {
   .wrapper {
     padding: 7.5rem 2rem;

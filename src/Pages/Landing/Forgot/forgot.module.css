@@ -18,6 +18,12 @@
   margin-top: 1.5rem;
 }
 
+.confirm {
+  background-color: #e0afa0;
+  box-shadow: none;
+  color: #111142;
+}
+
 @media (min-width: 768px) {
   .wrap {
     padding: 7.5rem 2rem;

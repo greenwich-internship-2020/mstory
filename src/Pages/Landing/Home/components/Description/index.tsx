@@ -29,17 +29,18 @@ const Description: FC<Props> = (props) => {
 
   const text3 = useRef<HTMLDivElement>(null);
 
+  const windowHeight = window.innerHeight;
+
   useEffect(() => {
-    window.addEventListener('scroll', scrollHead);
+    window.addEventListener('scroll', handleScrollShow);
     return () => {
-      window.removeEventListener('scroll', scrollHead);
+      window.removeEventListener('scroll', handleScrollShow);
     };
+    // eslint-disable-next-line
   }, []);
 
-  const scrollHead = (e: any) => {
+  const handleScrollShow = (e: any) => {
     if (text.current && !text.current.contains(e.target)) {
-      let windowHeight = window.innerHeight;
-
       let scrollItem = text.current.getBoundingClientRect().top;
 
       if (scrollItem < windowHeight / 1.5) {
@@ -48,8 +49,6 @@ const Description: FC<Props> = (props) => {
     }
 
     if (text2.current && !text2.current.contains(e.target)) {
-      let windowHeight = window.innerHeight;
-
       let scrollItem2 = text2.current.getBoundingClientRect().top;
 
       if (scrollItem2 < windowHeight / 1.5) {
@@ -58,8 +57,6 @@ const Description: FC<Props> = (props) => {
     }
 
     if (text3.current && !text3.current.contains(e.target)) {
-      let windowHeight = window.innerHeight;
-
       let scrollItem3 = text3.current.getBoundingClientRect().top;
 
       if (scrollItem3 < windowHeight / 1.5) {

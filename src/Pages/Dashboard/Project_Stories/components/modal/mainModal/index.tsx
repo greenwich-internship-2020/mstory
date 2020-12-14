@@ -21,7 +21,7 @@ import {firstLetterUpper} from '../../../../../../Helper/firstLetterUpper';
 
 import {Validate} from '../../../../../../Validation';
 
-import DropdownList from './dropdownList';
+import DropdownList from '../../../../../../Components/DropdownList';
 
 import styles from './modal.module.css';
 

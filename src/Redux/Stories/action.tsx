@@ -84,7 +84,7 @@ export const addOwner = (storyId: string, owner: any) => {
       const payload = await api.post(`${stories(storyId)}/ownerIDs`, {
         owner_id: owner.user_id,
       });
-      console.log(payload);
+
       dispatch({
         type: ActionTypes.POST_OWNER,
         id: storyId,

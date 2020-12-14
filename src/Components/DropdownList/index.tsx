@@ -1,8 +1,12 @@
 import clsx from 'clsx';
-import React, {AllHTMLAttributes, FC, useEffect, useRef} from 'react';
-import Input from '../../../../../../Components/Input';
 
-import styles from './modal.module.css';
+import React, {AllHTMLAttributes, FC, useEffect, useRef} from 'react';
+
+import Input from '../Input';
+
+import {firstLetterUpper} from '../../Helper/firstLetterUpper';
+
+import styles from './drop.module.css';
 
 interface Props extends AllHTMLAttributes<HTMLDivElement> {
   data?: any;
@@ -61,7 +65,7 @@ const DropdownList: FC<Props> = ({
               <div className={styles.listName}>{item.fullname}</div>
               <div className={styles.listUsername}>{item.username}</div>
             </div>
-            <div className={styles.listRole}>{item.role}</div>
+            <div className={styles.listRole}>{firstLetterUpper(item.role)}</div>
           </div>
         );
       });

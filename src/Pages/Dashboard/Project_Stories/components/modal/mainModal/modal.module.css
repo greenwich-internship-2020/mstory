@@ -50,24 +50,6 @@
   cursor: pointer;
 }
 
-.list {
-  position: absolute;
-  top: 100%;
-  left: 3%;
-  right: 0;
-  width: fit-content;
-  min-width: 20rem;
-  max-height: 18.75rem;
-  overflow: hidden;
-  overflow: auto;
-  background-color: #fff;
-  padding: 1.5rem 0.5rem;
-  border: 1px solid var(--default-lighter);
-  border-radius: 1rem;
-  box-shadow: 0 15px 27.1828px var(--shadow);
-  z-index: 4;
-}
-
 .tag {
   margin-right: 0.5rem;
 }
@@ -75,39 +57,4 @@
 .tag,
 .plus {
   margin-bottom: 0.5rem;
-}
-
-.listItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.8rem;
-  cursor: pointer;
-  border-bottom: 1px solid var(--default-lighter);
-}
-
-.listItem.checked {
-  background-color: var(--default-lighter);
-}
-
-.listItem:last-child {
-  border-bottom: none;
-}
-
-.listName {
-  margin-bottom: 0.5rem;
-  font-weight: 700;
-}
-
-.listRole {
-  margin-left: 2rem;
-}
-
-.listRole,
-.listUsername {
-  color: var(--default);
-}
-
-.searchMember {
-  margin-bottom: 0.875rem;
 }

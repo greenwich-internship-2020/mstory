@@ -1,17 +1,17 @@
 {
   "files": {
-    "main.css": "/mstory/static/css/main.d47f58d1.chunk.css",
-    "main.js": "/mstory/static/js/main.e5456365.chunk.js",
-    "main.js.map": "/mstory/static/js/main.e5456365.chunk.js.map",
-    "runtime-main.js": "/mstory/static/js/runtime-main.63db3ed9.js",
-    "runtime-main.js.map": "/mstory/static/js/runtime-main.63db3ed9.js.map",
-    "static/js/2.d5241fb3.chunk.js": "/mstory/static/js/2.d5241fb3.chunk.js",
-    "static/js/2.d5241fb3.chunk.js.map": "/mstory/static/js/2.d5241fb3.chunk.js.map",
-    "static/js/3.6244b746.chunk.js": "/mstory/static/js/3.6244b746.chunk.js",
-    "static/js/3.6244b746.chunk.js.map": "/mstory/static/js/3.6244b746.chunk.js.map",
+    "main.css": "/mstory/static/css/main.fa857c41.chunk.css",
+    "main.js": "/mstory/static/js/main.18424335.chunk.js",
+    "main.js.map": "/mstory/static/js/main.18424335.chunk.js.map",
+    "runtime-main.js": "/mstory/static/js/runtime-main.1298a37d.js",
+    "runtime-main.js.map": "/mstory/static/js/runtime-main.1298a37d.js.map",
+    "static/js/2.557d1f86.chunk.js": "/mstory/static/js/2.557d1f86.chunk.js",
+    "static/js/2.557d1f86.chunk.js.map": "/mstory/static/js/2.557d1f86.chunk.js.map",
+    "static/js/3.ca7331ba.chunk.js": "/mstory/static/js/3.ca7331ba.chunk.js",
+    "static/js/3.ca7331ba.chunk.js.map": "/mstory/static/js/3.ca7331ba.chunk.js.map",
     "index.html": "/mstory/index.html",
-    "static/css/main.d47f58d1.chunk.css.map": "/mstory/static/css/main.d47f58d1.chunk.css.map",
-    "static/js/2.d5241fb3.chunk.js.LICENSE.txt": "/mstory/static/js/2.d5241fb3.chunk.js.LICENSE.txt",
+    "static/css/main.fa857c41.chunk.css.map": "/mstory/static/css/main.fa857c41.chunk.css.map",
+    "static/js/2.557d1f86.chunk.js.LICENSE.txt": "/mstory/static/js/2.557d1f86.chunk.js.LICENSE.txt",
     "static/media/checkbox.module.css": "/mstory/static/media/Check.389ee3e9.svg",
     "static/media/better.module.css": "/mstory/static/media/betterway.f06f9e40.jpg",
     "static/media/carousel.bb6fba96.jpg": "/mstory/static/media/carousel.bb6fba96.jpg",
@@ -23,9 +23,9 @@
     "static/media/forgot.module.css": "/mstory/static/media/userFormbg.aa0a105e.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.63db3ed9.js",
-    "static/js/2.d5241fb3.chunk.js",
-    "static/css/main.d47f58d1.chunk.css",
-    "static/js/main.e5456365.chunk.js"
+    "static/js/runtime-main.1298a37d.js",
+    "static/js/2.557d1f86.chunk.js",
+    "static/css/main.fa857c41.chunk.css",
+    "static/js/main.18424335.chunk.js"
   ]
 }

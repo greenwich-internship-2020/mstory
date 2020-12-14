@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 
-import guard from '../../../assets/security.svg';
+// import guard from '../../../assets/security.svg';
 
 import {Link} from 'react-router-dom';
 
@@ -17,9 +17,9 @@ interface Props {}
 const Login: FC<Props> = (props) => {
   return (
     <div className={styles.wrapper}>
-      <div className={styles.img}>
+      {/* <div className={styles.img}>
         <img alt="Guard" src={guard} />
-      </div>
+      </div> */}
       <Form head="Sign in">
         <div className={styles.content}>
           <div className={styles.username}>

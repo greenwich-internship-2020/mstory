@@ -1,11 +1,11 @@
-.wrapper {
+.container {
   position: relative;
+  /* max-width: 100rem;
+  margin: 0 auto; */
 }
 
 .content {
-  max-width: 100rem;
-  min-height: 34.725rem;
-  margin: 0 auto;
+  min-height: 90vh;
 }
 
 @media (min-width: 768px) {

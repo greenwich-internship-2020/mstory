@@ -4,7 +4,7 @@ import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 
 import ProjectDashboard from './components/ProjectDashboard';
 
-import * as action from '../../../Redux/Project/action';
+import * as action from '../../../Redux/Dashboard/Project/action';
 
 interface ProjectProps {}
 

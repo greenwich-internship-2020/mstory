@@ -1,5 +1,5 @@
-import {api} from '../../Config/api';
-import {membersProject} from '../../Config/api/subDomain';
+import {api} from '../../../Config/api';
+import {membersProject} from '../../../Config/api/subDomain';
 
 import * as ActionTypes from './constant';
 

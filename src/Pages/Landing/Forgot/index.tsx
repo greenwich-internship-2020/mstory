@@ -8,8 +8,6 @@ import Input from '../../../Components/Input';
 
 import {emailValid} from '../Register/validate';
 
-// import robot from '../../../assets/robot.svg';
-
 import styles from './forgot.module.css';
 
 interface Props {}
@@ -21,11 +19,7 @@ const Forgot: FC<Props> = (props) => {
 
   let [valid, setValid] = useState(false);
 
-  const handleType = (e: any) => {
-    const {value} = e.target;
-
-    setEmail(value);
-
+  const handleError = (value: string) => {
     if (emailValid(value, 64) !== '') {
       setValid(false);
       setMessage(emailValid(value, 64));
@@ -35,11 +29,16 @@ const Forgot: FC<Props> = (props) => {
     }
   };
 
+  const handleType = (e: any) => {
+    const {value} = e.target;
+
+    setEmail(value);
+
+    handleError(value);
+  };
+
   return (
     <div className={styles.wrap}>
-      {/* <div className={styles.img}>
-        <img alt="robot" src={robot} />
-      </div> */}
       <Form head="Forgot password">
         <Input
           autoComplete="off"

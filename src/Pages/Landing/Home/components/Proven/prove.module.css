@@ -21,11 +21,17 @@
   .wrap {
     padding: 5rem 12.1875rem;
   }
+
+  .text {
+    font-size: 1rem;
+    line-height: calc(24 / 16);
+  }
 }
 @media (min-width: 1440px) {
   .wrap {
     padding: 3.75rem 20.1875rem;
   }
+
   .text:first-child {
     font-size: 2rem;
     line-height: calc(48 / 32);

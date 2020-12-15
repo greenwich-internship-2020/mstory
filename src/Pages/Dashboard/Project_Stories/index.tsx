@@ -10,9 +10,9 @@ import StoriesDashboard from './components/dashboard';
 
 import CreateStory from './components/modal/mainModal';
 
-import * as action from '../../../Redux/Stories/action';
+import * as action from '../../../Redux/Dashboard/Stories/action';
 
-import * as memberAction from '../../../Redux/Member/action';
+import * as memberAction from '../../../Redux/Dashboard/Member/action';
 
 import {useParams} from 'react-router-dom';
 

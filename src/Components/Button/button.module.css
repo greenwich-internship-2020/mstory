@@ -57,3 +57,25 @@
 .button:hover:disabled {
   opacity: 1;
 }
+
+.load {
+  width: 30px;
+  height: 30px;
+  border: 5px solid transparent;
+  margin: 0 auto;
+  border-radius: 50%;
+  animation: rotate 0.9s infinite;
+}
+
+@keyframes rotate {
+  0% {
+    border-top-color: rgba(0, 0, 0, 0.6);
+    border-left-color: rgba(0, 0, 0, 0.6);
+    transform: rotate(0deg);
+  }
+  100% {
+    border-top-color: rgba(0, 0, 0, 0.3);
+    border-left-color: transparent;
+    transform: rotate(360deg);
+  }
+}

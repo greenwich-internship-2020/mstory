@@ -1,6 +1,6 @@
 .wrap {
   position: relative;
-  max-width: 24.4375rem;
+  max-width: 30rem;
   min-width: 21.25rem;
   background-color: #fff;
   border-radius: 1.5rem;
@@ -11,7 +11,7 @@
 @keyframes fadein {
   0% {
     opacity: 0;
-    transform: translateY(40%);
+    transform: translateY(30%);
   }
   100% {
     opacity: 1;

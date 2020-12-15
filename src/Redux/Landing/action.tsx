@@ -32,8 +32,8 @@ export const signin = (user: any, history: any) => {
       type: ActionTypes.REQUEST,
     });
     try {
-      // const payload = await api.post(login, user, {withCredentials: true});
-      const payload = await api.post(login, user);
+      const payload = await api.post(login, user, {withCredentials: true});
+      // const payload = await api.post(login, user);
       dispatch({
         type: ActionTypes.LOGIN,
       });

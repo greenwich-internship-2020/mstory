@@ -15,10 +15,13 @@ import {passwordValid, usernameValid} from '../Register/validate';
 import styles from './login.module.css';
 
 interface Props {
+  login?: any;
   defaultUsername?: string;
+  load?: boolean;
+  error?: string;
 }
 
-const LoginIndex: FC<Props> = ({defaultUsername}) => {
+const LoginIndex: FC<Props> = ({error, load, login, defaultUsername}) => {
   const [user, setUser] = useState({
     username: defaultUsername !== '' ? defaultUsername : '',
     password: '',
@@ -76,7 +79,7 @@ const LoginIndex: FC<Props> = ({defaultUsername}) => {
 
   return (
     <div className={styles.wrapper}>
-      <Form head="Sign in">
+      <Form error={error} head="Sign in">
         <div className={styles.content}>
           <div className={styles.username}>
             <Input
@@ -100,11 +103,14 @@ const LoginIndex: FC<Props> = ({defaultUsername}) => {
           </div>
         </div>
         <div className={styles.eventHandle}>
-          <Link to="/projects">
-            <Button disabled={!formValid} className={styles.login}>
-              Sign in
-            </Button>
-          </Link>
+          <Button
+            load={load}
+            onOK={() => login(user)}
+            disabled={!formValid}
+            className={styles.login}
+          >
+            Sign in
+          </Button>
         </div>
         <div className={styles.support}>
           <Link className={styles.signup} to="/register">

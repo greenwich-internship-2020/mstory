@@ -1,15 +1,46 @@
-import React, {FC} from 'react';
-import {RootStateOrAny, useSelector} from 'react-redux';
+import React, {FC, useEffect} from 'react';
+import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
+
 import LoginIndex from './formIndex';
 
-interface Props {}
+import * as action from '../../../Redux/Landing/action';
 
-const Login: FC<Props> = (props) => {
+import {RouteComponentProps} from 'react-router-dom';
+
+interface Props extends RouteComponentProps<any> {}
+
+const Login: FC<Props> = ({history}) => {
+  const dispatch = useDispatch();
+
+  const login = (user: any) => dispatch(action.signin(user, history));
+
+  const resetMessage = () => dispatch({type: 'RESET_MESSAGE'});
+
   const username = useSelector(
     (state: RootStateOrAny) => state.landingReducer.username,
   );
 
-  return <LoginIndex defaultUsername={username} />;
+  const load = useSelector(
+    (state: RootStateOrAny) => state.landingReducer.load,
+  );
+
+  const error = useSelector(
+    (state: RootStateOrAny) => state.landingReducer.error,
+  );
+
+  useEffect(() => {
+    resetMessage();
+    // eslint-disable-next-line
+  }, []);
+
+  return (
+    <LoginIndex
+      error={error}
+      load={load}
+      login={login}
+      defaultUsername={username}
+    />
+  );
 };
 
 export default Login;

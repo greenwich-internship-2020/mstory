@@ -1,4 +1,4 @@
-import React, {FC} from 'react';
+import React, {FC, useEffect} from 'react';
 
 import RegisterIndex from './formIndex';
 
@@ -15,11 +15,22 @@ const Register: FC<Props> = ({history}) => {
 
   const register = (user: any) => dispatch(action.register(user, history));
 
+  const resetMessage = () => dispatch({type: 'RESET_MESSAGE'});
+
   const load = useSelector(
     (state: RootStateOrAny) => state.landingReducer.load,
   );
 
-  return <RegisterIndex load={load} register={register} />;
+  const error = useSelector(
+    (state: RootStateOrAny) => state.landingReducer.error,
+  );
+
+  useEffect(() => {
+    resetMessage();
+    // eslint-disable-next-line
+  }, []);
+
+  return <RegisterIndex error={error} load={load} register={register} />;
 };
 
 export default Register;

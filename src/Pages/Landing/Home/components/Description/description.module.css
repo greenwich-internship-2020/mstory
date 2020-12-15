@@ -86,6 +86,11 @@
     width: 24.25rem;
     height: 18.25rem;
   }
+
+  .body {
+    font-size: 1rem;
+    line-height: calc(24 / 16);
+  }
 }
 
 @media (min-width: 1440px) {

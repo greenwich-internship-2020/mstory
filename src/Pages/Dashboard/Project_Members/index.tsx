@@ -3,7 +3,7 @@ import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 import {useParams} from 'react-router-dom';
 import MemberDashboard from './components/dashboard';
 
-import * as action from '../../../Redux/Member/action';
+import * as action from '../../../Redux/Dashboard/Member/action';
 
 interface Props {}
 

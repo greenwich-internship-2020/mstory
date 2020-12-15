@@ -44,6 +44,10 @@
   .wrap {
     padding: 5rem 12.375rem;
   }
+  .text {
+    font-size: 1rem;
+    line-height: calc(24 / 16);
+  }
 }
 
 @media (min-width: 1440px) {

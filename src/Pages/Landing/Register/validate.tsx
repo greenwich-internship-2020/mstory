@@ -1,4 +1,4 @@
-const usernameValid = (value: string, maxLength: number) => {
+const usernameValid = (value: any, maxLength: number) => {
   if (value === '') return 'This field can not empty';
 
   if (value.length < 6) return 'This field required at least 6 characters';
@@ -7,7 +7,7 @@ const usernameValid = (value: string, maxLength: number) => {
     return `This field can not have over ${maxLength} characters`;
 
   if (!value.match(/^[a-z\d](?:[a-z\d]|-(?=[a-z\d])){0,38}$/))
-    return 'Username just accept hyphen between, start with lowercase and must have less than 39 characters';
+    return 'Username just accept hyphen between, start with lowercase';
   else return '';
 };
 

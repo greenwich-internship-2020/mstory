@@ -9,6 +9,7 @@ export interface ButtonProps extends AllHTMLAttributes<HTMLButtonElement> {
   ghost?: boolean;
   disabled?: boolean;
   error?: boolean;
+  load?: boolean;
 }
 
 const Button: FC<ButtonProps> = ({
@@ -19,6 +20,7 @@ const Button: FC<ButtonProps> = ({
   children,
   disabled,
   error,
+  load,
 }) => {
   return (
     <button
@@ -29,9 +31,9 @@ const Button: FC<ButtonProps> = ({
         ghost && styles.ghost,
         className,
       )}
-      disabled={disabled}
+      disabled={load ? true : disabled}
     >
-      {children}
+      {!load ? children : <p className={styles.load}></p>}
     </button>
   );
 };

@@ -5,7 +5,7 @@ import DashboardTemplate from '../../../Components/Template/dashboard';
 
 import Main from './components/Main';
 
-import * as action from '../../../Redux/Project/action';
+import * as action from '../../../Redux/Dashboard/Project/action';
 
 import {RouteComponentProps} from 'react-router-dom';
 

@@ -4,7 +4,7 @@ import {RootStateOrAny, useDispatch, useSelector} from 'react-redux';
 
 import UserDashboard from './components/UserDashboard';
 
-import * as action from '../../../Redux/User/action';
+import * as action from '../../../Redux/Dashboard/User/action';
 
 interface UserProps {}
 

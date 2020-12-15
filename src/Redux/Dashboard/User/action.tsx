@@ -1,26 +1,20 @@
-import {api} from '../../Config/api';
-import {projects} from '../../Config/api/subDomain';
+import {api} from '../../../Config/api';
+
+import {users} from '../../../Config/api/subDomain';
+
 import * as ActionTypes from './constant';
 
-export const getProjectList = (
-  status: boolean,
-  page: number,
-  keyword: string,
-  sort: any,
-) => {
+export const getUserList = (page: number, keyword: string) => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionTypes.REQUEST,
     });
     try {
-      const payload = await api.get(
-        `${projects}?keyword=${keyword}&is_active=${status}&view=${sort.view}&order=${sort.order}&page=${page}`,
-      );
-
+      const payload = await api.get(`${users}?keyword=${keyword}&page=${page}`);
       dispatch({
-        type: ActionTypes.GET_PROJECT,
+        type: ActionTypes.GET_USER,
         total: payload.data.total_count,
-        payload: payload.data.projects,
+        payload: payload.data.users,
         keyword,
       });
       return payload;
@@ -41,33 +35,15 @@ export const getProjectList = (
   };
 };
 
-export const getSpecificProject = (id: any) => {
+export const createUser = (user: object) => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionTypes.REQUEST,
     });
     try {
-      const payload = await api.get(`${projects}/${id}`);
+      const payload = await api.post(users, user);
       dispatch({
-        type: ActionTypes.GET_PROJECT_SPEC,
-        payload: payload.data,
-      });
-    } catch (error) {
-      return error;
-    }
-  };
-};
-
-export const createProject = (project: any) => {
-  return async (dispatch: any) => {
-    dispatch({
-      type: ActionTypes.REQUEST,
-    });
-    try {
-      const payload = await api.post(projects, project);
-
-      dispatch({
-        type: ActionTypes.POST_PROJECT,
+        type: ActionTypes.POST_USER,
         payload: payload.data,
       });
     } catch (error) {
@@ -87,45 +63,15 @@ export const createProject = (project: any) => {
   };
 };
 
-export const deleteProject = (id: string, history: any) => {
+export const editUser = (user: object, username: string) => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionTypes.REQUEST,
     });
     try {
-      await api.delete(`${projects}/${id}`);
-
+      const payload = await api.put(`${users}/${username}`, user);
       dispatch({
-        type: ActionTypes.DELETE_PROJECT,
-        history,
-      });
-    } catch (error) {
-      dispatch({
-        type: ActionTypes.ERROR,
-        message: error.response.data.message,
-        error: true,
-      });
-      setTimeout(() => {
-        dispatch({
-          type: ActionTypes.ERROR,
-          message: error.response.data.message,
-          error: false,
-        });
-      }, 2000);
-    }
-  };
-};
-
-export const updateProject = (id: string, project: object) => {
-  return async (dispatch: any) => {
-    dispatch({
-      type: ActionTypes.REQUEST,
-    });
-    try {
-      const payload = await api.put(`${projects}/${id}`, project);
-
-      dispatch({
-        type: ActionTypes.PUT_PROJECT,
+        type: ActionTypes.PUT_USER,
         payload: payload.data,
       });
     } catch (error) {
@@ -145,17 +91,16 @@ export const updateProject = (id: string, project: object) => {
   };
 };
 
-export const updateStatus = (id: string, status: object) => {
+export const deleteUser = (username: string) => {
   return async (dispatch: any) => {
     dispatch({
       type: ActionTypes.REQUEST,
     });
     try {
-      await api.put(`${projects}/${id}/set_status`, status);
-
+      await api.delete(`${users}/${username}`);
       dispatch({
-        type: ActionTypes.UPDATE_STATUS,
-        status: Object.values(status)[0],
+        type: ActionTypes.DELETE_USER,
+        username,
       });
     } catch (error) {
       dispatch({

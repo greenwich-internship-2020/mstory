@@ -2,10 +2,12 @@ import React, {FC, useEffect, useRef, useState} from 'react';
 
 import styles from './header.module.css';
 
-import topping from '../../assets/toppng.png';
+import topping from '../../../assets/toppng.png';
 
 import {Link, NavLink} from 'react-router-dom';
-import {Title} from '../Typography';
+
+import {Title} from '../../../Components/Typography';
+
 import clsx from 'clsx';
 
 interface Props {}

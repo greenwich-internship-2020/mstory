@@ -4,6 +4,8 @@ export const projects = '/projects';
 
 export const signup = '/ap/signup';
 
+export const login = '/ap/login';
+
 export const storiesProject = (id: string) => {
   return `/projects/${id}/stories`;
 };

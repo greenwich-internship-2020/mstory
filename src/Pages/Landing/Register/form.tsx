@@ -13,6 +13,7 @@ interface Props {
   formValid?: boolean;
   register?: any;
   load?: boolean;
+  error?: string;
 }
 
 const RegisterForm: FC<Props> = ({
@@ -20,11 +21,12 @@ const RegisterForm: FC<Props> = ({
   userErr,
   formValid,
   register,
+  error,
   load,
 }) => {
   return (
     <div className={styles.wrapper}>
-      <Form head="Sign up">
+      <Form error={error} head="Sign up">
         <div className={styles.content}>
           <div className={styles.info}>
             <div className={styles.fullname}>

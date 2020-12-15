@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 
-import {BodySmall, Heading} from '../Typography';
-import {TextVariants} from '../Typography/types';
+import {BodySmall, Heading} from '../../../Components/Typography';
+import {TextVariants} from '../../../Components/Typography/types';
 
 import styles from './footer.module.css';
 

@@ -14,9 +14,10 @@ import {
 interface Props {
   register?: any;
   load?: boolean;
+  error?: string;
 }
 
-const RegisterIndex: FC<Props> = ({register, load}) => {
+const RegisterIndex: FC<Props> = ({register, load, error}) => {
   const [user, setUser] = useState({
     username: '',
     password: '',
@@ -146,6 +147,7 @@ const RegisterIndex: FC<Props> = ({register, load}) => {
   return (
     <RegisterForm
       load={load}
+      error={error}
       register={() => register(user)}
       handleTyping={handleTyping}
       userErr={userErr}

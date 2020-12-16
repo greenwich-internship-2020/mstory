@@ -37,7 +37,6 @@ export const signin = (user: any, history: any) => {
       dispatch({
         type: ActionTypes.LOGIN,
       });
-      console.log(payload);
       history.push('projects');
       return payload;
     } catch (error) {

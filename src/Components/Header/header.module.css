@@ -1,4 +1,5 @@
 .header {
+  position: relative;
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -9,4 +10,44 @@
   width: 1.25rem;
   height: 1.25rem;
   margin-left: 1.125rem;
+}
+
+.action {
+  position: absolute;
+  top: 100%;
+  right: 2%;
+  background-color: white;
+  box-shadow: 0 15px 27.1828px var(--shadow);
+  border-radius: 0.5rem;
+  transform: translateY(-50%) scale(0);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.2s ease-in-out;
+}
+
+.action.show {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+  visibility: visible;
+}
+
+.info {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.detail {
+  border-bottom: 1px solid var(--default-lighter);
+}
+
+.detail,
+.logout {
+  padding: 1.5rem 1.875rem;
+  cursor: pointer;
+}
+
+.detail:hover,
+.logout:hover {
+  background-color: var(--default-lighter);
 }

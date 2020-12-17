@@ -21,6 +21,9 @@ const landingReducer = (state = initialState, action: any) => {
     case ActionTypes.LOGIN:
       return {...state, load: false};
 
+    case ActionTypes.LOGOUT:
+      return {...state, load: false};
+
     case ActionTypes.ERROR:
       state.error = action.error;
       return {...state, load: false};

@@ -1,6 +1,6 @@
 import {api} from '../../Config/api';
 
-import {signup, login} from '../../Config/api/subDomain';
+import {signup, login, logout} from '../../Config/api/subDomain';
 
 import * as ActionTypes from './constant';
 
@@ -32,18 +32,39 @@ export const signin = (user: any, history: any) => {
       type: ActionTypes.REQUEST,
     });
     try {
-      const payload = await api.post(login, user, {withCredentials: true});
-      // const payload = await api.post(login, user);
+      const payload = await api.post(login, user);
       dispatch({
         type: ActionTypes.LOGIN,
       });
-      history.push('projects');
+      localStorage.setItem('user', JSON.stringify(payload.data));
+      if (localStorage.getItem('user')) history.push('projects');
       return payload;
     } catch (error) {
       dispatch({
         type: ActionTypes.ERROR,
         error: error.response.data.message,
       });
+    }
+  };
+};
+
+export const signout = () => {
+  return async (dispatch: any) => {
+    dispatch({
+      type: ActionTypes.REQUEST,
+    });
+    try {
+      const payload = await api.post(logout);
+
+      dispatch({
+        type: ActionTypes.LOGOUT,
+      });
+
+      localStorage.removeItem('user');
+      window.location.pathname = '/mstory';
+      return payload;
+    } catch (error) {
+      return error;
     }
   };
 };

@@ -1,7 +1,11 @@
 import React, {ComponentType, ReactElement} from 'react';
 
+import {useDispatch} from 'react-redux';
+
+import {signout} from '../../Redux/Landing/action';
+
 import {
-  // Redirect,
+  Redirect,
   Route,
   RouteComponentProps,
   RouteProps,
@@ -21,13 +25,25 @@ type DashboardProps<P> = P extends RouteComponentProps<any>
   : never;
 
 const DashboardLayout = (props: any) => {
+  let user: any;
+
+  const storage = localStorage.getItem('user');
+
+  if (storage) {
+    user = JSON.parse(storage);
+  }
+
+  const dispatch = useDispatch();
+
+  const logout = () => dispatch(signout());
+
   return (
     <div className={styles.container}>
       <div className={styles.sidenav}>
         <Sidebar />
       </div>
       <div className={styles.main}>
-        <Header content="Harry James" />
+        <Header logout={logout} content={user.fullname} />
         <div className={styles.content}>{props.children}</div>
       </div>
     </div>
@@ -43,11 +59,15 @@ const DashboardTemplate = <P extends RouteComponentProps>({
     <Route
       {...routeProps}
       render={(childProps) => {
-        return (
-          <DashboardLayout>
-            <WrappedComponent {...childProps} {...withProps} />
-          </DashboardLayout>
-        );
+        if (localStorage.getItem('user')) {
+          return (
+            <DashboardLayout>
+              <WrappedComponent {...childProps} {...withProps} />
+            </DashboardLayout>
+          );
+        } else {
+          return <Redirect to="/mstory" />;
+        }
       }}
     />
   );

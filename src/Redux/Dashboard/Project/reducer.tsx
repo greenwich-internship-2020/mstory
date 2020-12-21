@@ -59,6 +59,8 @@ const projectReducer = (state = initialState, action: any) => {
 
     case ActionTypes.ERROR:
       state.message = action.message;
+      if (action.message === 'User is not logged in')
+        window.location.pathname = '/notfound';
       return {
         ...state,
         loading: false,

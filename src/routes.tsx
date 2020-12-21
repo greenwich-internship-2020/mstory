@@ -8,7 +8,10 @@ import Setting from './Pages/Dashboard/Project_Setting';
 
 import Stories from './Pages/Dashboard/Project_Stories';
 
+import Roles from './Pages/Dashboard/Roles';
+
 import User from './Pages/Dashboard/User';
+
 import Forgot from './Pages/Landing/Forgot';
 
 import Home from './Pages/Landing/Home';
@@ -72,6 +75,12 @@ const dashboard = [
     path: '/projects/:id/members',
     exact: false,
     component: Members,
+  },
+
+  {
+    path: '/roles',
+    exact: false,
+    component: Roles,
   },
 
   {

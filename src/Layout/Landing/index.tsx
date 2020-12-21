@@ -1,6 +1,7 @@
 import React, {ComponentType, ReactElement} from 'react';
 
 import {Route, RouteComponentProps, RouteProps} from 'react-router-dom';
+
 import LandingFooter from '../../Pages/Landing/LandingFooter';
 
 import LandingHeader from '../../Pages/Landing/LandingHeader';

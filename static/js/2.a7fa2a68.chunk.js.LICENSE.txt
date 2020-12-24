@@ -11,6 +11,12 @@ object-assign
  * @license  MIT
  */
 
+/*!
+ * perfect-scrollbar v1.5.0
+ * Copyright 2020 Hyunje Jun, MDBootstrap and Contributors
+ * Licensed under MIT
+ */
+
 /** @license React v0.20.1
  * scheduler.production.min.js
  *

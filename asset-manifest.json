@@ -1,17 +1,19 @@
 {
   "files": {
-    "main.css": "/mstory/static/css/main.c7c5069e.chunk.css",
-    "main.js": "/mstory/static/js/main.3b2cae96.chunk.js",
-    "main.js.map": "/mstory/static/js/main.3b2cae96.chunk.js.map",
-    "runtime-main.js": "/mstory/static/js/runtime-main.b5c5862a.js",
-    "runtime-main.js.map": "/mstory/static/js/runtime-main.b5c5862a.js.map",
-    "static/js/2.921ebc7c.chunk.js": "/mstory/static/js/2.921ebc7c.chunk.js",
-    "static/js/2.921ebc7c.chunk.js.map": "/mstory/static/js/2.921ebc7c.chunk.js.map",
-    "static/js/3.41f6db78.chunk.js": "/mstory/static/js/3.41f6db78.chunk.js",
-    "static/js/3.41f6db78.chunk.js.map": "/mstory/static/js/3.41f6db78.chunk.js.map",
+    "main.css": "/mstory/static/css/main.6fa5f0ee.chunk.css",
+    "main.js": "/mstory/static/js/main.235625f8.chunk.js",
+    "main.js.map": "/mstory/static/js/main.235625f8.chunk.js.map",
+    "runtime-main.js": "/mstory/static/js/runtime-main.b9d7a462.js",
+    "runtime-main.js.map": "/mstory/static/js/runtime-main.b9d7a462.js.map",
+    "static/css/2.847a128f.chunk.css": "/mstory/static/css/2.847a128f.chunk.css",
+    "static/js/2.a7fa2a68.chunk.js": "/mstory/static/js/2.a7fa2a68.chunk.js",
+    "static/js/2.a7fa2a68.chunk.js.map": "/mstory/static/js/2.a7fa2a68.chunk.js.map",
+    "static/js/3.83c99322.chunk.js": "/mstory/static/js/3.83c99322.chunk.js",
+    "static/js/3.83c99322.chunk.js.map": "/mstory/static/js/3.83c99322.chunk.js.map",
     "index.html": "/mstory/index.html",
-    "static/css/main.c7c5069e.chunk.css.map": "/mstory/static/css/main.c7c5069e.chunk.css.map",
-    "static/js/2.921ebc7c.chunk.js.LICENSE.txt": "/mstory/static/js/2.921ebc7c.chunk.js.LICENSE.txt",
+    "static/css/2.847a128f.chunk.css.map": "/mstory/static/css/2.847a128f.chunk.css.map",
+    "static/css/main.6fa5f0ee.chunk.css.map": "/mstory/static/css/main.6fa5f0ee.chunk.css.map",
+    "static/js/2.a7fa2a68.chunk.js.LICENSE.txt": "/mstory/static/js/2.a7fa2a68.chunk.js.LICENSE.txt",
     "static/media/checkbox.module.css": "/mstory/static/media/Check.389ee3e9.svg",
     "static/media/better.module.css": "/mstory/static/media/betterway.f06f9e40.jpg",
     "static/media/carousel.bb6fba96.jpg": "/mstory/static/media/carousel.bb6fba96.jpg",
@@ -23,9 +25,10 @@
     "static/media/forgot.module.css": "/mstory/static/media/userFormbg.aa0a105e.jpg"
   },
   "entrypoints": [
-    "static/js/runtime-main.b5c5862a.js",
-    "static/js/2.921ebc7c.chunk.js",
-    "static/css/main.c7c5069e.chunk.css",
-    "static/js/main.3b2cae96.chunk.js"
+    "static/js/runtime-main.b9d7a462.js",
+    "static/css/2.847a128f.chunk.css",
+    "static/js/2.a7fa2a68.chunk.js",
+    "static/css/main.6fa5f0ee.chunk.css",
+    "static/js/main.235625f8.chunk.js"
   ]
 }

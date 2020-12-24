@@ -28,12 +28,14 @@ export const getProjectList = (
       dispatch({
         type: ActionTypes.ERROR,
         message: error.response.data.message,
+        status: error.response.status,
         error: true,
       });
       setTimeout(() => {
         dispatch({
           type: ActionTypes.ERROR,
           message: error.response.data.message,
+          status: error.response.status,
           error: false,
         });
       }, 2000);

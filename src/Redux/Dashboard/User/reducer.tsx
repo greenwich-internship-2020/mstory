@@ -62,13 +62,6 @@ const userReducer = (state = initialState, action: any) => {
         loading: false,
       };
 
-    case ActionTypes.ERROR:
-      state.message = action.message;
-      return {
-        ...state,
-        loading: false,
-        error: action.error,
-      };
     default:
       return {...state, loading: false};
   }

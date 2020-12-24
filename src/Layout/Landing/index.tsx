@@ -1,6 +1,15 @@
 import React, {ComponentType, ReactElement} from 'react';
 
-import {Route, RouteComponentProps, RouteProps} from 'react-router-dom';
+import {
+  Redirect,
+  Route,
+  RouteComponentProps,
+  RouteProps,
+} from 'react-router-dom';
+
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
+import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import LandingFooter from '../../Pages/Landing/LandingFooter';
 
@@ -19,7 +28,9 @@ const LandingLayout = (props: any) => {
   return (
     <div className={styles.container}>
       <LandingHeader />
-      <div className={styles.content}>{props.children}</div>
+      <PerfectScrollbar>
+        <div className={styles.content}>{props.children}</div>
+      </PerfectScrollbar>
       <LandingFooter />
     </div>
   );
@@ -35,11 +46,15 @@ const LandingTemplate = <P extends RouteComponentProps>({
     <Route
       {...routeProps}
       render={(childProps) => {
+        // if (!localStorage.getItem('user')) {
         return (
           <LandingLayout>
             <WrappedComponent {...childProps} {...withProps} />
           </LandingLayout>
         );
+        // } else {
+        //   return <Redirect to="/projects" />;
+        // }
       }}
     />
   );

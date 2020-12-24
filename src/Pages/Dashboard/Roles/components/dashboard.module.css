@@ -81,12 +81,6 @@
   margin-bottom: 1.5rem;
 }
 
-.permisCheck {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 1.5rem;
-}
-
 .userPermis,
 .projectPermis,
 .userStoryPermis,
@@ -94,6 +88,8 @@
 .rolePermis {
   display: flex;
   flex-direction: column;
+  margin-top: 1rem;
+  margin-left: 1.25rem;
 }
 
 .checkbox {

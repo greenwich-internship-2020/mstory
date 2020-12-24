@@ -9,6 +9,7 @@ import Setting from './Pages/Dashboard/Project_Setting';
 import Stories from './Pages/Dashboard/Project_Stories';
 
 import Roles from './Pages/Dashboard/Roles';
+import CreateRolesModal from './Pages/Dashboard/Roles/pages/create';
 
 import User from './Pages/Dashboard/User';
 
@@ -79,8 +80,14 @@ const dashboard = [
 
   {
     path: '/roles',
-    exact: false,
+    exact: true,
     component: Roles,
+  },
+
+  {
+    path: '/roles/create',
+    exact: true,
+    component: CreateRolesModal,
   },
 
   {

@@ -13,6 +13,7 @@ import Tag from '../../../../../../Components/Tags';
 import {Caption2, Menu} from '../../../../../../Components/Typography';
 
 import {firstLetterUpper} from '../../../../../../Helper/firstLetterUpper';
+
 import {idenType} from './helper';
 
 import styles from './modal.module.css';

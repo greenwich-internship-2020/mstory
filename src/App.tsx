@@ -10,6 +10,8 @@ import LandingTemplate from './Layout/Landing';
 
 import {dashboard, landing} from './routes';
 
+import 'react-perfect-scrollbar/dist/css/styles.css';
+
 const showDashboardTemplate = (routes: any) => {
   if (routes && routes.length > 0) {
     return routes.map((item: any, index: number) => {

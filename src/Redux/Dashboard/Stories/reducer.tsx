@@ -113,13 +113,7 @@ const storiesReducer = (state = initialState, action: any) => {
         ...state,
         loading: false,
       };
-    case ActionTypes.ERROR:
-      state.message = action.message;
-      return {
-        ...state,
-        loading: false,
-        err: action.error,
-      };
+
     default:
       return {...state};
   }

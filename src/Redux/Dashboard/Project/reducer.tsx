@@ -59,8 +59,8 @@ const projectReducer = (state = initialState, action: any) => {
 
     case ActionTypes.ERROR:
       state.message = action.message;
-      if (action.message === 'User is not logged in')
-        window.location.pathname = '/notfound';
+      if (action.status === 401) window.location.pathname = '/mstory';
+      localStorage.removeItem('user');
       return {
         ...state,
         loading: false,
